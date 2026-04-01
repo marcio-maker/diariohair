@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-br" id="html-root">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MakerAI - Beauty Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-body: #fefefe;
+            --bg-surface: #ffffff;
+            --bg-card: #ffffff;
+            --bg-hero: #fafaf8;
+            --bg-stats: #ffffff;
+            --bg-navbar: #ffffff;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-tertiary: #888888;
+            --border-light: #f0f0f0;
+            --border-medium: #e0e0e0;
+            --accent: #111111;
+            --accent-light: #333333;
+            --star-active: #000000;
+            --star-inactive: #e0e0e0;
+            --badge-bg: #f5f5f5;
+            --badge-text: #666666;
+            --btn-border: #e0e0e0;
+            --btn-hover: #111111;
+            --btn-hover-text: #ffffff;
+            --input-border: #eaeaea;
+            --hero-text: #111111;
+            --quiz-option-bg: #fafaf8;
+            --quiz-option-hover: #f0f0f0;
+        }
+
+        body.dark {
+            --bg-body: #0a0a0a;
+            --bg-surface: #111111;
+            --bg-card: #111111;
+            --bg-hero: #0c0c0c;
+            --bg-stats: #111111;
+            --bg-navbar: #0c0c0c;
+            --text-primary: #f5f5f5;
+            --text-secondary: #aaaaaa;
+            --text-tertiary: #777777;
+            --border-light: #222222;
+            --border-medium: #2a2a2a;
+            --accent: #ffffff;
+            --accent-light: #dddddd;
+            --star-active: #ffffff;
+            --star-inactive: #444444;
+            --badge-bg: #1a1a1a;
+            --badge-text: #aaaaaa;
+            --btn-border: #333333;
+            --btn-hover: #ffffff;
+            --btn-hover-text: #111111;
+            --input-border: #333333;
+            --hero-text: #f5f5f5;
+            --quiz-option-bg: #111111;
+            --quiz-option-hover: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, .logo-text h1, .card-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .navbar {
+            background: var(--bg-navbar);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        .logo-icon {
+            font-size: 1.4rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.6rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.25rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            padding: 0.6rem 1.2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover { color: var(--accent); }
+        .nav-link.active { color: var(--accent); font-weight: 500; position: relative; }
+        .nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 1.2rem; right: 1.2rem; height: 1.5px; background: var(--accent); }
+
+        .controls { display: flex; gap: 0.5rem; align-items: center; }
+        .lang-select, .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--border-medium);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.7rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .lang-select:hover, .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hamburger { display: none; flex-direction: column; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+        .hamburger span { width: 20px; height: 1.5px; background: var(--text-primary); margin: 3px 0; transition: 0.2s; }
+
+        .hero {
+            background: var(--bg-hero);
+            margin: 0;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .hero h2 { font-size: 2.2rem; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 1rem; display: block; color: var(--hero-text); }
+        .hero h2::after { display: none; }
+        .hero p { font-size: 0.8rem; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--text-tertiary); max-width: 500px; margin: 0 auto; }
+        .hero-badge { display: inline-block; font-size: 0.65rem; letter-spacing: 2px; background: var(--badge-bg); padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem; color: var(--badge-text); }
+
+        .main-container { max-width: 1400px; margin: 3rem auto; padding: 0 2rem; }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .quiz-container { max-width: 800px; margin: 0 auto; }
+        .quiz-question { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2rem; margin-bottom: 1.5rem; }
+        .quiz-question h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--text-primary); }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; }
+        .quiz-option { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--quiz-option-bg); border: 1px solid var(--border-light); cursor: pointer; transition: all 0.2s ease; }
+        .quiz-option:hover { background: var(--quiz-option-hover); transform: translateX(4px); }
+        .quiz-option.selected { border-left: 3px solid var(--accent); background: var(--quiz-option-hover); }
+        .quiz-option input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent); }
+        .quiz-option label { flex: 1; cursor: pointer; font-size: 0.9rem; color: var(--text-secondary); margin: 0; text-transform: none; letter-spacing: normal; }
+
+        .quiz-result { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2rem; margin-top: 2rem; text-align: center; }
+        .quiz-result h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--accent); }
+        .result-section { text-align: left; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light); }
+        .result-section h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 1rem; color: var(--text-primary); }
+        .product-suggestion { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--quiz-option-bg); margin-bottom: 0.75rem; border-left: 3px solid var(--accent); cursor: pointer; }
+        .product-suggestion .product-icon { font-size: 1.8rem; }
+        .product-suggestion .product-info h5 { font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary); }
+        .product-suggestion .product-info p { font-size: 0.8rem; color: var(--text-tertiary); }
+        .badge-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .style-badge { background: var(--badge-bg); padding: 0.3rem 0.8rem; font-size: 0.7rem; color: var(--badge-text); border-radius: 20px; }
+
+        .card, .visita-card, .anotacao-card, .favorito-card { background: var(--bg-card); padding: 1.5rem; margin-bottom: 1px; border-bottom: 1px solid var(--border-light); transition: all 0.2s ease; }
+        .card:hover { background: var(--bg-surface); padding-left: 1.8rem; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 12px; }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; color: var(--text-primary); }
+        .badge { display: inline-block; background: var(--badge-bg); padding: 4px 12px; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; color: var(--badge-text); margin: 4px 4px 0 0; }
+
+        .form-group { margin-bottom: 1.8rem; }
+        label { display: block; margin-bottom: 8px; font-size: 0.65rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-tertiary); }
+        input, select, textarea { width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid var(--input-border); font-size: 0.9rem; font-family: 'Inter', sans-serif; background: transparent; color: var(--text-primary); }
+        input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--accent); }
+        textarea { resize: vertical; min-height: 80px; }
+        .row-2cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+        .btn { background: transparent; color: var(--text-primary); border: 1px solid var(--btn-border); padding: 12px 28px; font-size: 0.7rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; width: 100%; font-family: 'Inter', sans-serif; }
+        .btn:hover { background: var(--btn-hover); border-color: var(--btn-hover); color: var(--btn-hover-text); }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-light); margin-bottom: 3rem; }
+        .stat-card { background: var(--bg-stats); padding: 2rem 1rem; text-align: center; }
+        .stat-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; color: var(--text-primary); }
+        .stat-label { font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-tertiary); margin-top: 8px; }
+
+        .inspirations-grid, .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--border-light); margin-top: 1.5rem; }
+        .inspiration-card, .product-card { background: var(--bg-card); padding: 2rem; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; }
+        .inspiration-card:hover, .product-card:hover { background: var(--bg-surface); }
+        .inspiration-card h3, .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; margin-bottom: 8px; color: var(--text-primary); }
+        .star-icon { position: absolute; top: 1rem; right: 1rem; font-size: 0.9rem; cursor: pointer; color: var(--star-inactive); }
+        .star-icon.active { color: var(--star-active); }
+
+        .profile-avatar { text-align: center; margin-bottom: 2rem; }
+        .avatar-circle { width: 90px; height: 90px; background: var(--badge-bg); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2.2rem; color: var(--text-tertiary); border: 1px solid var(--border-light); }
+
+        .delete-btn, .favorite-btn { background: transparent; border: none; padding: 4px 10px; font-size: 0.65rem; cursor: pointer; font-family: 'Inter', sans-serif; }
+        .delete-btn { color: var(--text-tertiary); }
+        .delete-btn:hover { color: var(--accent); }
+        .favorite-btn { color: var(--star-inactive); }
+        .favorite-btn.active { color: var(--star-active); }
+
+        .menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
+        .menu-overlay.active { display: block; }
+        .ai-badge { font-size: 0.55rem; letter-spacing: 1px; background: var(--badge-bg); padding: 2px 8px; border-radius: 12px; display: inline-block; margin-left: 8px; color: var(--badge-text); }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 0.8rem 1.2rem; flex-wrap: wrap; }
+            .controls { order: 3; width: 100%; justify-content: center; margin-top: 0.5rem; }
+            .hamburger { display: flex; }
+            .nav-menu { position: fixed; top: 0; right: -100%; width: 70%; max-width: 280px; height: 100vh; background: var(--bg-navbar); flex-direction: column; padding: 80px 20px 20px; transition: 0.3s; box-shadow: -5px 0 30px rgba(0,0,0,0.2); z-index: 1001; }
+            .nav-menu.active { right: 0; }
+            .nav-link { padding: 1rem; width: 100%; text-align: left; border-bottom: 1px solid var(--border-light); }
+            .nav-link.active::after { display: none; }
+            .row-2cols { grid-template-columns: 1fr; gap: 1rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .hero h2 { font-size: 1.5rem; }
+            .hero { padding: 2rem 1.5rem; }
+            .main-container { padding: 0 1.2rem; margin: 2rem auto; }
+            .quiz-question { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <span class="logo-icon">▲</span>
+                <div class="logo-text">
+                    <h1>MakerAI</h1>
+                    <p id="logo-subtitle">BEAUTY INTELLIGENCE</p>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><button class="nav-link active" data-tab="dashboard" data-key="nav_dashboard">STUDIO</button></li>
+                <li><button class="nav-link" data-tab="perfil" data-key="nav_profile">PROFILE</button></li>
+                <li><button class="nav-link" data-tab="historico" data-key="nav_archive">ARCHIVE</button></li>
+                <li><button class="nav-link" data-tab="anotacoes" data-key="nav_notes">NOTES</button></li>
+                <li><button class="nav-link" data-tab="favoritos" data-key="nav_curated">CURATED</button></li>
+                <li><button class="nav-link" data-tab="inspiracoes" data-key="nav_moodboard">MOODBOARD</button></li>
+                <li><button class="nav-link" data-tab="produtos" data-key="nav_preferences">PREFERENCES</button></li>
+                <li><button class="nav-link" data-tab="visagismo" data-key="nav_analysis">ANALYSIS</button></li>
+                <li><button class="nav-link" data-tab="estatisticas" data-key="nav_insights">INSIGHTS</button></li>
+                <li><button class="nav-link" data-tab="configuracoes" data-key="nav_settings">SETTINGS</button></li>
+            </ul>
+            <div class="controls">
+                <select id="themeSelect" class="theme-toggle"><option value="light">☀️ Light</option><option value="dark">🌙 Dark</option></select>
+                <select id="langSelect" class="lang-select"><option value="pt">🇧🇷 PT</option><option value="en">🇺🇸 EN</option><option value="es">🇪🇸 ES</option></select>
+            </div>
+        </div>
+    </nav>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <div class="hero">
+        <div class="hero-badge" id="hero-badge">AI-POWERED BEAUTY ARCHIVE</div>
+        <h2 id="hero-title">Curate. Document. Evolve.</h2>
+        <p id="hero-subtitle">Your personal beauty intelligence — powered by MakerAI</p>
+    </div>
+
+    <div class="main-container">
+        <!-- Dashboard -->
+        <div id="dashboard" class="tab-content active">
+            <h2 id="dashboard-title">Studio</h2>
+            <div class="stats-grid" id="dashboardStats"></div>
+            <h3 id="upcoming-title" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; margin: 2rem 0 1rem;">UPCOMING</h3>
+            <div id="proximasVisitas"></div>
+            <h3 id="recent-title" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; margin: 2rem 0 1rem;">RECENTLY CURATED</h3>
+            <div id="favoritosRecentes"></div>
+        </div>
+
+        <!-- Perfil -->
+        <div id="perfil" class="tab-content">
+            <h2 id="profile-title">Profile <span class="ai-badge">AI ENHANCED</span></h2>
+            <div class="profile-avatar"><div class="avatar-circle">✨</div></div>
+            <form id="perfilForm">
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-name">Full Name</label><input type="text" id="perfilNome" placeholder="Your name" id="perfilNomePlaceholder"></div>
+                    <div class="form-group"><label id="label-birth">Birth Date</label><input type="date" id="perfilNascimento"></div>
+                </div>
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-contact">Contact</label><input type="tel" id="perfilWhatsapp" placeholder="+55 (00) 00000-0000"></div>
+                    <div class="form-group"><label id="label-instagram">Instagram</label><input type="text" id="perfilInstagram" placeholder="@username"></div>
+                </div>
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-hairtype">Hair Type</label><select id="perfilCabelo"><option>Straight</option><option>Wavy</option><option>Curly</option><option>Coily</option></select></div>
+                    <div class="form-group"><label id="label-haircolor">Hair Color</label><input type="text" id="perfilCorCabelo" placeholder="e.g., Brunette, Blonde"></div>
+                </div>
+                <div class="form-group"><label id="label-allergies">Allergies / Sensitivities</label><textarea id="perfilAlergias" rows="2" placeholder="Important information..."></textarea></div>
+                <div class="form-group"><label id="label-notes">Personal Notes</label><textarea id="perfilObs" rows="3" placeholder="Your style preferences, inspirations..."></textarea></div>
+                <button type="submit" class="btn" id="btn-save-profile">SAVE PROFILE</button>
+            </form>
+        </div>
+
+        <!-- Histórico -->
+        <div id="historico" class="tab-content">
+            <h2 id="archive-title">Archive</h2>
+            <form id="visitaForm">
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-date">Date</label><input type="date" id="dataVisita" required></div>
+                    <div class="form-group"><label id="label-next">Next Appointment</label><input type="date" id="dataProxima"></div>
+                </div>
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-salon">Salon / Artist</label><input type="text" id="salao" placeholder="Where did you go?"></div>
+                    <div class="form-group"><label id="label-service">Service</label><input type="text" id="servico" placeholder="Cut, Color, Treatment"></div>
+                </div>
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-color">Color Formula</label><input type="text" id="tinta" placeholder="e.g., 7.3, Platinum"></div>
+                    <div class="form-group"><label id="label-developer">Developer</label><input type="text" id="oxigenada" placeholder="Volume / ml"></div>
+                </div>
+                <div class="row-2cols">
+                    <div class="form-group"><label id="label-shampoo">Shampoo Used</label><input type="text" id="shampoo"></div>
+                    <div class="form-group"><label id="label-treatment">Treatment</label><input type="text" id="hidratacao"></div>
+                </div>
+                <div class="form-group"><label id="label-reflections">Notes & Reflections</label><textarea id="avaliacao" rows="3" placeholder="What did you love? What would you change?"></textarea></div>
+                <button type="submit" class="btn" id="btn-archive">ARCHIVE ENTRY</button>
+            </form>
+            <div style="margin-top: 2rem;"><div id="listaVisitas"></div></div>
+        </div>
+
+        <!-- Anotações -->
+        <div id="anotacoes" class="tab-content">
+            <h2 id="notes-title">Notes</h2>
+            <form id="anotacaoForm">
+                <div class="form-group"><label id="label-note-title">Title</label><input type="text" id="anotTitulo" required placeholder="A thought worth keeping..."></div>
+                <div class="form-group"><label id="label-note-content">Content</label><textarea id="anotConteudo" rows="5" placeholder="Write your beauty notes here..."></textarea></div>
+                <div class="form-group"><label id="label-note-category">Category</label><select id="anotCategoria"><option>Inspiration</option><option>Products</option><option>Tips</option><option>Reminders</option></select></div>
+                <button type="submit" class="btn" id="btn-save-note">SAVE NOTE</button>
+            </form>
+            <div style="margin-top: 2rem;"><div id="listaAnotacoes"></div></div>
+        </div>
+
+        <!-- Favoritos -->
+        <div id="favoritos" class="tab-content">
+            <h2 id="curated-title">Curated Collection</h2>
+            <div id="listaFavoritos"></div>
+        </div>
+
+        <!-- Inspirações -->
+        <div id="inspiracoes" class="tab-content">
+            <h2 id="moodboard-title">Moodboard</h2>
+            <div class="inspirations-grid" id="inspirationsGrid"></div>
+            <button class="btn" onclick="adicionarInspiracao()" style="margin-top: 2rem;" id="btn-add-inspiration">+ ADD TO MOODBOARD</button>
+        </div>
+
+        <!-- Produtos -->
+        <div id="produtos" class="tab-content">
+            <h2 id="preferences-title">Preferences</h2>
+            <div class="products-grid" id="productsGrid"></div>
+            <button class="btn" onclick="adicionarProduto()" style="margin-top: 2rem;" id="btn-add-product">+ ADD PRODUCT</button>
+        </div>
+
+        <!-- Análise - Quiz -->
+        <div id="visagismo" class="tab-content">
+            <h2 id="analysis-title">AI Style Analysis <span class="ai-badge">QUIZ</span></h2>
+            <div class="quiz-container" id="quizContainer"></div>
+            <div id="quizResult" style="display: none;"></div>
+        </div>
+
+        <!-- Estatísticas -->
+        <div id="estatisticas" class="tab-content">
+            <h2 id="insights-title">Insights</h2>
+            <div class="stats-grid" id="estatisticasGrid"></div>
+            <h3 id="evolution-title" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; margin: 2rem 0 1rem;">EVOLUTION</h3>
+            <div id="evolucaoVisitas" style="background: var(--bg-card); padding: 1.5rem; border: 1px solid var(--border-light);"></div>
+            <h3 id="most-requested-title" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; margin: 2rem 0 1rem;">MOST REQUESTED</h3>
+            <div id="servicosMaisUsados"></div>
+            <h3 id="favorite-products-title" style="font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; margin: 2rem 0 1rem;">FAVORITE PRODUCTS</h3>
+            <div id="produtosMaisUsados"></div>
+        </div>
+
+        <!-- Configurações -->
+        <div id="configuracoes" class="tab-content">
+            <h2 id="settings-title">Settings</h2>
+            <div class="form-group"><label id="label-reminders">Appointment Reminders</label><select id="configNotificacoes"><option value="sim">Enable</option><option value="nao">Disable</option></select></div>
+            <div class="form-group"><label id="label-birthday-reminder">Birthday Reminder</label><input type="checkbox" id="configLembrarAniversario"> <span id="birthday-text">Receive birthday wishes</span></div>
+            <hr style="margin: 2rem 0; border-color: var(--border-light);">
+            <button class="btn" onclick="exportarMeusDados()" id="btn-export">EXPORT DATA</button>
+            <button class="btn" onclick="importarMeusDados()" style="margin-top: 1rem;" id="btn-import">IMPORT DATA</button>
+            <button class="btn" onclick="limparTodosDados()" style="margin-top: 1rem;" id="btn-delete-all">DELETE ALL DATA</button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== TRADUÇÕES COMPLETAS ====================
+        const translations = {
+            pt: {
+                // Navegação
+                nav_dashboard: "ESTÚDIO", nav_profile: "PERFIL", nav_archive: "ARQUIVO", nav_notes: "ANOTAÇÕES",
+                nav_curated: "FAVORITOS", nav_moodboard: "INSPIRAÇÕES", nav_preferences: "PRODUTOS",
+                nav_analysis: "ANÁLISE", nav_insights: "ESTATÍSTICAS", nav_settings: "CONFIGURAÇÕES",
+                // Hero
+                hero_badge: "ARQUIVO DE BELEZA COM IA", hero_title: "Curadoria. Documente. Evolua.",
+                hero_subtitle: "Sua inteligência de beleza pessoal — powered by MakerAI",
+                // Dashboard
+                dashboard_title: "Estúdio", upcoming: "PRÓXIMOS", recent: "RECENTEMENTE FAVORITADOS",
+                // Perfil
+                profile_title: "Perfil", label_name: "Nome Completo", label_birth: "Data de Nascimento",
+                label_contact: "Contato", label_instagram: "Instagram", label_hairtype: "Tipo de Cabelo",
+                label_haircolor: "Cor do Cabelo", label_allergies: "Alergias / Sensibilidades",
+                label_notes: "Observações Pessoais", btn_save_profile: "SALVAR PERFIL",
+                placeholder_name: "Seu nome", placeholder_contact: "+55 (00) 00000-0000",
+                placeholder_instagram: "@usuario", placeholder_haircolor: "Ex: Castanho, Loiro",
+                placeholder_allergies: "Informações importantes...", placeholder_notes: "Suas preferências de estilo, inspirações...",
+                // Arquivo
+                archive_title: "Arquivo", label_date: "Data", label_next: "Próxima Visita",
+                label_salon: "Salão / Profissional", label_service: "Serviço", label_color: "Cor/Tinta",
+                label_developer: "Oxigenada", label_shampoo: "Shampoo Usado", label_treatment: "Hidratação",
+                label_reflections: "Notas e Reflexões", btn_archive: "ARQUIVAR VISITA",
+                placeholder_salon: "Onde você foi?", placeholder_service: "Corte, Cor, Tratamento",
+                placeholder_color: "Ex: 7.3, Platinado", placeholder_developer: "Volume / ml",
+                placeholder_reflections: "O que você amou? O que mudaria?",
+                // Anotações
+                notes_title: "Anotações", label_note_title: "Título", label_note_content: "Conteúdo",
+                label_note_category: "Categoria", btn_save_note: "SALVAR ANOTAÇÃO",
+                placeholder_note_title: "Um pensamento que vale a pena guardar...",
+                placeholder_note_content: "Escreva suas anotações de beleza aqui...",
+                // Favoritos
+                curated_title: "Coleção Favorita",
+                // Inspirações
+                moodboard_title: "Inspirações", btn_add_inspiration: "+ ADICIONAR INSPIRAÇÃO",
+                // Produtos
+                preferences_title: "Produtos", btn_add_product: "+ ADICIONAR PRODUTO",
+                // Análise
+                analysis_title: "Análise de Estilo IA",
+                // Estatísticas
+                insights_title: "Estatísticas", evolution: "EVOLUÇÃO", most_requested: "MAIS SOLICITADOS",
+                favorite_products: "PRODUTOS FAVORITOS",
+                // Configurações
+                settings_title: "Configurações", label_reminders: "Lembretes de Visitas",
+                label_birthday_reminder: "Lembrar Aniversário", birthday_text: "Receber lembretes de aniversário",
+                btn_export: "EXPORTAR DADOS", btn_import: "IMPORTAR DADOS", btn_delete_all: "APAGAR TODOS OS DADOS",
+                // Mensagens vazias
+                empty_archive: "Seu arquivo está vazio.", empty_notes: "Suas anotações estão vazias.",
+                empty_favorites: "★ Clique na estrela para favoritar.", empty_analysis: "Responda ao quiz para descobrir seu estilo ideal.",
+                no_upcoming: "✨ Nenhum compromisso agendado.", empty_recent: "★ Complete o quiz de estilo para recomendações!",
+                // Quiz
+                quiz_question1: "Qual é o formato do seu rosto?",
+                quiz_question2: "Qual é o seu biotipo / tipo de corpo?",
+                quiz_question3: "Que vibe você quer transmitir?",
+                quiz_question4: "Qual é a textura natural do seu cabelo?",
+                quiz_question5: "Quanto tempo você dedica à rotina capilar?",
+                btn_run_analysis: "ANALISAR MEU ESTILO",
+                // Opções do quiz (mantidas em inglês pois são universais)
+                // Estatísticas
+                stats_visits: "VISITAS", stats_favorites: "FAVORITOS", stats_notes: "NOTAS", stats_products: "PRODUTOS",
+                no_services: "Nenhum serviço registrado ainda.", no_products_stats: "Nenhum produto registrado ainda.",
+                documented_moments: "Você documentou",
+                beauty_moments: "momentos de beleza"
+            },
+            en: {
+                nav_dashboard: "STUDIO", nav_profile: "PROFILE", nav_archive: "ARCHIVE", nav_notes: "NOTES",
+                nav_curated: "CURATED", nav_moodboard: "MOODBOARD", nav_preferences: "PREFERENCES",
+                nav_analysis: "ANALYSIS", nav_insights: "INSIGHTS", nav_settings: "SETTINGS",
+                hero_badge: "AI-POWERED BEAUTY ARCHIVE", hero_title: "Curate. Document. Evolve.",
+                hero_subtitle: "Your personal beauty intelligence — powered by MakerAI",
+                dashboard_title: "Studio", upcoming: "UPCOMING", recent: "RECENTLY CURATED",
+                profile_title: "Profile", label_name: "Full Name", label_birth: "Birth Date",
+                label_contact: "Contact", label_instagram: "Instagram", label_hairtype: "Hair Type",
+                label_haircolor: "Hair Color", label_allergies: "Allergies / Sensitivities",
+                label_notes: "Personal Notes", btn_save_profile: "SAVE PROFILE",
+                placeholder_name: "Your name", placeholder_contact: "+55 (00) 00000-0000",
+                placeholder_instagram: "@username", placeholder_haircolor: "e.g., Brunette, Blonde",
+                placeholder_allergies: "Important information...", placeholder_notes: "Your style preferences, inspirations...",
+                archive_title: "Archive", label_date: "Date", label_next: "Next Appointment",
+                label_salon: "Salon / Artist", label_service: "Service", label_color: "Color Formula",
+                label_developer: "Developer", label_shampoo: "Shampoo Used", label_treatment: "Treatment",
+                label_reflections: "Notes & Reflections", btn_archive: "ARCHIVE ENTRY",
+                placeholder_salon: "Where did you go?", placeholder_service: "Cut, Color, Treatment",
+                placeholder_color: "e.g., 7.3, Platinum", placeholder_developer: "Volume / ml",
+                placeholder_reflections: "What did you love? What would you change?",
+                notes_title: "Notes", label_note_title: "Title", label_note_content: "Content",
+                label_note_category: "Category", btn_save_note: "SAVE NOTE",
+                placeholder_note_title: "A thought worth keeping...",
+                placeholder_note_content: "Write your beauty notes here...",
+                curated_title: "Curated Collection",
+                moodboard_title: "Moodboard", btn_add_inspiration: "+ ADD TO MOODBOARD",
+                preferences_title: "Preferences", btn_add_product: "+ ADD PRODUCT",
+                analysis_title: "AI Style Analysis",
+                insights_title: "Insights", evolution: "EVOLUTION", most_requested: "MOST REQUESTED",
+                favorite_products: "FAVORITE PRODUCTS",
+                settings_title: "Settings", label_reminders: "Appointment Reminders",
+                label_birthday_reminder: "Birthday Reminder", birthday_text: "Receive birthday wishes",
+                btn_export: "EXPORT DATA", btn_import: "IMPORT DATA", btn_delete_all: "DELETE ALL DATA",
+                empty_archive: "Your archive is empty.", empty_notes: "Your notes are empty.",
+                empty_favorites: "★ Click the star to curate.", empty_analysis: "Take the quiz to discover your ideal style.",
+                no_upcoming: "✨ No upcoming appointments.", empty_recent: "★ Take the style quiz for recommendations!",
+                quiz_question1: "What is your face shape?",
+                quiz_question2: "What is your body type / biotype?",
+                quiz_question3: "What vibe do you want to transmit?",
+                quiz_question4: "What is your natural hair texture?",
+                quiz_question5: "How much time do you dedicate to your hair routine?",
+                btn_run_analysis: "ANALYZE MY STYLE",
+                stats_visits: "VISITS", stats_favorites: "FAVORITES", stats_notes: "NOTES", stats_products: "PRODUCTS",
+                no_services: "No services recorded yet.", no_products_stats: "No products recorded yet.",
+                documented_moments: "You have documented",
+                beauty_moments: "beauty moments"
+            },
+            es: {
+                nav_dashboard: "ESTUDIO", nav_profile: "PERFIL", nav_archive: "ARCHIVO", nav_notes: "NOTAS",
+                nav_curated: "FAVORITOS", nav_moodboard: "INSPIRACIONES", nav_preferences: "PRODUCTOS",
+                nav_analysis: "ANÁLISIS", nav_insights: "ESTADÍSTICAS", nav_settings: "AJUSTES",
+                hero_badge: "ARCHIVO DE BELLEZA CON IA", hero_title: "Selecciona. Documenta. Evoluciona.",
+                hero_subtitle: "Tu inteligencia de belleza personal — powered by MakerAI",
+                dashboard_title: "Estudio", upcoming: "PRÓXIMOS", recent: "FAVORITOS RECIENTES",
+                profile_title: "Perfil", label_name: "Nombre Completo", label_birth: "Fecha de Nacimiento",
+                label_contact: "Contacto", label_instagram: "Instagram", label_hairtype: "Tipo de Cabello",
+                label_haircolor: "Color de Cabello", label_allergies: "Alergias / Sensibilidades",
+                label_notes: "Notas Personales", btn_save_profile: "GUARDAR PERFIL",
+                placeholder_name: "Tu nombre", placeholder_contact: "+55 (00) 00000-0000",
+                placeholder_instagram: "@usuario", placeholder_haircolor: "Ej: Castaño, Rubio",
+                placeholder_allergies: "Información importante...", placeholder_notes: "Tus preferencias de estilo, inspiraciones...",
+                archive_title: "Archivo", label_date: "Fecha", label_next: "Próxima Visita",
+                label_salon: "Salón / Profesional", label_service: "Servicio", label_color: "Color/Tinte",
+                label_developer: "Oxigenada", label_shampoo: "Champú Usado", label_treatment: "Hidratación",
+                label_reflections: "Notas y Reflexiones", btn_archive: "ARCHIVAR VISITA",
+                placeholder_salon: "¿Dónde fuiste?", placeholder_service: "Corte, Color, Tratamiento",
+                placeholder_color: "Ej: 7.3, Platinado", placeholder_developer: "Volumen / ml",
+                placeholder_reflections: "¿Qué amaste? ¿Qué cambiarías?",
+                notes_title: "Notas", label_note_title: "Título", label_note_content: "Contenido",
+                label_note_category: "Categoría", btn_save_note: "GUARDAR NOTA",
+                placeholder_note_title: "Un pensamiento que vale la pena guardar...",
+                placeholder_note_content: "Escribe tus notas de belleza aquí...",
+                curated_title: "Colección Favorita",
+                moodboard_title: "Inspiraciones", btn_add_inspiration: "+ AGREGAR INSPIRACIÓN",
+                preferences_title: "Productos", btn_add_product: "+ AGREGAR PRODUCTO",
+                analysis_title: "Análisis de Estilo IA",
+                insights_title: "Estadísticas", evolution: "EVOLUCIÓN", most_requested: "MÁS SOLICITADOS",
+                favorite_products: "PRODUCTOS FAVORITOS",
+                settings_title: "Configuraciones", label_reminders: "Recordatorios de Visitas",
+                label_birthday_reminder: "Recordar Cumpleaños", birthday_text: "Recibir recordatorios de cumpleaños",
+                btn_export: "EXPORTAR DATOS", btn_import: "IMPORTAR DATOS", btn_delete_all: "ELIMINAR TODOS LOS DATOS",
+                empty_archive: "Tu archivo está vacío.", empty_notes: "Tus notas están vacías.",
+                empty_favorites: "★ Haz clic en la estrella para favoritar.", empty_analysis: "Responde el quiz para descubrir tu estilo ideal.",
+                no_upcoming: "✨ No hay próximos compromisos.", empty_recent: "★ ¡Completa el quiz de estilo para recomendaciones!",
+                quiz_question1: "¿Cuál es la forma de tu rostro?",
+                quiz_question2: "¿Cuál es tu biotipo / tipo de cuerpo?",
+                quiz_question3: "¿Qué vibra quieres transmitir?",
+                quiz_question4: "¿Cuál es la textura natural de tu cabello?",
+                quiz_question5: "¿Cuánto tiempo dedicas a tu rutina capilar?",
+                btn_run_analysis: "ANALIZAR MI ESTILO",
+                stats_visits: "VISITAS", stats_favorites: "FAVORITOS", stats_notes: "NOTAS", stats_products: "PRODUCTOS",
+                no_services: "No hay servicios registrados aún.", no_products_stats: "No hay productos registrados aún.",
+                documented_moments: "Has documentado",
+                beauty_moments: "momentos de belleza"
+            }
+        };
+
+        // ==================== CONFIGURAÇÕES DO QUIZ ====================
+        const quizQuestionsData = [
+            { id: "faceShape", key: "quiz_question1", options: ["Oval", "Round", "Square", "Heart", "Long", "Diamond"] },
+            { id: "bodyType", key: "quiz_question2", options: ["Petite / Delicate", "Athletic / Toned", "Curvy / Voluptuous", "Tall / Elongated", "Balanced / Proportional"] },
+            { id: "vibe", key: "quiz_question3", options: ["Sophisticated / Elegant", "Edgy / Modern", "Romantic / Soft", "Bold / Confident", "Effortless / Natural", "Minimalist / Clean"] },
+            { id: "hairTexture", key: "quiz_question4", options: ["Straight", "Wavy", "Curly", "Coily / Kinky"] },
+            { id: "lifestyle", key: "quiz_question5", options: ["Minimal (wash & go)", "Moderate (styling tools occasionally)", "Dedicated (I enjoy elaborate routines)", "Professional (I get it done at the salon)"] }
+        ];
+
+        function generateRecommendations(answers) {
+            const face = answers.faceShape || "";
+            const vibe = answers.vibe || "";
+            const texture = answers.hairTexture || "";
+            const lifestyle = answers.lifestyle || "";
+
+            let haircut = "", hairColor = "", styleDescription = "";
+            let products = [];
+
+            if (face === "Oval") haircut = "Almost any style suits you! Try a chic bob, long layers, or a sleek middle part.";
+            else if (face === "Round") haircut = "Long layers, asymmetrical cuts, or textured lobs to elongate the face.";
+            else if (face === "Square") haircut = "Soft, layered cuts with face-framing pieces. Avoid harsh blunt lines.";
+            else if (face === "Heart") haircut = "Side-swept bangs, chin-length bobs, or textured layers.";
+            else if (face === "Long") haircut = "Blunt cuts, chin-length bobs, or styles with volume at the sides.";
+            else if (face === "Diamond") haircut = "Textured pixie, curtain bangs, or soft waves around the cheekbones.";
+            else haircut = "A style that enhances your natural features.";
+
+            if (vibe === "Sophisticated / Elegant") {
+                styleDescription = "You gravitate towards timeless elegance. Think polished finishes, sleek silhouettes, and refined details.";
+                products.push({ name: "Oribe Gold Lust Oil", desc: "Adds mirror-like shine and smoothness", icon: "✨" });
+                products.push({ name: "Kérastase Elixir Ultime", desc: "The ultimate luxury finishing serum", icon: "💎" });
+            } else if (vibe === "Edgy / Modern") {
+                styleDescription = "Your style is bold and contemporary. Asymmetrical cuts, graphic lines, and unexpected textures define you.";
+                products.push({ name: "Bumble and bumble Dry Spun", desc: "Texturizing spray for undone volume", icon: "⚡" });
+            } else if (vibe === "Romantic / Soft") {
+                styleDescription = "Soft, flowing lines and gentle textures reflect your romantic spirit. Think waves, soft curls, and delicate highlights.";
+                products.push({ name: "Gisou Honey Infused Hair Oil", desc: "Nourishes for soft, touchable hair", icon: "🍯" });
+            } else if (vibe === "Bold / Confident") {
+                styleDescription = "You make a statement. Vibrant colors, sharp cuts, and fearless choices are your signature.";
+                products.push({ name: "Pulp Riot Color", desc: "Vivid, long-lasting fashion colors", icon: "🎨" });
+            } else if (vibe === "Effortless / Natural") {
+                styleDescription = "Your beauty philosophy is 'less is more'. Low-maintenance styles that celebrate your natural texture.";
+                products.push({ name: "Ouai Wave Spray", desc: "Effortless beach waves", icon: "🌊" });
+            } else {
+                styleDescription = "Clean, minimalist aesthetics with precise cuts and understated elegance.";
+                products.push({ name: "Davines OI Oil", desc: "Lightweight, sleek finish", icon: "🌿" });
+            }
+
+            if (texture === "Curly" || texture === "Coily / Kinky") {
+                products.push({ name: "Pattern Beauty Curl Gel", desc: "Defines and hydrates curls", icon: "🌀" });
+            } else if (texture === "Wavy") {
+                products.push({ name: "Briogeo Curl Charisma", desc: "Enhances natural waves", icon: "🌊" });
+            }
+
+            if (lifestyle === "Minimal (wash & go)") {
+                products.push({ name: "Living Proof Perfect Hair Day", desc: "5-in-1 styling treatment for minimal effort", icon: "⏱️" });
+            }
+
+            products = products.filter((p, i, self) => i === self.findIndex(t => t.name === p.name));
+            return { haircut, hairColor, styleDescription, products };
+        }
+
+        // Variáveis globais
+        let currentLang = localStorage.getItem('language') || 'pt';
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        let currentAnswers = {};
+        let savedAnalysis = JSON.parse(localStorage.getItem('quizAnalysis')) || null;
+
+        // Dados do localStorage
+        let perfil = JSON.parse(localStorage.getItem('perfil')) || { nome: '' };
+        let visitas = JSON.parse(localStorage.getItem('visitas')) || [];
+        let anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || [];
+        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+        let inspiracoes = JSON.parse(localStorage.getItem('inspiracoes')) || [
+            { id: 1, nome: "The Modern Bob", descricao: "Clean lines, timeless" },
+            { id: 2, nome: "Textured Waves", descricao: "Effortless movement" },
+            { id: 3, nome: "Caramel Dimension", descricao: "Sun-kissed depth" }
+        ];
+        let produtos = JSON.parse(localStorage.getItem('produtos')) || [
+            { id: 1, nome: "Oribe Gold Lust", descricao: "Repair & restore" },
+            { id: 2, nome: "Olaplex System", descricao: "Bond maintenance" }
+        ];
+        let visagismos = JSON.parse(localStorage.getItem('visagismos')) || [];
+        let configuracoes = JSON.parse(localStorage.getItem('configuracoes')) || { notificacoes: 'sim', lembrarAniversario: false };
+
+        function getText(key, defaultText) { return translations[currentLang][key] || defaultText; }
+
+        function toggleFavorito(tipo, id) {
+            const index = favoritos.findIndex(f => f.tipo === tipo && f.id === id);
+            if (index === -1) favoritos.push({ tipo, id, data: new Date().toISOString() });
+            else favoritos.splice(index, 1);
+            localStorage.setItem('favoritos', JSON.stringify(favoritos));
+            if (document.getElementById('favoritos')?.classList.contains('active')) renderFavoritos();
+            if (document.getElementById('inspiracoes')?.classList.contains('active')) renderInspiracoes();
+            if (document.getElementById('produtos')?.classList.contains('active')) renderProdutos();
+            if (document.getElementById('historico')?.classList.contains('active')) renderVisitas();
+            if (document.getElementById('dashboard')?.classList.contains('active')) renderDashboard();
+        }
+
+        function isFavorito(tipo, id) { return favoritos.some(f => f.tipo === tipo && f.id === id); }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            const target = document.getElementById(tabName);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+            if (tabName === 'visagismo') renderQuiz();
+            if (tabName === 'dashboard') renderDashboard();
+            if (tabName === 'perfil') carregarPerfil();
+            if (tabName === 'historico') renderVisitas();
+            if (tabName === 'anotacoes') renderAnotacoes();
+            if (tabName === 'favoritos') renderFavoritos();
+            if (tabName === 'inspiracoes') renderInspiracoes();
+            if (tabName === 'produtos') renderProdutos();
+            if (tabName === 'estatisticas') renderEstatisticas();
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            if (!container) return;
+            const t = translations[currentLang];
+            let html = `<div style="margin-bottom: 2rem;"><p style="color: var(--text-tertiary); font-size: 0.8rem;">${t.empty_analysis}</p></div>`;
+            
+            quizQuestionsData.forEach((q, idx) => {
+                const savedValue = savedAnalysis ? savedAnalysis.answers[q.id] : currentAnswers[q.id];
+                html += `
+                    <div class="quiz-question">
+                        <h3>${idx + 1}. ${t[q.key] || q.key}</h3>
+                        <div class="quiz-options" data-question="${q.id}">
+                            ${q.options.map(opt => `
+                                <div class="quiz-option ${savedValue === opt ? 'selected' : ''}" onclick="selectOption('${q.id}', '${opt.replace(/'/g, "\\'")}')">
+                                    <input type="radio" name="${q.id}" value="${opt.replace(/'/g, "&apos;")}" ${savedValue === opt ? 'checked' : ''}>
+                                    <label>${opt}</label>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            html += `<button class="btn" onclick="submitQuiz()" id="quizSubmitBtn">${t.btn_run_analysis}</button>`;
+            container.innerHTML = html;
+            
+            if (savedAnalysis) {
+                currentAnswers = { ...savedAnalysis.answers };
+                renderQuizResult(savedAnalysis.recommendations);
+            } else {
+                const resultDiv = document.getElementById('quizResult');
+                if (resultDiv) resultDiv.style.display = 'none';
+            }
+        }
+
+        window.selectOption = function(questionId, value) {
+            currentAnswers[questionId] = value;
+            const container = document.getElementById('quizContainer');
+            const questionDiv = container.querySelector(`.quiz-question:has([data-question="${questionId}"])`);
+            if (questionDiv) {
+                const options = questionDiv.querySelectorAll('.quiz-option');
+                options.forEach(opt => {
+                    opt.classList.remove('selected');
+                    if (opt.querySelector('label')?.innerText === value) {
+                        opt.classList.add('selected');
+                        opt.querySelector('input').checked = true;
+                    }
+                });
+            }
+        };
+
+        window.submitQuiz = function() {
+            const missing = quizQuestionsData.filter(q => !currentAnswers[q.id]);
+            if (missing.length > 0) {
+                alert(getText('empty_analysis', 'Please answer all questions.'));
+                return;
+            }
+            const recommendations = generateRecommendations(currentAnswers);
+            const analysisData = {
+                answers: { ...currentAnswers },
+                recommendations: recommendations,
+                date: new Date().toISOString()
+            };
+            localStorage.setItem('quizAnalysis', JSON.stringify(analysisData));
+            savedAnalysis = analysisData;
+            renderQuizResult(recommendations);
+        };
+
+        function renderQuizResult(recommendations) {
+            const resultDiv = document.getElementById('quizResult');
+            if (!resultDiv) return;
+            const t = translations[currentLang];
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <div class="quiz-result">
+                    <h3>✨ ${currentLang === 'pt' ? 'Seu Perfil de Estilo' : currentLang === 'es' ? 'Tu Perfil de Estilo' : 'Your Style Profile'} ✨</h3>
+                    <div class="result-section"><h4>✂️ ${currentLang === 'pt' ? 'Corte Recomendado' : currentLang === 'es' ? 'Corte Recomendado' : 'Recommended Haircut'}</h4><p>${recommendations.haircut || "A style that enhances your natural features."}</p></div>
+                    <div class="result-section"><h4>🎨 ${currentLang === 'pt' ? 'Paleta de Cores' : currentLang === 'es' ? 'Paleta de Colores' : 'Color Palette'}</h4><p>${recommendations.hairColor || "Colors that complement your complexion and style."}</p></div>
+                    <div class="result-section"><h4>💫 ${currentLang === 'pt' ? 'Sua Vibração de Estilo' : currentLang === 'es' ? 'Tu Vibra de Estilo' : 'Your Style Vibe'}</h4><p>${recommendations.styleDescription || "Your unique beauty signature."}</p></div>
+                    <div class="result-section"><h4>🛍️ ${currentLang === 'pt' ? 'Produtos Selecionados para Você' : currentLang === 'es' ? 'Productos Seleccionados para Ti' : 'Curated Products for You'}</h4>
+                        ${recommendations.products.length > 0 ? recommendations.products.map(p => `
+                            <div class="product-suggestion" onclick="addToFavoritesFromQuiz('${p.name.replace(/'/g, "\\'")}', '${p.desc.replace(/'/g, "\\'")}')">
+                                <div class="product-icon">${p.icon || '🧴'}</div>
+                                <div class="product-info"><h5>${p.name}</h5><p>${p.desc}</p></div>
+                                <div style="margin-left: auto; font-size: 0.7rem;">★ ${currentLang === 'pt' ? 'Salvar' : currentLang === 'es' ? 'Guardar' : 'Save'}</div>
+                            </div>
+                        `).join('') : '<p>Explore our product recommendations to complete your routine.</p>'}
+                    </div>
+                    <div class="result-section"><div class="badge-list">${Object.entries(currentAnswers).map(([key, val]) => `<span class="style-badge">${val}</span>`).join('')}</div></div>
+                    <button class="btn" onclick="resetQuiz()" style="margin-top: 1.5rem;">⟳ ${currentLang === 'pt' ? 'Refazer Quiz' : currentLang === 'es' ? 'Rehacer Quiz' : 'Retake Quiz'}</button>
+                    <button class="btn" onclick="saveAnalysisToProfile()" style="margin-top: 1rem;">💾 ${currentLang === 'pt' ? 'Salvar no Meu Perfil' : currentLang === 'es' ? 'Guardar en Mi Perfil' : 'Save to My Profile'}</button>
+                </div>
+            `;
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        window.resetQuiz = function() {
+            currentAnswers = {};
+            savedAnalysis = null;
+            localStorage.removeItem('quizAnalysis');
+            const resultDiv = document.getElementById('quizResult');
+            if (resultDiv) resultDiv.style.display = 'none';
+            renderQuiz();
+        };
+
+        window.saveAnalysisToProfile = function() {
+            if (!savedAnalysis) return;
+            const analysisText = `✂️ Cut: ${savedAnalysis.recommendations.haircut}\n🎨 Color: ${savedAnalysis.recommendations.hairColor}\n💫 Vibe: ${savedAnalysis.recommendations.styleDescription}\nProducts: ${savedAnalysis.recommendations.products.map(p => p.name).join(', ')}`;
+            let anotacoesLocal = JSON.parse(localStorage.getItem('anotacoes')) || [];
+            anotacoesLocal.push({ titulo: `Style Analysis - ${new Date().toLocaleDateString()}`, conteudo: analysisText, categoria: "Style Analysis", data: new Date().toISOString() });
+            localStorage.setItem('anotacoes', JSON.stringify(anotacoesLocal));
+            alert(currentLang === 'pt' ? '✨ Sua análise de estilo foi salva nas suas anotações!' : currentLang === 'es' ? '✨ ¡Tu análisis de estilo ha sido guardado en tus notas!' : '✨ Your style analysis has been saved to your Notes!');
+        };
+
+        window.addToFavoritesFromQuiz = function(productName, productDesc) {
+            let produtosLocal = JSON.parse(localStorage.getItem('produtos')) || [];
+            if (!produtosLocal.some(p => p.nome === productName)) {
+                produtosLocal.push({ id: Date.now(), nome: productName, descricao: productDesc });
+                localStorage.setItem('produtos', JSON.stringify(produtosLocal));
+                alert(`⭐ "${productName}" ${currentLang === 'pt' ? 'adicionado aos seus Produtos!' : currentLang === 'es' ? 'añadido a tus Productos!' : 'added to your Products!'}`);
+                renderProdutos();
+            } else {
+                alert(`"${productName}" ${currentLang === 'pt' ? 'já está nos seus Produtos.' : currentLang === 'es' ? 'ya está en tus Productos.' : 'is already in your Products.'}`);
+            }
+        };
+
+        function renderDashboard() {
+            const t = translations[currentLang];
+            document.getElementById('dashboardStats').innerHTML = `
+                <div class="stat-card"><div class="stat-number">${visitas.length}</div><div class="stat-label">${t.stats_visits}</div></div>
+                <div class="stat-card"><div class="stat-number">${favoritos.length}</div><div class="stat-label">${t.stats_favorites}</div></div>
+                <div class="stat-card"><div class="stat-number">${anotacoes.length}</div><div class="stat-label">${t.stats_notes}</div></div>
+                <div class="stat-card"><div class="stat-number">${produtos.length}</div><div class="stat-label">${t.stats_products}</div></div>`;
+            const proximas = visitas.filter(v => v.dataProxima && new Date(v.dataProxima) >= new Date()).slice(0,3);
+            document.getElementById('proximasVisitas').innerHTML = proximas.length ? proximas.map(v=>`<div class="card">📅 ${v.dataProxima} — ${v.servico || 'Appointment'}</div>`).join('') : `<div class="card">${t.no_upcoming}</div>`;
+            const recentes = [...favoritos].reverse().slice(0,3);
+            let favHtml = '';
+            for(let fav of recentes) {
+                if(fav.tipo === 'inspiracao' && inspiracoes[fav.id]) favHtml += `<div class="card">✨ ${inspiracoes[fav.id].nome}</div>`;
+                else if(fav.tipo === 'produto' && produtos[fav.id]) favHtml += `<div class="card">🧴 ${produtos[fav.id].nome}</div>`;
+                else if(fav.tipo === 'visita' && visitas[fav.id]) favHtml += `<div class="card">📅 ${visitas[fav.id].dataVisita}</div>`;
+            }
+            document.getElementById('favoritosRecentes').innerHTML = favHtml || `<div class="card">${t.empty_recent}</div>`;
+        }
+
+        function renderVisitas() {
+            const t = translations[currentLang];
+            const lista = document.getElementById('listaVisitas');
+            if(!visitas.length) { lista.innerHTML = `<div class="card">${t.empty_archive}</div>`; return; }
+            lista.innerHTML = [...visitas].reverse().map((v,i) => `<div class="card"><div class="card-header"><span class="card-title">${v.dataVisita} — ${v.servico || 'Session'}</span><div><button class="favorite-btn ${isFavorito('visita', i) ? 'active' : ''}" onclick="toggleFavorito('visita', ${i})">★</button><button class="delete-btn" onclick="deletarVisita(${i})">✕</button></div></div><div>${v.salao ? `📍 ${v.salao}` : ''}</div>${v.tinta ? `<span class="badge">${v.tinta}</span>` : ''}${v.avaliacao ? `<div><em>"${v.avaliacao}"</em></div>` : ''}</div>`).join('');
+        }
+
+        function deletarVisita(i) { if(confirm(currentLang === 'pt' ? 'Remover?' : currentLang === 'es' ? '¿Eliminar?' : 'Remove?')){ visitas.splice(i,1); localStorage.setItem('visitas',JSON.stringify(visitas)); renderVisitas(); renderDashboard(); renderEstatisticas(); } }
+
+        function renderAnotacoes() {
+            const t = translations[currentLang];
+            const lista = document.getElementById('listaAnotacoes');
+            if(!anotacoes.length) { lista.innerHTML = `<div class="card">${t.empty_notes}</div>`; return; }
+            lista.innerHTML = [...anotacoes].reverse().map((a,i)=>`<div class="card"><div class="card-header"><span class="card-title">${a.titulo}</span><span class="badge">${a.categoria}</span><button class="delete-btn" onclick="deletarAnotacao(${i})">✕</button></div><p>${a.conteudo}</p><small>${new Date(a.data).toLocaleDateString()}</small></div>`).join('');
+        }
+        function deletarAnotacao(i){ anotacoes.splice(i,1); localStorage.setItem('anotacoes',JSON.stringify(anotacoes)); renderAnotacoes(); renderDashboard(); }
+
+        function renderFavoritos() {
+            const t = translations[currentLang];
+            const lista = document.getElementById('listaFavoritos');
+            if(!favoritos.length){ lista.innerHTML=`<div class="card">${t.empty_favorites}</div>`; return; }
+            let html='';
+            favoritos.forEach((fav, idx)=>{
+                if(fav.tipo==='visita' && visitas[fav.id]) html+=`<div class="card">📅 ${visitas[fav.id].dataVisita} - ${visitas[fav.id].servico || 'Visit'}<button class="delete-btn" style="float:right;" onclick="toggleFavorito('visita',${fav.id})">✕</button></div>`;
+                else if(fav.tipo==='inspiracao' && inspiracoes[fav.id]) html+=`<div class="card">✨ ${inspiracoes[fav.id].nome}<button class="delete-btn" style="float:right;" onclick="toggleFavorito('inspiracao',${fav.id})">✕</button></div>`;
+                else if(fav.tipo==='produto' && produtos[fav.id]) html+=`<div class="card">🧴 ${produtos[fav.id].nome}<button class="delete-btn" style="float:right;" onclick="toggleFavorito('produto',${fav.id})">✕</button></div>`;
+            });
+            lista.innerHTML=html;
+        }
+
+        function renderInspiracoes() {
+            document.getElementById('inspirationsGrid').innerHTML = inspiracoes.map((insp,i)=>`<div class="inspiration-card" onclick="editarInspiracao(${i})"><div class="star-icon ${isFavorito('inspiracao',i)?'active':''}" onclick="event.stopPropagation(); toggleFavorito('inspiracao',${i})">★</div><h3>✨ ${insp.nome}</h3><p>${insp.descricao}</p><button class="delete-btn" onclick="event.stopPropagation(); deletarInspiracao(${i})">✕</button></div>`).join('');
+        }
+        window.adicionarInspiracao = function() { let n=prompt(currentLang === 'pt' ? 'Nome:' : currentLang === 'es' ? 'Nombre:' : 'Name:'), d=prompt(currentLang === 'pt' ? 'Descrição:' : currentLang === 'es' ? 'Descripción:' : 'Description:'); if(n&&d){ inspiracoes.push({id:Date.now(),nome:n,desc:d}); localStorage.setItem('inspiracoes',JSON.stringify(inspiracoes)); renderInspiracoes(); } };
+        function editarInspiracao(i){ let insp=inspiracoes[i], n=prompt(currentLang === 'pt' ? 'Editar nome:' : currentLang === 'es' ? 'Editar nombre:' : 'Edit name:',insp.nome), d=prompt(currentLang === 'pt' ? 'Editar descrição:' : currentLang === 'es' ? 'Editar descripción:' : 'Edit description:',insp.descricao); if(n&&d){ inspiracoes[i]={...insp,nome:n,desc:d}; localStorage.setItem('inspiracoes',JSON.stringify(inspiracoes)); renderInspiracoes(); } }
+        function deletarInspiracao(i){ if(confirm(currentLang === 'pt' ? 'Remover?' : currentLang === 'es' ? '¿Eliminar?' : 'Remove?')){ inspiracoes.splice(i,1); localStorage.setItem('inspiracoes',JSON.stringify(inspiracoes)); renderInspiracoes(); renderFavoritos(); } }
+
+        function renderProdutos() {
+            document.getElementById('productsGrid').innerHTML = produtos.map((p,i)=>`<div class="product-card" onclick="editarProduto(${i})"><div class="star-icon ${isFavorito('produto',i)?'active':''}" onclick="event.stopPropagation(); toggleFavorito('produto',${i})">★</div><h3>🧴 ${p.nome}</h3><p>${p.descricao}</p><button class="delete-btn" onclick="event.stopPropagation(); deletarProduto(${i})">✕</button></div>`).join('');
+        }
+        window.adicionarProduto = function() { let n=prompt(currentLang === 'pt' ? 'Nome do produto:' : currentLang === 'es' ? 'Nombre del producto:' : 'Product name:'), d=prompt(currentLang === 'pt' ? 'Descrição:' : currentLang === 'es' ? 'Descripción:' : 'Description:'); if(n&&d){ produtos.push({id:Date.now(),nome:n,desc:d}); localStorage.setItem('produtos',JSON.stringify(produtos)); renderProdutos(); } };
+        function editarProduto(i){ let p=produtos[i], n=prompt(currentLang === 'pt' ? 'Editar nome:' : currentLang === 'es' ? 'Editar nombre:' : 'Edit name:',p.nome), d=prompt(currentLang === 'pt' ? 'Editar descrição:' : currentLang === 'es' ? 'Editar descripción:' : 'Edit description:',p.descricao); if(n&&d){ produtos[i]={...p,nome:n,desc:d}; localStorage.setItem('produtos',JSON.stringify(produtos)); renderProdutos(); } }
+        function deletarProduto(i){ if(confirm(currentLang === 'pt' ? 'Remover?' : currentLang === 'es' ? '¿Eliminar?' : 'Remove?')){ produtos.splice(i,1); localStorage.setItem('produtos',JSON.stringify(produtos)); renderProdutos(); renderFavoritos(); } }
+
+        function renderEstatisticas() {
+            const t = translations[currentLang];
+            const servicos={}; const prods={};
+            visitas.forEach(v=>{ if(v.servico) servicos[v.servico]=(servicos[v.servico]||0)+1; if(v.shampoo) prods[v.shampoo]=(prods[v.shampoo]||0)+1; });
+            document.getElementById('estatisticasGrid').innerHTML = `<div class="stat-card"><div class="stat-number">${visitas.length}</div><div class="stat-label">${t.stats_visits}</div></div><div class="stat-card"><div class="stat-number">${anotacoes.length}</div><div class="stat-label">${t.stats_notes}</div></div><div class="stat-card"><div class="stat-number">${favoritos.length}</div><div class="stat-label">${t.stats_favorites}</div></div><div class="stat-card"><div class="stat-number">${produtos.length}</div><div class="stat-label">${t.stats_products}</div></div>`;
+            document.getElementById('evolucaoVisitas').innerHTML = `<p>${t.documented_moments} <strong>${visitas.length}</strong> ${t.beauty_moments}.</p>`;
+            const servicosSorted = Object.entries(servicos).sort((a,b)=>b[1]-a[1]).slice(0,3);
+            document.getElementById('servicosMaisUsados').innerHTML = servicosSorted.map(([s,q])=>`<div class="card">✂️ ${s} — ${q} ${q === 1 ? (currentLang === 'pt' ? 'vez' : currentLang === 'es' ? 'vez' : 'time') : (currentLang === 'pt' ? 'vezes' : currentLang === 'es' ? 'veces' : 'times')}</div>`).join('') || `<div class="card">${t.no_services}</div>`;
+            const prodsSorted = Object.entries(prods).sort((a,b)=>b[1]-a[1]).slice(0,3);
+            document.getElementById('produtosMaisUsados').innerHTML = prodsSorted.map(([p,q])=>`<div class="card">🧴 ${p} — ${q} ${q === 1 ? (currentLang === 'pt' ? 'vez' : currentLang === 'es' ? 'vez' : 'time') : (currentLang === 'pt' ? 'vezes' : currentLang === 'es' ? 'veces' : 'times')}</div>`).join('') || `<div class="card">${t.no_products_stats}</div>`;
+        }
+
+        function carregarPerfil() {
+            const t = translations[currentLang];
+            document.getElementById('perfilNome').value = perfil.nome || '';
+            document.getElementById('perfilNascimento').value = perfil.nascimento || '';
+            document.getElementById('perfilWhatsapp').value = perfil.whatsapp || '';
+            document.getElementById('perfilInstagram').value = perfil.instagram || '';
+            document.getElementById('perfilCabelo').value = perfil.tipoCabelo || 'Straight';
+            document.getElementById('perfilCorCabelo').value = perfil.corCabelo || '';
+            document.getElementById('perfilAlergias').value = perfil.alergias || '';
+            document.getElementById('perfilObs').value = perfil.obs || '';
+            
+            document.getElementById('perfilNome').placeholder = t.placeholder_name;
+            document.getElementById('perfilWhatsapp').placeholder = t.placeholder_contact;
+            document.getElementById('perfilInstagram').placeholder = t.placeholder_instagram;
+            document.getElementById('perfilCorCabelo').placeholder = t.placeholder_haircolor;
+            document.getElementById('perfilAlergias').placeholder = t.placeholder_allergies;
+            document.getElementById('perfilObs').placeholder = t.placeholder_notes;
+        }
+
+        function exportarMeusDados() {
+            const dados = {perfil,visitas,anotacoes,favoritos,inspiracoes,produtos,visagismos,configuracoes};
+            const a = document.createElement('a');
+            a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(dados));
+            a.download = 'makerai_backup.json';
+            a.click();
+            alert(currentLang === 'pt' ? 'Dados exportados!' : currentLang === 'es' ? '¡Datos exportados!' : 'Data exported!');
+        }
+        function importarMeusDados() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'application/json';
+            input.onchange = e => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = ev => {
+                    const dados = JSON.parse(ev.target.result);
+                    if(dados.perfil) localStorage.setItem('perfil',JSON.stringify(dados.perfil));
+                    if(dados.visitas) localStorage.setItem('visitas',JSON.stringify(dados.visitas));
+                    if(dados.anotacoes) localStorage.setItem('anotacoes',JSON.stringify(dados.anotacoes));
+                    if(dados.favoritos) localStorage.setItem('favoritos',JSON.stringify(dados.favoritos));
+                    if(dados.inspiracoes) localStorage.setItem('inspiracoes',JSON.stringify(dados.inspiracoes));
+                    if(dados.produtos) localStorage.setItem('produtos',JSON.stringify(dados.produtos));
+                    if(dados.visagismos) localStorage.setItem('visagismos',JSON.stringify(dados.visagismos));
+                    if(dados.configuracoes) localStorage.setItem('configuracoes',JSON.stringify(dados.configuracoes));
+                    alert(currentLang === 'pt' ? 'Dados importados! Recarregando...' : currentLang === 'es' ? '¡Datos importados! Recargando...' : 'Data imported! Reloading...');
+                    location.reload();
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+        function limparTodosDados() { if(confirm(currentLang === 'pt' ? 'Apagar todos os dados? Esta ação não pode ser desfeita.' : currentLang === 'es' ? '¿Eliminar todos los datos? Esta acción no se puede deshacer.' : 'Delete all data? This action cannot be undone.')){ localStorage.clear(); location.reload(); } }
+
+        function applyTheme() {
+            if (currentTheme === 'dark') document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+            document.getElementById('themeSelect').value = currentTheme;
+        }
+
+        function applyLanguage() {
+            const t = translations[currentLang];
+            // Navegação
+            document.querySelectorAll('.nav-link').forEach(link => { const key = link.getAttribute('data-key'); if(key && t[key]) link.textContent = t[key]; });
+            // Hero
+            document.getElementById('hero-badge').textContent = t.hero_badge;
+            document.getElementById('hero-title').textContent = t.hero_title;
+            document.getElementById('hero-subtitle').textContent = t.hero_subtitle;
+            // Dashboard
+            document.getElementById('dashboard-title').textContent = t.dashboard_title;
+            document.getElementById('upcoming-title').textContent = t.upcoming;
+            document.getElementById('recent-title').textContent = t.recent;
+            // Perfil
+            document.getElementById('profile-title').innerHTML = t.profile_title + ' <span class="ai-badge">AI ENHANCED</span>';
+            document.getElementById('label-name').textContent = t.label_name;
+            document.getElementById('label-birth').textContent = t.label_birth;
+            document.getElementById('label-contact').textContent = t.label_contact;
+            document.getElementById('label-instagram').textContent = t.label_instagram;
+            document.getElementById('label-hairtype').textContent = t.label_hairtype;
+            document.getElementById('label-haircolor').textContent = t.label_haircolor;
+            document.getElementById('label-allergies').textContent = t.label_allergies;
+            document.getElementById('label-notes').textContent = t.label_notes;
+            document.getElementById('btn-save-profile').textContent = t.btn_save_profile;
+            // Placeholders perfil
+            document.getElementById('perfilNome').placeholder = t.placeholder_name;
+            document.getElementById('perfilWhatsapp').placeholder = t.placeholder_contact;
+            document.getElementById('perfilInstagram').placeholder = t.placeholder_instagram;
+            document.getElementById('perfilCorCabelo').placeholder = t.placeholder_haircolor;
+            document.getElementById('perfilAlergias').placeholder = t.placeholder_allergies;
+            document.getElementById('perfilObs').placeholder = t.placeholder_notes;
+            // Arquivo
+            document.getElementById('archive-title').textContent = t.archive_title;
+            document.getElementById('label-date').textContent = t.label_date;
+            document.getElementById('label-next').textContent = t.label_next;
+            document.getElementById('label-salon').textContent = t.label_salon;
+            document.getElementById('label-service').textContent = t.label_service;
+            document.getElementById('label-color').textContent = t.label_color;
+            document.getElementById('label-developer').textContent = t.label_developer;
+            document.getElementById('label-shampoo').textContent = t.label_shampoo;
+            document.getElementById('label-treatment').textContent = t.label_treatment;
+            document.getElementById('label-reflections').textContent = t.label_reflections;
+            document.getElementById('btn-archive').textContent = t.btn_archive;
+            document.getElementById('salao').placeholder = t.placeholder_salon;
+            document.getElementById('servico').placeholder = t.placeholder_service;
+            document.getElementById('tinta').placeholder = t.placeholder_color;
+            document.getElementById('oxigenada').placeholder = t.placeholder_developer;
+            document.getElementById('avaliacao').placeholder = t.placeholder_reflections;
+            // Anotações
+            document.getElementById('notes-title').textContent = t.notes_title;
+            document.getElementById('label-note-title').textContent = t.label_note_title;
+            document.getElementById('label-note-content').textContent = t.label_note_content;
+            document.getElementById('label-note-category').textContent = t.label_note_category;
+            document.getElementById('btn-save-note').textContent = t.btn_save_note;
+            document.getElementById('anotTitulo').placeholder = t.placeholder_note_title;
+            document.getElementById('anotConteudo').placeholder = t.placeholder_note_content;
+            // Favoritos
+            document.getElementById('curated-title').textContent = t.curated_title;
+            // Inspirações
+            document.getElementById('moodboard-title').textContent = t.moodboard_title;
+            document.getElementById('btn-add-inspiration').textContent = t.btn_add_inspiration;
+            // Produtos
+            document.getElementById('preferences-title').textContent = t.preferences_title;
+            document.getElementById('btn-add-product').textContent = t.btn_add_product;
+            // Análise
+            document.getElementById('analysis-title').innerHTML = t.analysis_title + ' <span class="ai-badge">QUIZ</span>';
+            // Estatísticas
+            document.getElementById('insights-title').textContent = t.insights_title;
+            document.getElementById('evolution-title').textContent = t.evolution;
+            document.getElementById('most-requested-title').textContent = t.most_requested;
+            document.getElementById('favorite-products-title').textContent = t.favorite_products;
+            // Configurações
+            document.getElementById('settings-title').textContent = t.settings_title;
+            document.getElementById('label-reminders').textContent = t.label_reminders;
+            document.getElementById('label-birthday-reminder').textContent = t.label_birthday_reminder;
+            document.getElementById('birthday-text').textContent = t.birthday_text;
+            document.getElementById('btn-export').textContent = t.btn_export;
+            document.getElementById('btn-import').textContent = t.btn_import;
+            document.getElementById('btn-delete-all').textContent = t.btn_delete_all;
+            // Logo
+            const logoText = currentLang === 'pt' ? "INTELIGÊNCIA DE BELEZA" : (currentLang === 'en' ? "BEAUTY INTELLIGENCE" : "INTELIGENCIA DE BELLEZA");
+            document.getElementById('logo-subtitle').textContent = logoText;
+            
+            renderDashboard(); renderVisitas(); renderAnotacoes(); renderFavoritos(); renderInspiracoes(); renderProdutos(); renderEstatisticas(); renderQuiz();
+        }
+
+        // Inicialização
+        document.querySelectorAll('.nav-link').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
+        document.getElementById('perfilForm').addEventListener('submit', e => { e.preventDefault(); perfil = { nome:document.getElementById('perfilNome').value, nascimento:document.getElementById('perfilNascimento').value, whatsapp:document.getElementById('perfilWhatsapp').value, instagram:document.getElementById('perfilInstagram').value, tipoCabelo:document.getElementById('perfilCabelo').value, corCabelo:document.getElementById('perfilCorCabelo').value, alergias:document.getElementById('perfilAlergias').value, obs:document.getElementById('perfilObs').value }; localStorage.setItem('perfil',JSON.stringify(perfil)); alert(currentLang === 'pt' ? 'Perfil salvo!' : currentLang === 'es' ? '¡Perfil guardado!' : 'Profile saved!'); renderDashboard(); });
+        document.getElementById('visitaForm').addEventListener('submit', e => { e.preventDefault(); visitas.push({ dataVisita:document.getElementById('dataVisita').value, dataProxima:document.getElementById('dataProxima').value, salao:document.getElementById('salao').value, servico:document.getElementById('servico').value, tinta:document.getElementById('tinta').value, oxigenada:document.getElementById('oxigenada').value, shampoo:document.getElementById('shampoo').value, hidratacao:document.getElementById('hidratacao').value, avaliacao:document.getElementById('avaliacao').value }); localStorage.setItem('visitas',JSON.stringify(visitas)); document.getElementById('visitaForm').reset(); document.getElementById('dataVisita').valueAsDate = new Date(); renderVisitas(); renderDashboard(); renderEstatisticas(); alert(currentLang === 'pt' ? 'Entrada arquivada!' : currentLang === 'es' ? '¡Entrada archivada!' : 'Entry archived!'); });
+        document.getElementById('anotacaoForm').addEventListener('submit', e => { e.preventDefault(); anotacoes.push({ titulo:document.getElementById('anotTitulo').value, conteudo:document.getElementById('anotConteudo').value, categoria:document.getElementById('anotCategoria').value, data:new Date().toISOString() }); localStorage.setItem('anotacoes',JSON.stringify(anotacoes)); e.target.reset(); renderAnotacoes(); renderDashboard(); alert(currentLang === 'pt' ? 'Anotação salva!' : currentLang === 'es' ? '¡Nota guardada!' : 'Note saved!'); });
+        document.getElementById('configNotificacoes').addEventListener('change', () => { configuracoes.notificacoes=document.getElementById('configNotificacoes').value; localStorage.setItem('configuracoes',JSON.stringify(configuracoes)); });
+        document.getElementById('configLembrarAniversario').addEventListener('change', () => { configuracoes.lembrarAniversario=document.getElementById('configLembrarAniversario').checked; localStorage.setItem('configuracoes',JSON.stringify(configuracoes)); });
+
+        // Menu hambúrguer
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navMenuEl = document.getElementById('navMenu');
+        const overlay = document.getElementById('menuOverlay');
+        hamburger.addEventListener('click', () => { navMenuEl.classList.toggle('active'); overlay.classList.toggle('active'); });
+        overlay.addEventListener('click', () => { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); });
+        window.addEventListener('resize', () => { if(window.innerWidth > 768 && navMenuEl.classList.contains('active')) { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); } });
+
+        // Inicializar
+        currentTheme = localStorage.getItem('theme') || 'light';
+        currentLang = localStorage.getItem('language') || 'pt';
+        document.getElementById('themeSelect').value = currentTheme;
+        document.getElementById('langSelect').value = currentLang;
+        applyTheme();
+        applyLanguage();
+        document.getElementById('themeSelect').addEventListener('change', (e) => { currentTheme = e.target.value; localStorage.setItem('theme', currentTheme); applyTheme(); });
+        document.getElementById('langSelect').addEventListener('change', (e) => { currentLang = e.target.value; localStorage.setItem('language', currentLang); applyLanguage(); });
+
+        document.getElementById('dataVisita').valueAsDate = new Date();
+        carregarPerfil();
+        renderDashboard();
+        renderVisitas();
+        renderAnotacoes();
+        renderFavoritos();
+        renderInspiracoes();
+        renderProdutos();
+        renderEstatisticas();
+        renderQuiz();
+    </script>
+</body>
+</html>
