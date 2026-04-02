@@ -149,7 +149,6 @@
             margin-top: 2px;
         }
 
-        /* Login Button */
         .login-btn {
             background: transparent;
             border: 1px solid var(--border-medium);
@@ -184,7 +183,6 @@
             font-size: 0.8rem;
         }
 
-        /* Mini stats no header */
         .mini-stats {
             display: flex;
             gap: 1.5rem;
@@ -271,7 +269,6 @@
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Login Modal */
         .modal {
             display: none;
             position: fixed;
@@ -284,9 +281,7 @@
             align-items: center;
             justify-content: center;
         }
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
         .modal-content {
             background: var(--bg-card);
             border-radius: 20px;
@@ -295,156 +290,31 @@
             width: 90%;
             border: 1px solid var(--border-light);
         }
-        .modal-content h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .modal-content input {
-            width: 100%;
-            margin-bottom: 1rem;
-            padding: 0.8rem;
-            border: 1px solid var(--border-medium);
-            border-radius: 8px;
-            background: transparent;
-            color: var(--text-primary);
-        }
-        .modal-content button {
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+        .modal-content h3 { font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; text-align: center; }
+        .modal-content input { width: 100%; margin-bottom: 1rem; padding: 0.8rem; border: 1px solid var(--border-medium); border-radius: 8px; background: transparent; color: var(--text-primary); }
+        .modal-content button { width: 100%; margin-top: 0.5rem; }
+        .close-modal { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; }
 
-        /* Carrossel Styles */
-        .carousel-section {
-            margin-bottom: 2.5rem;
-        }
-        .carousel-title {
-            font-size: 1rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 1.2rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            margin: 0 -0.5rem;
-        }
-        .carousel-track {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            gap: 1rem;
-            padding: 0.5rem 0.5rem 1rem;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent) var(--border-light);
-        }
-        .carousel-track::-webkit-scrollbar {
-            height: 6px;
-        }
-        .carousel-track::-webkit-scrollbar-track {
-            background: var(--border-light);
-            border-radius: 10px;
-        }
-        .carousel-track::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 10px;
-        }
-        .carousel-item {
-            flex: 0 0 auto;
-            width: 220px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .carousel-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-        .carousel-item-image {
-            width: 100%;
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        .carousel-item-info {
-            padding: 0.8rem;
-        }
-        .carousel-item-title {
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 0.2rem;
-            color: var(--text-primary);
-        }
-        .carousel-item-desc {
-            font-size: 0.65rem;
-            color: var(--text-tertiary);
-            margin-bottom: 0.4rem;
-        }
-        .carousel-star {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0,0,0,0.6);
-            border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #fff;
-            transition: all 0.2s;
-            backdrop-filter: blur(4px);
-            z-index: 2;
-        }
-        .carousel-star.active {
-            color: gold;
-            background: rgba(0,0,0,0.7);
-        }
-        .carousel-star:hover {
-            transform: scale(1.1);
-        }
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--bg-card);
-            border: 1px solid var(--border-medium);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: all 0.2s;
-            color: var(--text-primary);
-        }
-        .carousel-btn:hover {
-            background: var(--accent);
-            color: var(--btn-hover-text);
-        }
-        .carousel-btn-left {
-            left: 0;
-        }
-        .carousel-btn-right {
-            right: 0;
-        }
+        .carousel-section { margin-bottom: 2.5rem; }
+        .carousel-title { font-size: 1rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1.2rem; color: var(--text-secondary); text-transform: uppercase; }
+        .carousel-container { position: relative; overflow: hidden; margin: 0 -0.5rem; }
+        .carousel-track { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 1rem; padding: 0.5rem 0.5rem 1rem; scrollbar-width: thin; scrollbar-color: var(--accent) var(--border-light); }
+        .carousel-track::-webkit-scrollbar { height: 6px; }
+        .carousel-track::-webkit-scrollbar-track { background: var(--border-light); border-radius: 10px; }
+        .carousel-track::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        .carousel-item { flex: 0 0 auto; width: 220px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; position: relative; }
+        .carousel-item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .carousel-item-image { width: 100%; height: 180px; background-size: cover; background-position: center; position: relative; }
+        .carousel-item-info { padding: 0.8rem; }
+        .carousel-item-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: var(--text-primary); }
+        .carousel-item-desc { font-size: 0.65rem; color: var(--text-tertiary); margin-bottom: 0.4rem; }
+        .carousel-star { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: #fff; transition: all 0.2s; backdrop-filter: blur(4px); z-index: 2; }
+        .carousel-star.active { color: gold; background: rgba(0,0,0,0.7); }
+        .carousel-star:hover { transform: scale(1.1); }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; color: var(--text-primary); }
+        .carousel-btn:hover { background: var(--accent); color: var(--btn-hover-text); }
+        .carousel-btn-left { left: 0; }
+        .carousel-btn-right { right: 0; }
 
         .quiz-container { max-width: 800px; margin: 0 auto; }
         .quiz-question { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2rem; margin-bottom: 1.5rem; border-radius: 12px; }
@@ -457,27 +327,18 @@
         .quiz-option label { flex: 1; cursor: pointer; font-size: 0.9rem; color: var(--text-secondary); margin: 0; text-transform: none; letter-spacing: normal; }
 
         .quiz-result { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2rem; margin-top: 2rem; text-align: center; border-radius: 12px; }
-        .quiz-result h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--accent); }
+        .quiz-result h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; color: var(--accent); }
         .result-section { text-align: left; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light); }
         .result-section h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 1rem; color: var(--text-primary); }
-        .suggestion-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--quiz-option-bg);
-            margin-bottom: 0.75rem;
-            border-left: 3px solid var(--accent);
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
+        .suggestion-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--quiz-option-bg); margin-bottom: 0.75rem; border-left: 3px solid var(--accent); cursor: pointer; border-radius: 8px; transition: all 0.2s; }
         .suggestion-item:hover { transform: translateX(4px); background: var(--quiz-option-hover); }
-        .suggestion-icon { font-size: 1.8rem; }
+        .suggestion-icon { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; background-size: cover; background-position: center; }
+        .suggestion-info { flex: 1; }
         .suggestion-info h5 { font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary); }
-        .suggestion-info p { font-size: 0.8rem; color: var(--text-tertiary); }
+        .suggestion-info p { font-size: 0.75rem; color: var(--text-tertiary); }
         .badge-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
         .style-badge { background: var(--badge-bg); padding: 0.3rem 0.8rem; font-size: 0.7rem; color: var(--badge-text); border-radius: 20px; }
+        .visagismo-desc { background: var(--badge-bg); padding: 1rem; border-radius: 12px; margin-top: 1rem; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
 
         .card, .visita-card, .favorito-card { background: var(--bg-card); padding: 1.2rem; margin-bottom: 1px; border-bottom: 1px solid var(--border-light); transition: all 0.2s ease; }
         .card:hover { background: var(--bg-surface); padding-left: 1.5rem; }
@@ -570,7 +431,6 @@
         </div>
     </nav>
     
-    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeLoginModal()">&times;</span>
@@ -591,7 +451,6 @@
     </div>
 
     <div class="main-container">
-        <!-- Dashboard com Carrosséis -->
         <div id="dashboard" class="tab-content active">
             <h2 id="dashboard-title">Studio</h2>
             
@@ -619,7 +478,6 @@
             <div id="favoritosRecentes"></div>
         </div>
 
-        <!-- Perfil -->
         <div id="perfil" class="tab-content">
             <h2 id="profile-title">Profile <span class="ai-badge">AI ENHANCED</span></h2>
             <div class="profile-avatar" onclick="document.getElementById('avatarUpload').click()">
@@ -647,7 +505,6 @@
             <button class="btn" onclick="logoutUser()" style="margin-top: 1rem; background: transparent;" id="btn-logout">SAIR</button>
         </div>
 
-        <!-- Histórico -->
         <div id="historico" class="tab-content">
             <h2 id="archive-title">Arquivo</h2>
             <form id="visitaForm">
@@ -673,13 +530,11 @@
             <div style="margin-top: 1.5rem;"><div id="listaVisitas"></div></div>
         </div>
 
-        <!-- Favoritos com imagens -->
         <div id="favoritos" class="tab-content">
             <h2 id="curated-title">Coleção Favorita</h2>
             <div id="listaFavoritos"></div>
         </div>
 
-        <!-- Inspirações com upload de imagem -->
         <div id="inspiracoes" class="tab-content">
             <h2 id="moodboard-title">Inspirações</h2>
             <div class="form-group">
@@ -694,21 +549,18 @@
             <div class="inspirations-grid" id="inspirationsGrid"></div>
         </div>
 
-        <!-- Produtos -->
         <div id="produtos" class="tab-content">
             <h2 id="preferences-title">Produtos</h2>
             <div class="products-grid" id="productsGrid"></div>
             <p style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: var(--text-tertiary);" id="products-hint">⭐ Clique na estrela nos carrosséis do Estúdio para adicionar produtos</p>
         </div>
 
-        <!-- Análise - Quiz com IA -->
         <div id="visagismo" class="tab-content">
             <h2 id="analysis-title">Análise de Estilo IA <span class="ai-badge">AI RECOMMENDATIONS</span></h2>
             <div class="quiz-container" id="quizContainer"></div>
             <div id="quizResult" style="display: none;"></div>
         </div>
 
-        <!-- Configurações -->
         <div id="configuracoes" class="tab-content">
             <h2 id="settings-title">Configurações</h2>
             <div class="form-group"><label id="label-reminders">Lembretes de Visitas</label><select id="configNotificacoes"><option value="sim">Ativar</option><option value="nao">Desativar</option></select></div>
@@ -739,6 +591,26 @@
             { id: 5, nome: "Davines OI Oil", descricao: "Lightweight sleek finish", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo" },
             { id: 6, nome: "Pattern Curl Gel", descricao: "Defines and hydrates curls", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Cachos" }
         ];
+
+        // ==================== IMAGENS PARA SUGESTÕES ====================
+        const haircutImages = {
+            "Bob Clássico": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop",
+            "Long Layers": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop",
+            "Pixie Moderno": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&h=200&fit=crop",
+            "Middle Part Sleek": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop",
+            "Asymmetrical Bob": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&h=200&fit=crop",
+            "Textured Lob": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop",
+            "Side-Swept Bangs": "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=200&h=200&fit=crop",
+            "Soft Layers": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop",
+            "Face-Framing Pieces": "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=200&h=200&fit=crop",
+            "Wavy Lob": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=200&h=200&fit=crop",
+            "Textured Pixie": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&h=200&fit=crop",
+            "Chin-Length Bob": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop",
+            "Curtain Bangs": "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=200&h=200&fit=crop",
+            "Blunt Cut": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop",
+            "Volume at Sides": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&h=200&fit=crop",
+            "Layered Bob": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop"
+        };
 
         // ==================== TRADUÇÕES ====================
         const translations = {
@@ -800,7 +672,8 @@
                 welcome: "Bem-vindo(a)",
                 login_required: "Faça login para salvar seus dados",
                 haircut_suggestions: "✂️ CORTES SUGERIDOS",
-                finishing_products: "💧 PRODUTOS DE FINALIZAÇÃO"
+                finishing_products: "💧 PRODUTOS DE FINALIZAÇÃO",
+                your_profile_summary: "📋 SEU PERFIL DE VISAGISMO"
             },
             en: {
                 nav_dashboard: "STUDIO", nav_profile: "PROFILE", nav_archive: "ARCHIVE",
@@ -860,7 +733,8 @@
                 welcome: "Welcome",
                 login_required: "Please login to save your data",
                 haircut_suggestions: "✂️ SUGGESTED HAIRCUTS",
-                finishing_products: "💧 FINISHING PRODUCTS"
+                finishing_products: "💧 FINISHING PRODUCTS",
+                your_profile_summary: "📋 YOUR VISAGISM PROFILE"
             },
             es: {
                 nav_dashboard: "ESTUDIO", nav_profile: "PERFIL", nav_archive: "ARCHIVO",
@@ -920,9 +794,91 @@
                 welcome: "Bienvenido(a)",
                 login_required: "Inicia sesión para guardar tus datos",
                 haircut_suggestions: "✂️ CORTES SUGERIDOS",
-                finishing_products: "💧 PRODUCTOS DE FINALIZACIÓN"
+                finishing_products: "💧 PRODUCTOS DE FINALIZACIÓN",
+                your_profile_summary: "📋 TU PERFIL DE VISAGISMO"
             }
         };
+
+        // ==================== FUNÇÃO IA COM DESCRIÇÃO DE VISAGISMO ====================
+        function generateAISuggestions(answers) {
+            const face = answers.faceShape || "";
+            const body = answers.bodyType || "";
+            const vibe = answers.vibe || "";
+            const texture = answers.hairTexture || "";
+            const lifestyle = answers.lifestyle || "";
+            
+            let haircuts = [];
+            let finishingProducts = [];
+            let visagismoDesc = "";
+            
+            // Sugestões de cortes baseadas no rosto
+            if (face === "Oval" || face === "Oval") {
+                haircuts = ["Bob Clássico", "Long Layers", "Pixie Moderno", "Middle Part Sleek"];
+                visagismoDesc = "Seu rosto oval é considerado o mais versátil para cortes de cabelo! Praticamente qualquer estilo combina com você, desde um bob clássico até um pixie ousado. O segredo é equilibrar a largura do rosto com volume nas laterais ou no topo, criando harmonia. Aproveite essa versatilidade para experimentar diferentes comprimentos e texturas!";
+            } else if (face === "Redondo" || face === "Round") {
+                haircuts = ["Long Layers", "Asymmetrical Bob", "Textured Lob", "Side-Swept Bangs"];
+                visagismoDesc = "Seu rosto redondo tem linhas suaves e curvas delicadas. Para alongar visualmente o rosto, aposte em cortes com camadas longas que criam movimento vertical. O bob assimétrico e o lob texturizado são excelentes opções, assim como franjas laterais que quebram a circularidade do rosto. Evite volume excessivo nas laterais!";
+            } else if (face === "Quadrado" || face === "Square") {
+                haircuts = ["Soft Layers", "Face-Framing Pieces", "Wavy Lob", "Textured Pixie"];
+                visagismoDesc = "Seu rosto quadrado tem maxilar marcante e estrutura forte. Para suavizar os ângulos, opte por cortes com camadas suaves que criem movimento ao redor do rosto. Ondas e texturas ajudam a quebrar as linhas retas. Franjas laterais e camadas que emoldurem o rosto são ótimas aliadas para criar uma aparência mais suave e feminina.";
+            } else if (face === "Coração" || face === "Heart") {
+                haircuts = ["Side-Swept Bangs", "Chin-Length Bob", "Textured Layers", "Curtain Bangs"];
+                visagismoDesc = "Seu rosto em coração tem testa larga e queixo delicado. O objetivo é equilibrar as proporções, trazendo volume para a parte inferior do rosto. Cortes na altura do queixo e franjas laterais são perfeitos para você! As curtain bangs (franjas cortina) também funcionam maravilhosamente bem, criando um efeito de equilíbrio harmonioso.";
+            } else if (face === "Longo" || face === "Long") {
+                haircuts = ["Blunt Cut", "Chin-Length Bob", "Volume at Sides", "Textured Lob"];
+                visagismoDesc = "Seu rosto longo tem proporção vertical mais alongada. Para criar equilíbrio, aposte em cortes que adicionem volume nas laterais e quebrem a verticalidade. O blunt cut (corte reto) e o bob na altura do queixo são excelentes escolhas. Evite muito comprimento e volume no topo da cabeça, que podem alongar ainda mais o rosto.";
+            } else if (face === "Diamante" || face === "Diamond") {
+                haircuts = ["Textured Pixie", "Curtain Bangs", "Soft Waves", "Layered Bob"];
+                visagismoDesc = "Seu rosto diamante tem maçãs do rosto proeminentes e testa e queixo mais estreitos. O segredo é suavizar as maçãs com volume suave nas laterais e na parte superior. Cortes texturizados e franjas cortina ajudam a equilibrar as proporções. Ondas suaves também são ótimas para criar movimento e suavizar os traços marcantes.";
+            }
+            
+            // Sugestões de produtos baseadas na vibe
+            if (vibe === "Sofisticado / Elegante" || vibe === "Sophisticated / Elegant" || vibe === "Sofisticado / Elegante") {
+                finishingProducts = [
+                    { nome: "Oribe Gold Lust Oil", desc: "Brilho espelhado e maciez", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "✨" },
+                    { nome: "Kérastase Elixir Ultime", desc: "Sérum finalizador de luxo", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💎" }
+                ];
+                visagismoDesc += " Seu estilo sofisticado pede acabamentos impecáveis e produtos que entregam brilho e refinamento. Invista em finalizadores de alta performance para um visual elegante e duradouro.";
+            } else if (vibe === "Moderno / Arrojado" || vibe === "Edgy / Modern" || vibe === "Moderno / Atrevido") {
+                finishingProducts = [
+                    { nome: "Bumble Texture Spray", desc: "Volume e textura desconstruída", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⚡" },
+                    { nome: "Sea Salt Spray", desc: "Ondas praianas com textura", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊" }
+                ];
+                visagismoDesc += " Sua vibe moderna pede textura e movimento! Aposte em produtos que criam volume desconstruído e ondas com personalidade. O visual é contemporâneo e cheio de atitude.";
+            } else if (vibe === "Romântico / Suave" || vibe === "Romantic / Soft" || vibe === "Romántico / Suave") {
+                finishingProducts = [
+                    { nome: "Gisou Honey Oil", desc: "Maciez e brilho natural", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🍯" },
+                    { nome: "Curl Cream", desc: "Define cachos suavemente", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀" }
+                ];
+                visagismoDesc += " Seu estilo romântico valoriza suavidade e delicadeza. Produtos que proporcionam maciez e brilho natural são seus aliados. Finalizações suaves e ondas soltas complementam perfeitamente sua essência.";
+            } else if (vibe === "Ousado / Confiante" || vibe === "Bold / Confident" || vibe === "Audaz / Confiado") {
+                finishingProducts = [
+                    { nome: "Pulp Riot Color", desc: "Cores vibrantes e duradouras", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🎨" },
+                    { nome: "Strong Hold Gel", desc: "Fixação poderosa e definição", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💪" }
+                ];
+                visagismoDesc += " Sua personalidade ousada merece looks que transmitem confiança! Cores vibrantes e fixações poderosas são suas aliadas para criar visuais impactantes e cheios de atitude.";
+            } else {
+                finishingProducts = [
+                    { nome: "Davines OI Oil", desc: "Toque leve e acabamento sedoso", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌿" },
+                    { nome: "Ouai Wave Spray", desc: "Ondas naturais e movimento", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊" }
+                ];
+                visagismoDesc += " Seu estilo natural valoriza a simplicidade com sofisticação. Produtos leves que realçam sua textura natural e criam movimento são ideais para você. Menos é mais, mas com muito estilo!";
+            }
+            
+            // Adicionar produtos baseados na textura
+            if (texture === "Cacheado" || texture === "Curly" || texture === "Rizado" || texture === "Crespo" || texture === "Coily / Kinky" || texture === "Afro") {
+                finishingProducts.push({ nome: "Pattern Curl Gel", desc: "Define e hidrata cachos", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀" });
+                visagismoDesc += " Seus cachos são lindos e merecem produtos específicos que definem e hidratam. Invista em cremes e géis que potencializam sua curvatura natural sem pesar.";
+            }
+            
+            if (lifestyle === "Mínimo (lava e sai)" || lifestyle === "Minimal (wash & go)" || lifestyle === "Mínimo (lava y listo)") {
+                finishingProducts.push({ nome: "Living Proof PHD", desc: "5 em 1 para rotina minimalista", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⏱️" });
+                visagismoDesc += " Seu estilo de vida pede praticidade! Produtos multifuncionais que simplificam sua rotina são perfeitos para você manter um visual incrível com mínimo esforço.";
+            }
+            
+            finishingProducts = finishingProducts.filter((p, i, self) => i === self.findIndex(t => t.nome === p.nome));
+            return { haircuts, finishingProducts, visagismoDesc };
+        }
 
         // ==================== SISTEMA DE LOGIN ====================
         let currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
@@ -941,13 +897,8 @@
             }
         }
 
-        function openLoginModal() {
-            document.getElementById('loginModal').classList.add('active');
-        }
-
-        function closeLoginModal() {
-            document.getElementById('loginModal').classList.remove('active');
-        }
+        function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.remove('active'); }
 
         function loginUser() {
             const username = document.getElementById('loginUsername').value;
@@ -969,18 +920,11 @@
         function registerUser() {
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
-            if (!username || !password) {
-                alert('Preencha usuário e senha!');
-                return;
-            }
-            if (users.find(u => u.username === username)) {
-                alert('Usuário já existe!');
-                return;
-            }
+            if (!username || !password) { alert('Preencha usuário e senha!'); return; }
+            if (users.find(u => u.username === username)) { alert('Usuário já existe!'); return; }
             const newUser = { username, password, dataKey: `user_${username}` };
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
-            // Criar dados vazios para o usuário
             localStorage.setItem(newUser.dataKey, JSON.stringify({ perfil: {}, visitas: [], favoritos: [], inspiracoes: [], produtos: [] }));
             currentUser = newUser;
             localStorage.setItem('currentUser', JSON.stringify(newUser));
@@ -994,7 +938,6 @@
         function logoutUser() {
             currentUser = null;
             localStorage.removeItem('currentUser');
-            // Resetar dados para modo visitante
             perfil = { nome: '' };
             visitas = [];
             favoritos = [];
@@ -1025,73 +968,6 @@
             }
         }
 
-        // ==================== FUNÇÃO IA PARA SUGESTÕES ====================
-        function generateAISuggestions(answers) {
-            const face = answers.faceShape || "";
-            const vibe = answers.vibe || "";
-            const texture = answers.hairTexture || "";
-            const lifestyle = answers.lifestyle || "";
-            
-            let haircuts = [];
-            let finishingProducts = [];
-            
-            // Sugestões de cortes baseadas no rosto
-            if (face === "Oval" || face === "Oval" || face === "Oval") {
-                haircuts = ["Bob Clássico", "Long Layers", "Pixie Moderno", "Middle Part Sleek"];
-            } else if (face === "Round" || face === "Redondo" || face === "Redondo") {
-                haircuts = ["Long Layers", "Asymmetrical Bob", "Textured Lob", "Side-Swept Bangs"];
-            } else if (face === "Square" || face === "Quadrado" || face === "Cuadrado") {
-                haircuts = ["Soft Layers", "Face-Framing Pieces", "Wavy Lob", "Textured Pixie"];
-            } else if (face === "Heart" || face === "Coração" || face === "Corazón") {
-                haircuts = ["Side-Swept Bangs", "Chin-Length Bob", "Textured Layers", "Curtain Bangs"];
-            } else if (face === "Long" || face === "Longo" || face === "Largo") {
-                haircuts = ["Blunt Cut", "Chin-Length Bob", "Volume at Sides", "Textured Lob"];
-            } else if (face === "Diamond" || face === "Diamante" || face === "Diamante") {
-                haircuts = ["Textured Pixie", "Curtain Bangs", "Soft Waves", "Layered Bob"];
-            } else {
-                haircuts = ["Custom Cut", "Layered Style", "Face-Framing Layers"];
-            }
-            
-            // Sugestões de produtos de finalização baseadas na vibe e textura
-            if (vibe === "Sofisticado / Elegante" || vibe === "Sophisticated / Elegant" || vibe === "Sofisticado / Elegante") {
-                finishingProducts = [
-                    { nome: "Oribe Gold Lust Oil", desc: "Brilho espelhado e maciez", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "✨" },
-                    { nome: "Kérastase Elixir Ultime", desc: "Sérum finalizador de luxo", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💎" }
-                ];
-            } else if (vibe === "Moderno / Arrojado" || vibe === "Edgy / Modern" || vibe === "Moderno / Atrevido") {
-                finishingProducts = [
-                    { nome: "Bumble Texture Spray", desc: "Volume e textura desconstruída", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⚡" },
-                    { nome: "Sea Salt Spray", desc: "Ondas praianas com textura", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊" }
-                ];
-            } else if (vibe === "Romântico / Suave" || vibe === "Romantic / Soft" || vibe === "Romántico / Suave") {
-                finishingProducts = [
-                    { nome: "Gisou Honey Oil", desc: "Maciez e brilho natural", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🍯" },
-                    { nome: "Curl Cream", desc: "Define cachos suavemente", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀" }
-                ];
-            } else if (vibe === "Ousado / Confiante" || vibe === "Bold / Confident" || vibe === "Audaz / Confiado") {
-                finishingProducts = [
-                    { nome: "Pulp Riot Color", desc: "Cores vibrantes e duradouras", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🎨" },
-                    { nome: "Strong Hold Gel", desc: "Fixação poderosa e definição", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💪" }
-                ];
-            } else {
-                finishingProducts = [
-                    { nome: "Davines OI Oil", desc: "Toque leve e acabamento sedoso", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌿" },
-                    { nome: "Ouai Wave Spray", desc: "Ondas naturais e movimento", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊" }
-                ];
-            }
-            
-            if (texture === "Cacheado" || texture === "Curly" || texture === "Rizado" || texture === "Crespo" || texture === "Coily / Kinky" || texture === "Afro") {
-                finishingProducts.push({ nome: "Pattern Curl Gel", desc: "Define e hidrata cachos", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀" });
-            }
-            
-            if (lifestyle === "Mínimo (lava e sai)" || lifestyle === "Minimal (wash & go)" || lifestyle === "Mínimo (lava y listo)") {
-                finishingProducts.push({ nome: "Living Proof PHD", desc: "5 em 1 para rotina minimalista", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⏱️" });
-            }
-            
-            finishingProducts = finishingProducts.filter((p, i, self) => i === self.findIndex(t => t.nome === p.nome));
-            return { haircuts, finishingProducts };
-        }
-
         // Variáveis globais
         let currentLang = localStorage.getItem('language') || 'pt';
         let currentTheme = localStorage.getItem('theme') || 'light';
@@ -1107,7 +983,6 @@
 
         function getText(key) { return translations[currentLang][key] || key; }
 
-        // Funções dos carrosséis
         function renderCarousels() {
             const inspirationsTrack = document.getElementById('inspirationsTrack');
             if (inspirationsTrack) {
@@ -1147,73 +1022,44 @@
             if (productsTitle) productsTitle.textContent = getText('products_carousel_title');
         }
 
-        function isCarouselInspFav(inspId) {
-            return favoritos.some(f => (f.tipo === 'carousel_inspiracao' || f.tipo === 'inspiracao') && f.id === inspId);
-        }
-        
-        function isCarouselProdFav(prodId) {
-            return favoritos.some(f => (f.tipo === 'carousel_produto' || f.tipo === 'produto') && f.id === prodId);
-        }
-        
+        function isCarouselInspFav(inspId) { return favoritos.some(f => (f.tipo === 'carousel_inspiracao' || f.tipo === 'inspiracao') && f.id === inspId); }
+        function isCarouselProdFav(prodId) { return favoritos.some(f => (f.tipo === 'carousel_produto' || f.tipo === 'produto') && f.id === prodId); }
+
         function toggleCarouselInspiracao(inspId) {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             const inspiracao = inspirationsData.find(i => i.id === inspId);
             if (!inspiracao) return;
-            
             const existsInInspiracoes = inspiracoes.some(i => i.id === inspId);
             if (!existsInInspiracoes) {
                 inspiracoes.push({ id: inspId, nome: inspiracao.nome, descricao: inspiracao.descricao, imagem: inspiracao.imagem, tipo: inspiracao.tipo });
-                localStorage.setItem('inspiracoes', JSON.stringify(inspiracoes));
                 saveUserData();
             }
-            
             const favIndex = favoritos.findIndex(f => f.tipo === 'carousel_inspiracao' && f.id === inspId);
-            if (favIndex === -1) {
-                favoritos.push({ tipo: 'carousel_inspiracao', id: inspId, nome: inspiracao.nome, imagem: inspiracao.imagem, data: new Date().toISOString() });
-            } else {
-                favoritos.splice(favIndex, 1);
-            }
+            if (favIndex === -1) favoritos.push({ tipo: 'carousel_inspiracao', id: inspId, nome: inspiracao.nome, imagem: inspiracao.imagem, data: new Date().toISOString() });
+            else favoritos.splice(favIndex, 1);
             saveUserData();
-            
-            renderCarousels();
-            renderFavoritos();
-            renderInspiracoes();
-            renderDashboard();
-            updateMiniStats();
+            renderCarousels(); renderFavoritos(); renderInspiracoes(); renderDashboard(); updateMiniStats();
         }
         
         function toggleCarouselProduto(prodId) {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             const produto = productsData.find(p => p.id === prodId);
             if (!produto) return;
-            
             const existsInProdutos = produtos.some(p => p.id === prodId);
             if (!existsInProdutos) {
                 produtos.push({ id: prodId, nome: produto.nome, descricao: produto.descricao, imagem: produto.imagem, categoria: produto.categoria });
                 saveUserData();
             }
-            
             const favIndex = favoritos.findIndex(f => f.tipo === 'carousel_produto' && f.id === prodId);
-            if (favIndex === -1) {
-                favoritos.push({ tipo: 'carousel_produto', id: prodId, nome: produto.nome, imagem: produto.imagem, data: new Date().toISOString() });
-            } else {
-                favoritos.splice(favIndex, 1);
-            }
+            if (favIndex === -1) favoritos.push({ tipo: 'carousel_produto', id: prodId, nome: produto.nome, imagem: produto.imagem, data: new Date().toISOString() });
+            else favoritos.splice(favIndex, 1);
             saveUserData();
-            
-            renderCarousels();
-            renderFavoritos();
-            renderProdutos();
-            renderDashboard();
-            updateMiniStats();
+            renderCarousels(); renderFavoritos(); renderProdutos(); renderDashboard(); updateMiniStats();
         }
         
         function scrollCarousel(trackId, direction) {
             const track = document.getElementById(trackId);
-            if (track) {
-                const scrollAmount = 240;
-                track.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-            }
+            if (track) { track.scrollBy({ left: direction * 240, behavior: 'smooth' }); }
         }
 
         function adicionarInspiracaoComImagem() {
@@ -1221,23 +1067,11 @@
             const nome = document.getElementById('novaInspNome').value;
             const desc = document.getElementById('novaInspDesc').value;
             const fileInput = document.getElementById('novaInspImagem');
-            
-            if (!nome || !desc) {
-                alert(getText('save') + ' - Preencha nome e descrição');
-                return;
-            }
-            
+            if (!nome || !desc) { alert(getText('save') + ' - Preencha nome e descrição'); return; }
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const novaInsp = {
-                        id: Date.now(),
-                        nome: nome,
-                        descricao: desc,
-                        imagem: e.target.result,
-                        tipo: "custom"
-                    };
-                    inspiracoes.push(novaInsp);
+                    inspiracoes.push({ id: Date.now(), nome: nome, descricao: desc, imagem: e.target.result, tipo: "custom" });
                     saveUserData();
                     document.getElementById('novaInspNome').value = '';
                     document.getElementById('novaInspDesc').value = '';
@@ -1246,9 +1080,7 @@
                     alert(`✨ "${nome}" ${getText('added_to_inspirations')}`);
                 };
                 reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert('Selecione uma imagem da galeria');
-            }
+            } else { alert('Selecione uma imagem da galeria'); }
         }
 
         function uploadAvatar(input) {
@@ -1273,16 +1105,7 @@
             document.getElementById('miniProductsLabel').textContent = getText('mini_prod');
         }
 
-        function renderAll() {
-            renderDashboard();
-            renderVisitas();
-            renderFavoritos();
-            renderInspiracoes();
-            renderProdutos();
-            renderCarousels();
-            updateMiniStats();
-            if (document.getElementById('perfil').classList.contains('active')) carregarPerfil();
-        }
+        function renderAll() { renderDashboard(); renderVisitas(); renderFavoritos(); renderInspiracoes(); renderProdutos(); renderCarousels(); updateMiniStats(); if (document.getElementById('perfil').classList.contains('active')) carregarPerfil(); }
 
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1333,7 +1156,7 @@
             const lista = document.getElementById('listaFavoritos');
             if(!favoritos.length){ lista.innerHTML=`<div class="card">${t('empty_favorites')}</div>`; return; }
             let html='';
-            favoritos.forEach((fav, idx)=>{
+            favoritos.forEach((fav)=>{
                 if((fav.tipo==='inspiracao' || fav.tipo==='carousel_inspiracao') && inspiracoes.find(i => i.id === fav.id)) {
                     const insp = inspiracoes.find(i => i.id === fav.id);
                     html+=`<div class="card"><div class="favorito-item">${fav.imagem || insp?.imagem ? `<img src="${fav.imagem || insp?.imagem}" class="favorito-card-img">` : '<span style="font-size:1.8rem;">✨</span>'}<div style="flex:1"><strong>${insp?.nome || fav.nome}</strong><br><small>${insp?.descricao || ''}</small></div><button class="delete-btn" onclick="toggleFavoritoGenerico('${fav.tipo}',${fav.id})">✕</button></div></div>`;
@@ -1351,17 +1174,11 @@
             const index = favoritos.findIndex(f => f.tipo === tipo && f.id === id);
             if (index !== -1) favoritos.splice(index, 1);
             saveUserData();
-            renderFavoritos();
-            renderDashboard();
-            renderCarousels();
-            updateMiniStats();
+            renderFavoritos(); renderDashboard(); renderCarousels(); updateMiniStats();
         }
 
         function renderInspiracoes() {
-            if(inspiracoes.length === 0) {
-                document.getElementById('inspirationsGrid').innerHTML = `<div class="card">✨ Clique na estrela nos carrosséis ou adicione com imagem!</div>`;
-                return;
-            }
+            if(inspiracoes.length === 0) { document.getElementById('inspirationsGrid').innerHTML = `<div class="card">✨ Clique na estrela nos carrosséis ou adicione com imagem!</div>`; return; }
             document.getElementById('inspirationsGrid').innerHTML = inspiracoes.map((insp,i)=>`
                 <div class="inspiration-card">
                     ${insp.imagem ? `<img src="${insp.imagem}" alt="${insp.nome}">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">✨</div>'}
@@ -1370,20 +1187,10 @@
                     <button class="delete-btn" onclick="deletarInspiracaoLocal(${i})">✕</button>
                 </div>`).join('');
         }
-        
-        function deletarInspiracaoLocal(i) { 
-            inspiracoes.splice(i,1); 
-            saveUserData();
-            renderInspiracoes(); 
-            renderFavoritos();
-            renderCarousels();
-        }
+        function deletarInspiracaoLocal(i) { inspiracoes.splice(i,1); saveUserData(); renderInspiracoes(); renderFavoritos(); renderCarousels(); }
 
         function renderProdutos() {
-            if(produtos.length === 0) {
-                document.getElementById('productsGrid').innerHTML = `<div class="card">🧴 Clique na estrela nos carrosséis do Estúdio para adicionar produtos!</div>`;
-                return;
-            }
+            if(produtos.length === 0) { document.getElementById('productsGrid').innerHTML = `<div class="card">🧴 Clique na estrela nos carrosséis do Estúdio para adicionar produtos!</div>`; return; }
             document.getElementById('productsGrid').innerHTML = produtos.map((p,i)=>`
                 <div class="product-card">
                     ${p.imagem ? `<img src="${p.imagem}" alt="${p.nome}">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">🧴</div>'}
@@ -1392,15 +1199,7 @@
                     <button class="delete-btn" onclick="event.stopPropagation(); deletarProdutoLocal(${i})">✕</button>
                 </div>`).join('');
         }
-        
-        function deletarProdutoLocal(i) { 
-            produtos.splice(i,1); 
-            saveUserData();
-            renderProdutos(); 
-            renderCarousels();
-            renderFavoritos();
-            updateMiniStats();
-        }
+        function deletarProdutoLocal(i) { produtos.splice(i,1); saveUserData(); renderProdutos(); renderCarousels(); renderFavoritos(); updateMiniStats(); }
 
         function carregarPerfil() {
             const t = getText;
@@ -1412,13 +1211,8 @@
             document.getElementById('perfilCorCabelo').value = perfil.corCabelo || '';
             document.getElementById('perfilAlergias').value = perfil.alergias || '';
             document.getElementById('perfilObs').value = perfil.obs || '';
-            
-            if (perfil.avatar) {
-                document.getElementById('avatarPreview').innerHTML = `<img src="${perfil.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
-            } else {
-                document.getElementById('avatarPreview').innerHTML = '✨';
-            }
-            
+            if (perfil.avatar) { document.getElementById('avatarPreview').innerHTML = `<img src="${perfil.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`; }
+            else { document.getElementById('avatarPreview').innerHTML = '✨'; }
             document.getElementById('change-avatar-text').textContent = t('change_avatar');
             document.getElementById('perfilNome').placeholder = t('placeholder_name');
             document.getElementById('perfilWhatsapp').placeholder = t('placeholder_contact');
@@ -1479,33 +1273,77 @@
             const suggestions = generateAISuggestions(currentAnswers);
             const resultDiv = document.getElementById('quizResult');
             resultDiv.style.display = 'block';
+            
+            // Mapear os cortes com imagens
+            const haircutsHtml = suggestions.haircuts.map(c => {
+                const imgUrl = haircutImages[c] || "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop";
+                return `
+                    <div class="suggestion-item" onclick="salvarCorteSugerido('${c.replace(/'/g, "\\'")}')">
+                        <div class="suggestion-icon" style="background-image: url('${imgUrl}'); background-size: cover; background-position: center; width: 50px; height: 50px; border-radius: 8px;"></div>
+                        <div class="suggestion-info">
+                            <h5>✂️ ${c}</h5>
+                            <p>Clique para salvar nos favoritos</p>
+                        </div>
+                        <div style="margin-left: auto; font-size: 0.7rem;">⭐ ${t('save')}</div>
+                    </div>
+                `;
+            }).join('');
+            
+            const productsHtml = suggestions.finishingProducts.map(p => `
+                <div class="suggestion-item" onclick="salvarProdutoSugerido('${p.nome.replace(/'/g, "\\'")}', '${p.desc.replace(/'/g, "\\'")}', '${p.imagem}')">
+                    <div class="suggestion-icon" style="background-image: url('${p.imagem}'); background-size: cover; background-position: center; width: 50px; height: 50px; border-radius: 8px;"></div>
+                    <div class="suggestion-info">
+                        <h5>🧴 ${p.nome}</h5>
+                        <p>${p.desc}</p>
+                    </div>
+                    <div style="margin-left: auto; font-size: 0.7rem;">⭐ ${t('save')}</div>
+                </div>
+            `).join('');
+            
+            const answersHtml = Object.entries(currentAnswers).map(([key, val]) => `<span class="style-badge">${val}</span>`).join('');
+            
             resultDiv.innerHTML = `
                 <div class="quiz-result">
-                    <h3>🤖 ${currentLang === 'pt' ? 'SUGESTÕES DA IA' : currentLang === 'es' ? 'SUGERENCIAS DE IA' : 'AI SUGGESTIONS'} ✨</h3>
+                    <h3>🤖 ${currentLang === 'pt' ? 'ANÁLISE DE VISAGISMO' : currentLang === 'es' ? 'ANÁLISIS DE VISAGISMO' : 'VISAGISM ANALYSIS'} ✨</h3>
+                    
+                    <div class="result-section">
+                        <h4>📋 ${t('your_profile_summary')}</h4>
+                        <div class="visagismo-desc">
+                            ${suggestions.visagismoDesc}
+                        </div>
+                    </div>
+                    
                     <div class="result-section">
                         <h4>${t('haircut_suggestions')}</h4>
-                        <div class="badge-list">${suggestions.haircuts.map(c => `<span class="style-badge">✂️ ${c}</span>`).join('')}</div>
+                        ${haircutsHtml}
                     </div>
+                    
                     <div class="result-section">
                         <h4>${t('finishing_products')}</h4>
-                        ${suggestions.finishingProducts.map(p => `
-                            <div class="suggestion-item" onclick="salvarProdutoSugerido('${p.nome.replace(/'/g, "\\'")}', '${p.desc.replace(/'/g, "\\'")}', '${p.imagem}')">
-                                <div class="suggestion-icon">${p.icon || '🧴'}</div>
-                                <div class="suggestion-info">
-                                    <h5>${p.nome}</h5>
-                                    <p>${p.desc}</p>
-                                </div>
-                                <div style="margin-left: auto; font-size: 0.7rem;">⭐ ${t('save')}</div>
-                            </div>
-                        `).join('')}
+                        ${productsHtml}
                     </div>
+                    
                     <div class="result-section">
-                        <h4>📊 ${currentLang === 'pt' ? 'SEU PERFIL' : currentLang === 'es' ? 'TU PERFIL' : 'YOUR PROFILE'}</h4>
-                        <div class="badge-list">${Object.entries(currentAnswers).map(([key, val]) => `<span class="style-badge">${val}</span>`).join('')}</div>
+                        <h4>📊 ${currentLang === 'pt' ? 'SUAS RESPOSTAS' : currentLang === 'es' ? 'TUS RESPUESTAS' : 'YOUR ANSWERS'}</h4>
+                        <div class="badge-list">${answersHtml}</div>
                     </div>
                 </div>
             `;
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+        
+        window.salvarCorteSugerido = function(nome) {
+            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            const imgUrl = haircutImages[nome] || "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop";
+            const existe = inspiracoes.some(i => i.nome === nome);
+            if (!existe) {
+                inspiracoes.push({ id: Date.now(), nome: nome, descricao: "Corte sugerido pela IA", imagem: imgUrl, tipo: "corte_sugerido" });
+                saveUserData();
+                alert(`✂️ "${nome}" ${getText('added_to_inspirations')}`);
+                renderInspiracoes();
+            } else {
+                alert(`"${nome}" ${getText('already_exists')}`);
+            }
         };
         
         window.salvarProdutoSugerido = function(nome, desc, imagem) {
@@ -1693,9 +1531,7 @@
 
         document.getElementById('dataVisita').valueAsDate = new Date();
         
-        if (currentUser) {
-            loadUserData(currentUser.username);
-        }
+        if (currentUser) { loadUserData(currentUser.username); }
         updateLoginUI();
         renderAll();
     </script>
