@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br" id="html-root">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>MakerAI - Beauty Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -37,6 +40,7 @@
             --hero-text: #111111;
             --quiz-option-bg: #fafaf8;
             --quiz-option-hover: #f0f0f0;
+            --social-bg: #f5f5f5;
         }
 
         body.dark {
@@ -64,6 +68,7 @@
             --hero-text: #f5f5f5;
             --quiz-option-bg: #111111;
             --quiz-option-hover: #1a1a1a;
+            --social-bg: #1a1a1a;
         }
 
         body {
@@ -74,7 +79,11 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        h1, h2, h3, .logo-text h1, .card-title {
+        h1,
+        h2,
+        h3,
+        .logo-text h1,
+        .card-title {
             font-family: 'Playfair Display', serif;
         }
 
@@ -163,7 +172,12 @@
             align-items: center;
             gap: 0.3rem;
         }
-        .login-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .login-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
         .user-info {
             display: flex;
             align-items: center;
@@ -171,6 +185,7 @@
             font-size: 0.7rem;
             color: var(--text-secondary);
         }
+
         .user-avatar {
             width: 28px;
             height: 28px;
@@ -191,6 +206,7 @@
             padding: 0.3rem 1rem;
             border-radius: 40px;
         }
+
         .mini-stat {
             display: flex;
             align-items: center;
@@ -198,11 +214,13 @@
             font-size: 0.7rem;
             color: var(--text-secondary);
         }
+
         .mini-stat-number {
             font-weight: 600;
             color: var(--text-primary);
             font-size: 0.85rem;
         }
+
         .mini-stat-label {
             font-size: 0.6rem;
             text-transform: uppercase;
@@ -231,12 +249,34 @@
             white-space: nowrap;
         }
 
-        .nav-link:hover { color: var(--accent); }
-        .nav-link.active { color: var(--accent); font-weight: 500; position: relative; }
-        .nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 1.2rem; right: 1.2rem; height: 1.5px; background: var(--accent); }
+        .nav-link:hover {
+            color: var(--accent);
+        }
 
-        .controls { display: flex; gap: 0.5rem; align-items: center; }
-        .lang-select, .theme-toggle {
+        .nav-link.active {
+            color: var(--accent);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1.2rem;
+            right: 1.2rem;
+            height: 1.5px;
+            background: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .lang-select,
+        .theme-toggle {
             background: transparent;
             border: 1px solid var(--border-medium);
             padding: 0.4rem 0.8rem;
@@ -247,10 +287,29 @@
             color: var(--text-secondary);
             transition: all 0.2s;
         }
-        .lang-select:hover, .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
-        .hamburger { display: none; flex-direction: column; cursor: pointer; background: none; border: none; padding: 0.5rem; }
-        .hamburger span { width: 20px; height: 1.5px; background: var(--text-primary); margin: 3px 0; transition: 0.2s; }
+        .lang-select:hover,
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 20px;
+            height: 1.5px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: 0.2s;
+        }
 
         .hero {
             background: var(--bg-hero);
@@ -259,15 +318,67 @@
             text-align: center;
             border-bottom: 1px solid var(--border-light);
         }
-        .hero h2 { font-size: 1.8rem; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 0.5rem; display: block; color: var(--hero-text); }
-        .hero h2::after { display: none; }
-        .hero p { font-size: 0.75rem; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; color: var(--text-tertiary); max-width: 500px; margin: 0 auto; }
-        .hero-badge { display: inline-block; font-size: 0.6rem; letter-spacing: 2px; background: var(--badge-bg); padding: 4px 12px; border-radius: 20px; margin-bottom: 0.8rem; color: var(--badge-text); }
 
-        .main-container { max-width: 1400px; margin: 2rem auto; padding: 0 2rem; }
-        .tab-content { display: none; animation: fadeIn 0.4s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: var(--hero-text);
+        }
+
+        .hero h2::after {
+            display: none;
+        }
+
+        .hero p {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            background: var(--badge-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            color: var(--badge-text);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .modal {
             display: none;
@@ -276,12 +387,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             align-items: center;
             justify-content: center;
         }
-        .modal.active { display: flex; }
+
+        .modal.active {
+            display: flex;
+        }
+
         .modal-content {
             background: var(--bg-card);
             border-radius: 20px;
@@ -290,113 +405,773 @@
             width: 90%;
             border: 1px solid var(--border-light);
         }
-        .modal-content h3 { font-family: 'Playfair Display', serif; margin-bottom: 1.5rem; text-align: center; }
-        .modal-content input { width: 100%; margin-bottom: 1rem; padding: 0.8rem; border: 1px solid var(--border-medium); border-radius: 8px; background: transparent; color: var(--text-primary); }
-        .modal-content button { width: 100%; margin-top: 0.5rem; }
-        .close-modal { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; }
 
-        .carousel-section { margin-bottom: 2.5rem; }
-        .carousel-title { font-size: 1rem; font-weight: 500; letter-spacing: 1px; margin-bottom: 1.2rem; color: var(--text-secondary); text-transform: uppercase; }
-        .carousel-container { position: relative; overflow: hidden; margin: 0 -0.5rem; }
-        .carousel-track { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 1rem; padding: 0.5rem 0.5rem 1rem; scrollbar-width: thin; scrollbar-color: var(--accent) var(--border-light); }
-        .carousel-track::-webkit-scrollbar { height: 6px; }
-        .carousel-track::-webkit-scrollbar-track { background: var(--border-light); border-radius: 10px; }
-        .carousel-track::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-        .carousel-item { flex: 0 0 auto; width: 220px; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; position: relative; }
-        .carousel-item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .carousel-item-image { width: 100%; height: 180px; background-size: cover; background-position: center; position: relative; }
-        .carousel-item-info { padding: 0.8rem; }
-        .carousel-item-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; color: var(--text-primary); }
-        .carousel-item-desc { font-size: 0.65rem; color: var(--text-tertiary); margin-bottom: 0.4rem; }
-        .carousel-star { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.6); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: #fff; transition: all 0.2s; backdrop-filter: blur(4px); z-index: 2; }
-        .carousel-star.active { color: gold; background: rgba(0,0,0,0.7); }
-        .carousel-star:hover { transform: scale(1.1); }
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--bg-card); border: 1px solid var(--border-medium); border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s; color: var(--text-primary); }
-        .carousel-btn:hover { background: var(--accent); color: var(--btn-hover-text); }
-        .carousel-btn-left { left: 0; }
-        .carousel-btn-right { right: 0; }
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
 
-        .quiz-container { max-width: 800px; margin: 0 auto; }
-        .quiz-question { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2rem; margin-bottom: 1.5rem; border-radius: 12px; }
-        .quiz-question h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--text-primary); }
-        .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; }
-        .quiz-option { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; background: var(--quiz-option-bg); border: 1px solid var(--border-light); cursor: pointer; transition: all 0.2s ease; border-radius: 8px; }
-        .quiz-option:hover { background: var(--quiz-option-hover); transform: translateX(4px); }
-        .quiz-option.selected { border-left: 3px solid var(--accent); background: var(--quiz-option-hover); }
-        .quiz-option input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent); }
-        .quiz-option label { flex: 1; cursor: pointer; font-size: 0.9rem; color: var(--text-secondary); margin: 0; text-transform: none; letter-spacing: normal; }
+        .modal-content input {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-primary);
+        }
 
-        .quiz-result { background: var(--bg-card); border: 1px solid var(--border-light); padding: 2rem; margin-top: 2rem; text-align: center; border-radius: 12px; }
-        .quiz-result h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1rem; color: var(--accent); }
-        .result-section { text-align: left; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light); }
-        .result-section h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 1rem; color: var(--text-primary); }
-        .suggestion-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--quiz-option-bg); margin-bottom: 0.75rem; border-left: 3px solid var(--accent); cursor: pointer; border-radius: 8px; transition: all 0.2s; }
-        .suggestion-item:hover { transform: translateX(4px); background: var(--quiz-option-hover); }
-        .suggestion-icon { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; background-size: cover; background-position: center; }
-        .suggestion-info { flex: 1; }
-        .suggestion-info h5 { font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary); }
-        .suggestion-info p { font-size: 0.75rem; color: var(--text-tertiary); }
-        .badge-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-        .style-badge { background: var(--badge-bg); padding: 0.3rem 0.8rem; font-size: 0.7rem; color: var(--badge-text); border-radius: 20px; }
-        .visagismo-desc { background: var(--badge-bg); padding: 1rem; border-radius: 12px; margin-top: 1rem; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
+        .modal-content button {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
 
-        .card, .visita-card, .favorito-card { background: var(--bg-card); padding: 1.2rem; margin-bottom: 1px; border-bottom: 1px solid var(--border-light); transition: all 0.2s ease; }
-        .card:hover { background: var(--bg-surface); padding-left: 1.5rem; }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
-        .card-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 500; color: var(--text-primary); }
-        .badge { display: inline-block; background: var(--badge-bg); padding: 3px 10px; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; color: var(--badge-text); margin: 3px 3px 0 0; border-radius: 12px; }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
 
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; margin-bottom: 6px; font-size: 0.6rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-tertiary); }
-        input, select, textarea { width: 100%; padding: 10px 0; border: none; border-bottom: 1px solid var(--input-border); font-size: 0.85rem; font-family: 'Inter', sans-serif; background: transparent; color: var(--text-primary); }
-        input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--accent); }
-        textarea { resize: vertical; min-height: 70px; }
-        .row-2cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .carousel-section {
+            margin-bottom: 2.5rem;
+        }
 
-        .btn { background: transparent; color: var(--text-primary); border: 1px solid var(--btn-border); padding: 10px 24px; font-size: 0.65rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; width: 100%; font-family: 'Inter', sans-serif; border-radius: 30px; }
-        .btn:hover { background: var(--btn-hover); border-color: var(--btn-hover); color: var(--btn-hover-text); }
+        .carousel-title {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
 
-        .inspirations-grid, .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--border-light); margin-top: 1.5rem; }
-        .inspiration-card, .product-card { background: var(--bg-card); padding: 1.5rem; text-align: center; transition: all 0.2s; position: relative; }
-        .inspiration-card:hover, .product-card:hover { background: var(--bg-surface); }
-        .inspiration-card h3, .product-card h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 500; margin-bottom: 6px; color: var(--text-primary); }
-        .inspiration-card img, .product-card img, .favorito-card-img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
-        .star-icon { position: absolute; top: 0.8rem; right: 0.8rem; font-size: 0.9rem; cursor: pointer; color: var(--star-inactive); background: rgba(0,0,0,0.4); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
-        .star-icon.active { color: gold; }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 -0.5rem;
+        }
 
-        .profile-avatar { text-align: center; margin-bottom: 1.5rem; cursor: pointer; }
-        .avatar-circle { width: 80px; height: 80px; background: var(--badge-bg); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--text-tertiary); border: 2px solid var(--border-light); overflow: hidden; }
-        .avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 1rem;
+            padding: 0.5rem 0.5rem 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--border-light);
+        }
 
-        .delete-btn { background: transparent; border: none; padding: 3px 8px; font-size: 0.6rem; cursor: pointer; font-family: 'Inter', sans-serif; color: var(--text-tertiary); }
-        .delete-btn:hover { color: var(--accent); }
+        .carousel-track::-webkit-scrollbar {
+            height: 6px;
+        }
 
-        .menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999; }
-        .menu-overlay.active { display: block; }
-        .ai-badge { font-size: 0.5rem; letter-spacing: 1px; background: var(--badge-bg); padding: 2px 6px; border-radius: 12px; display: inline-block; margin-left: 6px; color: var(--badge-text); }
+        .carousel-track::-webkit-scrollbar-track {
+            background: var(--border-light);
+            border-radius: 10px;
+        }
 
-        .favorito-card-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 1rem; }
-        .favorito-item { display: flex; align-items: center; gap: 1rem; }
+        .carousel-track::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 220px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .carousel-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .carousel-item-info {
+            padding: 0.8rem;
+        }
+
+        .carousel-item-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+            color: var(--text-primary);
+        }
+
+        .carousel-item-desc {
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.4rem;
+        }
+
+        .carousel-star {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #fff;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+            z-index: 2;
+        }
+
+        .carousel-star.active {
+            color: gold;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-star:hover {
+            transform: scale(1.1);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent);
+            color: var(--btn-hover-text);
+        }
+
+        .carousel-btn-left {
+            left: 0;
+        }
+
+        .carousel-btn-right {
+            right: 0;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .quiz-question h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            background: var(--quiz-option-bg);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+        }
+
+        .quiz-option:hover {
+            background: var(--quiz-option-hover);
+            transform: translateX(4px);
+        }
+
+        .quiz-option.selected {
+            border-left: 3px solid var(--accent);
+            background: var(--quiz-option-hover);
+        }
+
+        .quiz-option input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .quiz-option label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .quiz-result {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .quiz-result h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .result-section {
+            text-align: left;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .result-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--quiz-option-bg);
+            margin-bottom: 0.75rem;
+            border-left: 3px solid var(--accent);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .suggestion-item:hover {
+            transform: translateX(4px);
+            background: var(--quiz-option-hover);
+        }
+
+        .suggestion-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .suggestion-info {
+            flex: 1;
+        }
+
+        .suggestion-info h5 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .suggestion-info p {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .style-badge {
+            background: var(--badge-bg);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.7rem;
+            color: var(--badge-text);
+            border-radius: 20px;
+        }
+
+        .visagismo-desc {
+            background: var(--badge-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card,
+        .visita-card,
+        .favorito-card {
+            background: var(--bg-card);
+            padding: 1.2rem;
+            margin-bottom: 1px;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            background: var(--bg-surface);
+            padding-left: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--badge-bg);
+            padding: 3px 10px;
+            font-size: 0.6rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--badge-text);
+            margin: 3px 3px 0 0;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 1px solid var(--input-border);
+            font-size: 0.85rem;
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-bottom-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .row-2cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--btn-border);
+            padding: 10px 24px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            border-radius: 30px;
+        }
+
+        .btn:hover {
+            background: var(--btn-hover);
+            border-color: var(--btn-hover);
+            color: var(--btn-hover-text);
+        }
+
+        .inspirations-grid,
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1px;
+            background: var(--border-light);
+            margin-top: 1.5rem;
+        }
+
+        .inspiration-card,
+        .product-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .inspiration-card:hover,
+        .product-card:hover {
+            background: var(--bg-surface);
+        }
+
+        .inspiration-card h3,
+        .product-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .inspiration-card img,
+        .product-card img,
+        .favorito-card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .inspiration-card img:hover,
+        .product-card img:hover {
+            transform: scale(1.02);
+        }
+
+        .star-icon {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--star-inactive);
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star-icon.active {
+            color: gold;
+        }
+
+        .profile-avatar {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+
+        .avatar-circle {
+            width: 80px;
+            height: 80px;
+            background: var(--badge-bg);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-tertiary);
+            border: 2px solid var(--border-light);
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .delete-btn {
+            background: transparent;
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.6rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-tertiary);
+        }
+
+        .delete-btn:hover {
+            color: var(--accent);
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .ai-badge {
+            font-size: 0.5rem;
+            letter-spacing: 1px;
+            background: var(--badge-bg);
+            padding: 2px 6px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-left: 6px;
+            color: var(--badge-text);
+        }
+
+        .favorito-card-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .favorito-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Social Links Section */
+        .social-links-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            background: var(--social-bg);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .social-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+        .social-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .social-username {
+            font-size: 0.65rem;
+            color: var(--text-tertiary);
+        }
+
+        .social-card.github {
+            background: #24292e;
+            border-color: #444;
+        }
+
+        body.dark .social-card.github {
+            background: #1a1a1a;
+        }
+
+        .social-card.github .social-name,
+        .social-card.github .social-username {
+            color: #fff;
+        }
+
+        body.dark .social-card.github .social-name,
+        body.dark .social-card.github .social-username {
+            color: #f5f5f5;
+        }
 
         @media (max-width: 768px) {
-            .nav-container { padding: 0.8rem 1.2rem; flex-wrap: wrap; }
-            .controls { order: 3; width: 100%; justify-content: center; margin-top: 0.5rem; }
-            .hamburger { display: flex; }
-            .nav-menu { position: fixed; top: 0; right: -100%; width: 70%; max-width: 280px; height: 100vh; background: var(--bg-navbar); flex-direction: column; padding: 80px 20px 20px; transition: 0.3s; box-shadow: -5px 0 30px rgba(0,0,0,0.2); z-index: 1001; }
-            .nav-menu.active { right: 0; }
-            .nav-link { padding: 0.8rem; width: 100%; text-align: left; border-bottom: 1px solid var(--border-light); }
-            .nav-link.active::after { display: none; }
-            .row-2cols { grid-template-columns: 1fr; gap: 1rem; }
-            .hero h2 { font-size: 1.3rem; }
-            .hero { padding: 1.5rem; }
-            .main-container { padding: 0 1rem; margin: 1.5rem auto; }
-            .quiz-question { padding: 1.2rem; }
-            .carousel-item { width: 180px; }
-            .carousel-item-image { height: 150px; }
-            .mini-stats { display: none; }
+            .nav-container {
+                padding: 0.8rem 1.2rem;
+                flex-wrap: wrap;
+            }
+
+            .controls {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: var(--bg-navbar);
+                flex-direction: column;
+                padding: 80px 20px 20px;
+                transition: 0.3s;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+                z-index: 1001;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-link {
+                padding: 0.8rem;
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            .nav-link.active::after {
+                display: none;
+            }
+
+            .row-2cols {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                padding: 1.5rem;
+            }
+
+            .main-container {
+                padding: 0 1rem;
+                margin: 1.5rem auto;
+            }
+
+            .quiz-question {
+                padding: 1.2rem;
+            }
+
+            .carousel-item {
+                width: 180px;
+            }
+
+            .carousel-item-image {
+                height: 150px;
+            }
+
+            .mini-stats {
+                display: none;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
@@ -408,9 +1183,12 @@
                 </div>
             </div>
             <div class="mini-stats" id="miniStats">
-                <div class="mini-stat"><span class="mini-stat-number" id="miniVisits">0</span><span class="mini-stat-label" id="miniVisitsLabel">VISITAS</span></div>
-                <div class="mini-stat"><span class="mini-stat-number" id="miniFavorites">0</span><span class="mini-stat-label" id="miniFavoritesLabel">FAV</span></div>
-                <div class="mini-stat"><span class="mini-stat-number" id="miniProducts">0</span><span class="mini-stat-label" id="miniProductsLabel">PROD</span></div>
+                <div class="mini-stat"><span class="mini-stat-number" id="miniVisits">0</span><span
+                        class="mini-stat-label" id="miniVisitsLabel">VISITAS</span></div>
+                <div class="mini-stat"><span class="mini-stat-number" id="miniFavorites">0</span><span
+                        class="mini-stat-label" id="miniFavoritesLabel">FAV</span></div>
+                <div class="mini-stat"><span class="mini-stat-number" id="miniProducts">0</span><span
+                        class="mini-stat-label" id="miniProductsLabel">PROD</span></div>
             </div>
             <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
             <ul class="nav-menu" id="navMenu">
@@ -425,12 +1203,19 @@
             </ul>
             <div class="controls">
                 <button id="loginButton" class="login-btn">🔐 ENTRAR</button>
-                <select id="themeSelect" class="theme-toggle"><option value="light">☀️</option><option value="dark">🌙</option></select>
-                <select id="langSelect" class="lang-select"><option value="pt">🇧🇷 PT</option><option value="en">🇺🇸 EN</option><option value="es">🇪🇸 ES</option></select>
+                <select id="themeSelect" class="theme-toggle">
+                    <option value="light">☀️</option>
+                    <option value="dark">🌙</option>
+                </select>
+                <select id="langSelect" class="lang-select">
+                    <option value="pt">🇧🇷 PT</option>
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
             </div>
         </div>
     </nav>
-    
+
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeLoginModal()">&times;</span>
@@ -438,10 +1223,11 @@
             <input type="text" id="loginUsername" placeholder="Usuário" class="login-input">
             <input type="password" id="loginPassword" placeholder="Senha" class="login-input">
             <button class="btn" onclick="loginUser()" id="login-btn-action">ENTRAR</button>
-            <button class="btn" onclick="registerUser()" style="margin-top: 0.5rem;" id="register-btn-action">CRIAR CONTA</button>
+            <button class="btn" onclick="registerUser()" style="margin-top: 0.5rem;" id="register-btn-action">CRIAR
+                CONTA</button>
         </div>
     </div>
-    
+
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <div class="hero">
@@ -453,28 +1239,36 @@
     <div class="main-container">
         <div id="dashboard" class="tab-content active">
             <h2 id="dashboard-title">Studio</h2>
-            
+
             <div class="carousel-section">
                 <div class="carousel-title" id="inspirations-carousel-title">✨ HAIR INSPIRATIONS | CUTS & COLORS</div>
                 <div class="carousel-container">
-                    <button class="carousel-btn carousel-btn-left" onclick="scrollCarousel('inspirationsTrack', -1)">◀</button>
+                    <button class="carousel-btn carousel-btn-left"
+                        onclick="scrollCarousel('inspirationsTrack', -1)">◀</button>
                     <div class="carousel-track" id="inspirationsTrack"></div>
-                    <button class="carousel-btn carousel-btn-right" onclick="scrollCarousel('inspirationsTrack', 1)">▶</button>
+                    <button class="carousel-btn carousel-btn-right"
+                        onclick="scrollCarousel('inspirationsTrack', 1)">▶</button>
                 </div>
             </div>
-            
+
             <div class="carousel-section">
                 <div class="carousel-title" id="products-carousel-title">🛍️ SUGGESTED PRODUCTS</div>
                 <div class="carousel-container">
-                    <button class="carousel-btn carousel-btn-left" onclick="scrollCarousel('productsTrack', -1)">◀</button>
+                    <button class="carousel-btn carousel-btn-left"
+                        onclick="scrollCarousel('productsTrack', -1)">◀</button>
                     <div class="carousel-track" id="productsTrack"></div>
-                    <button class="carousel-btn carousel-btn-right" onclick="scrollCarousel('productsTrack', 1)">▶</button>
+                    <button class="carousel-btn carousel-btn-right"
+                        onclick="scrollCarousel('productsTrack', 1)">▶</button>
                 </div>
             </div>
-            
-            <h3 id="upcoming-title" style="font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; margin: 1.5rem 0 0.8rem;">UPCOMING</h3>
+
+            <h3 id="upcoming-title"
+                style="font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; margin: 1.5rem 0 0.8rem;">UPCOMING
+            </h3>
             <div id="proximasVisitas"></div>
-            <h3 id="recent-title" style="font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; margin: 1.5rem 0 0.8rem;">RECENTLY CURATED</h3>
+            <h3 id="recent-title"
+                style="font-size: 0.75rem; font-weight: 500; letter-spacing: 1px; margin: 1.5rem 0 0.8rem;">RECENTLY
+                CURATED</h3>
             <div id="favoritosRecentes"></div>
         </div>
 
@@ -482,52 +1276,74 @@
             <h2 id="profile-title">Profile <span class="ai-badge">AI ENHANCED</span></h2>
             <div class="profile-avatar" onclick="document.getElementById('avatarUpload').click()">
                 <div class="avatar-circle" id="avatarPreview">✨</div>
-                <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="uploadAvatar(this)">
-                <p style="font-size: 0.6rem; margin-top: 0.5rem; color: var(--text-tertiary);" id="change-avatar-text">Clique para alterar foto</p>
+                <input type="file" id="avatarUpload" accept="image/*" style="display: none;"
+                    onchange="uploadAvatar(this)">
+                <p style="font-size: 0.6rem; margin-top: 0.5rem; color: var(--text-tertiary);" id="change-avatar-text">
+                    Clique para alterar foto</p>
             </div>
             <form id="perfilForm">
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-name">Nome Completo</label><input type="text" id="perfilNome" placeholder="Seu nome"></div>
-                    <div class="form-group"><label id="label-birth">Data de Nascimento</label><input type="date" id="perfilNascimento"></div>
+                    <div class="form-group"><label id="label-name">Nome Completo</label><input type="text"
+                            id="perfilNome" placeholder="Seu nome"></div>
+                    <div class="form-group"><label id="label-birth">Data de Nascimento</label><input type="date"
+                            id="perfilNascimento"></div>
                 </div>
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-contact">Contato</label><input type="tel" id="perfilWhatsapp" placeholder="+55 (00) 00000-0000"></div>
-                    <div class="form-group"><label id="label-instagram">Instagram</label><input type="text" id="perfilInstagram" placeholder="@usuario"></div>
+                    <div class="form-group"><label id="label-contact">Contato</label><input type="tel"
+                            id="perfilWhatsapp" placeholder="+55 (00) 00000-0000"></div>
+                    <div class="form-group"><label id="label-instagram">Instagram</label><input type="text"
+                            id="perfilInstagram" placeholder="@usuario"></div>
                 </div>
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-hairtype">Tipo de Cabelo</label><select id="perfilCabelo"></select></div>
-                    <div class="form-group"><label id="label-haircolor">Cor do Cabelo</label><input type="text" id="perfilCorCabelo" placeholder="Ex: Castanho, Loiro"></div>
+                    <div class="form-group"><label id="label-hairtype">Tipo de Cabelo</label><select
+                            id="perfilCabelo"></select></div>
+                    <div class="form-group"><label id="label-haircolor">Cor do Cabelo</label><input type="text"
+                            id="perfilCorCabelo" placeholder="Ex: Castanho, Loiro"></div>
                 </div>
-                <div class="form-group"><label id="label-allergies">Alergias / Sensibilidades</label><textarea id="perfilAlergias" rows="2" placeholder="Informações importantes..."></textarea></div>
-                <div class="form-group"><label id="label-notes">Observações Pessoais</label><textarea id="perfilObs" rows="3" placeholder="Suas preferências de estilo, inspirações..."></textarea></div>
+                <div class="form-group"><label id="label-allergies">Alergias / Sensibilidades</label><textarea
+                        id="perfilAlergias" rows="2" placeholder="Informações importantes..."></textarea></div>
+                <div class="form-group"><label id="label-notes">Observações Pessoais</label><textarea id="perfilObs"
+                        rows="3" placeholder="Suas preferências de estilo, inspirações..."></textarea></div>
                 <button type="submit" class="btn" id="btn-save-profile">SALVAR PERFIL</button>
             </form>
-            <button class="btn" onclick="logoutUser()" style="margin-top: 1rem; background: transparent;" id="btn-logout">SAIR</button>
+            <button class="btn" onclick="logoutUser()" style="margin-top: 1rem; background: transparent;"
+                id="btn-logout">SAIR</button>
         </div>
 
         <div id="historico" class="tab-content">
             <h2 id="archive-title">Arquivo</h2>
             <form id="visitaForm">
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-date">Data</label><input type="date" id="dataVisita" required></div>
-                    <div class="form-group"><label id="label-next">Próxima Visita</label><input type="date" id="dataProxima"></div>
+                    <div class="form-group"><label id="label-date">Data</label><input type="date" id="dataVisita"
+                            required></div>
+                    <div class="form-group"><label id="label-next">Próxima Visita</label><input type="date"
+                            id="dataProxima"></div>
                 </div>
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-salon">Salão / Profissional</label><input type="text" id="salao" placeholder="Onde você foi?"></div>
-                    <div class="form-group"><label id="label-service">Serviço</label><input type="text" id="servico" placeholder="Corte, Cor, Tratamento"></div>
+                    <div class="form-group"><label id="label-salon">Salão / Profissional</label><input type="text"
+                            id="salao" placeholder="Onde você foi?"></div>
+                    <div class="form-group"><label id="label-service">Serviço</label><input type="text" id="servico"
+                            placeholder="Corte, Cor, Tratamento"></div>
                 </div>
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-color">Cor/Tinta</label><input type="text" id="tinta" placeholder="Ex: 7.3, Platinado"></div>
-                    <div class="form-group"><label id="label-developer">Oxigenada</label><input type="text" id="oxigenada" placeholder="Volume / ml"></div>
+                    <div class="form-group"><label id="label-color">Cor/Tinta</label><input type="text" id="tinta"
+                            placeholder="Ex: 7.3, Platinado"></div>
+                    <div class="form-group"><label id="label-developer">Oxigenada</label><input type="text"
+                            id="oxigenada" placeholder="Volume / ml"></div>
                 </div>
                 <div class="row-2cols">
-                    <div class="form-group"><label id="label-shampoo">Shampoo Usado</label><input type="text" id="shampoo"></div>
-                    <div class="form-group"><label id="label-treatment">Hidratação</label><input type="text" id="hidratacao"></div>
+                    <div class="form-group"><label id="label-shampoo">Shampoo Usado</label><input type="text"
+                            id="shampoo"></div>
+                    <div class="form-group"><label id="label-treatment">Hidratação</label><input type="text"
+                            id="hidratacao"></div>
                 </div>
-                <div class="form-group"><label id="label-reflections">Notas e Reflexões</label><textarea id="avaliacao" rows="3" placeholder="O que você amou? O que mudaria?"></textarea></div>
+                <div class="form-group"><label id="label-reflections">Notas e Reflexões</label><textarea id="avaliacao"
+                        rows="3" placeholder="O que você amou? O que mudaria?"></textarea></div>
                 <button type="submit" class="btn" id="btn-archive">ARQUIVAR VISITA</button>
             </form>
-            <div style="margin-top: 1.5rem;"><div id="listaVisitas"></div></div>
+            <div style="margin-top: 1.5rem;">
+                <div id="listaVisitas"></div>
+            </div>
         </div>
 
         <div id="favoritos" class="tab-content">
@@ -544,7 +1360,8 @@
                     <input type="text" id="novaInspDesc" placeholder="Descrição">
                 </div>
                 <input type="file" id="novaInspImagem" accept="image/*" style="margin: 10px 0; padding: 8px 0;">
-                <button class="btn" onclick="adicionarInspiracaoComImagem()" style="margin-top: 0.5rem;" id="btn-add-inspiration-image">+ ADICIONAR COM IMAGEM</button>
+                <button class="btn" onclick="adicionarInspiracaoComImagem()" style="margin-top: 0.5rem;"
+                    id="btn-add-inspiration-image">+ ADICIONAR COM IMAGEM</button>
             </div>
             <div class="inspirations-grid" id="inspirationsGrid"></div>
         </div>
@@ -552,7 +1369,8 @@
         <div id="produtos" class="tab-content">
             <h2 id="preferences-title">Produtos</h2>
             <div class="products-grid" id="productsGrid"></div>
-            <p style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: var(--text-tertiary);" id="products-hint">⭐ Clique na estrela nos carrosséis do Estúdio para adicionar produtos</p>
+            <p style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: var(--text-tertiary);"
+                id="products-hint">⭐ Clique na estrela nos carrosséis do Estúdio para adicionar produtos</p>
         </div>
 
         <div id="visagismo" class="tab-content">
@@ -563,12 +1381,66 @@
 
         <div id="configuracoes" class="tab-content">
             <h2 id="settings-title">Configurações</h2>
-            <div class="form-group"><label id="label-reminders">Lembretes de Visitas</label><select id="configNotificacoes"><option value="sim">Ativar</option><option value="nao">Desativar</option></select></div>
-            <div class="form-group"><label id="label-birthday-reminder">Lembrar Aniversário</label><input type="checkbox" id="configLembrarAniversario"> <span id="birthday-text">Receber lembretes de aniversário</span></div>
+            <div class="form-group"><label id="label-reminders">Lembretes de Visitas</label><select
+                    id="configNotificacoes">
+                    <option value="sim">Ativar</option>
+                    <option value="nao">Desativar</option>
+                </select></div>
+            <div class="form-group"><label id="label-birthday-reminder">Lembrar Aniversário</label><input
+                    type="checkbox" id="configLembrarAniversario"> <span id="birthday-text">Receber lembretes de
+                    aniversário</span></div>
+
+            <!-- Redes Sociais e Portfólio -->
+            <div class="social-links-section">
+                <h3>🌐 Conecte-se com a MakerAI</h3>
+                <div class="social-grid">
+                    <a href="https://instagram.com/makerai" target="_blank" class="social-card">
+                        <span class="social-icon">📸</span>
+                        <div class="social-info">
+                            <div class="social-name">Instagram</div>
+                            <div class="social-username">@makerai</div>
+                        </div>
+                    </a>
+                    <a href="https://facebook.com/makerai" target="_blank" class="social-card">
+                        <span class="social-icon">👍</span>
+                        <div class="social-info">
+                            <div class="social-name">Facebook</div>
+                            <div class="social-username">/makerai</div>
+                        </div>
+                    </a>
+                    <a href="https://pinterest.com/makerai" target="_blank" class="social-card">
+                        <span class="social-icon">📌</span>
+                        <div class="social-info">
+                            <div class="social-name">Pinterest</div>
+                            <div class="social-username">@makerai</div>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="social-card">
+                        <span class="social-icon">💬</span>
+                        <div class="social-info">
+                            <div class="social-name">WhatsApp</div>
+                            <div class="social-username">+55 (11) 99999-9999</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/seu-usuario/makerai-beauty" target="_blank" class="social-card github">
+                        <span class="social-icon">🐙</span>
+                        <div class="social-info">
+                            <div class="social-name">GitHub</div>
+                            <div class="social-username">makerai-beauty</div>
+                        </div>
+                    </a>
+                </div>
+                <p style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 1rem; text-align: center;">
+                    🌟 Projeto open-source - Contribua no GitHub
+                </p>
+            </div>
+
             <hr style="margin: 1.5rem 0; border-color: var(--border-light);">
             <button class="btn" onclick="exportarMeusDados()" id="btn-export">EXPORTAR DADOS</button>
-            <button class="btn" onclick="importarMeusDados()" style="margin-top: 0.8rem;" id="btn-import">IMPORTAR DADOS</button>
-            <button class="btn" onclick="limparTodosDados()" style="margin-top: 0.8rem;" id="btn-delete-all">APAGAR TODOS OS DADOS</button>
+            <button class="btn" onclick="importarMeusDados()" style="margin-top: 0.8rem;" id="btn-import">IMPORTAR
+                DADOS</button>
+            <button class="btn" onclick="limparTodosDados()" style="margin-top: 0.8rem;" id="btn-delete-all">APAGAR
+                TODOS OS DADOS</button>
         </div>
     </div>
 
@@ -582,14 +1454,15 @@
             { id: 5, nome: "Curly Shag", descricao: "Volumetric cut for curly hair", imagem: "https://images.unsplash.com/photo-1530092285049-1c42085fd395?w=400&h=300&fit=crop", tipo: "corte" },
             { id: 6, nome: "Rose Gold Tint", descricao: "Soft pink metallic hue", imagem: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=300&fit=crop", tipo: "cor" }
         ];
-        
+
+        // Produtos com links de afiliado Mercado Livre
         const productsData = [
-            { id: 1, nome: "Oribe Gold Lust Oil", descricao: "Repair & restore shine", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo" },
-            { id: 2, nome: "Olaplex No.3", descricao: "Bond maintenance treatment", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Tratamento" },
-            { id: 3, nome: "Bumble Texture Spray", descricao: "Undone volume and grip", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Estilização" },
-            { id: 4, nome: "Kérastase Elixir", descricao: "Luxury finishing serum", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Finalizador" },
-            { id: 5, nome: "Davines OI Oil", descricao: "Lightweight sleek finish", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo" },
-            { id: 6, nome: "Pattern Curl Gel", descricao: "Defines and hydrates curls", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Cachos" }
+            { id: 1, nome: "Oribe Gold Lust Oil", descricao: "Repair & restore shine", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo", link: "https://www.mercadolivre.com.br/oribe-gold-lust-hair-oil/p/MLB12345678" },
+            { id: 2, nome: "Olaplex No.3", descricao: "Bond maintenance treatment", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Tratamento", link: "https://www.mercadolivre.com.br/olaplex-no3-hair-perfector/p/MLB87654321" },
+            { id: 3, nome: "Bumble Texture Spray", descricao: "Undone volume and grip", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Estilização", link: "https://www.mercadolivre.com.br/bumble-bumble-texture-spray/p/MLB11223344" },
+            { id: 4, nome: "Kérastase Elixir", descricao: "Luxury finishing serum", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Finalizador", link: "https://www.mercadolivre.com.br/kerastase-elixir-ultime/p/MLB55667788" },
+            { id: 5, nome: "Davines OI Oil", descricao: "Lightweight sleek finish", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo", link: "https://www.mercadolivre.com.br/davines-oi-oil/p/MLB99001122" },
+            { id: 6, nome: "Pattern Curl Gel", descricao: "Defines and hydrates curls", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Cachos", link: "https://www.mercadolivre.com.br/pattern-curl-gel/p/MLB33445566" }
         ];
 
         // ==================== IMAGENS PARA SUGESTÕES ====================
@@ -806,11 +1679,11 @@
             const vibe = answers.vibe || "";
             const texture = answers.hairTexture || "";
             const lifestyle = answers.lifestyle || "";
-            
+
             let haircuts = [];
             let finishingProducts = [];
             let visagismoDesc = "";
-            
+
             // Sugestões de cortes baseadas no rosto
             if (face === "Oval" || face === "Oval") {
                 haircuts = ["Bob Clássico", "Long Layers", "Pixie Moderno", "Middle Part Sleek"];
@@ -831,51 +1704,51 @@
                 haircuts = ["Textured Pixie", "Curtain Bangs", "Soft Waves", "Layered Bob"];
                 visagismoDesc = "Seu rosto diamante tem maçãs do rosto proeminentes e testa e queixo mais estreitos. O segredo é suavizar as maçãs com volume suave nas laterais e na parte superior. Cortes texturizados e franjas cortina ajudam a equilibrar as proporções. Ondas suaves também são ótimas para criar movimento e suavizar os traços marcantes.";
             }
-            
+
             // Sugestões de produtos baseadas na vibe
             if (vibe === "Sofisticado / Elegante" || vibe === "Sophisticated / Elegant" || vibe === "Sofisticado / Elegante") {
                 finishingProducts = [
-                    { nome: "Oribe Gold Lust Oil", desc: "Brilho espelhado e maciez", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "✨" },
-                    { nome: "Kérastase Elixir Ultime", desc: "Sérum finalizador de luxo", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💎" }
+                    { nome: "Oribe Gold Lust Oil", desc: "Brilho espelhado e maciez", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "✨", link: "https://www.mercadolivre.com.br/oribe-gold-lust-hair-oil/p/MLB12345678" },
+                    { nome: "Kérastase Elixir Ultime", desc: "Sérum finalizador de luxo", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💎", link: "https://www.mercadolivre.com.br/kerastase-elixir-ultime/p/MLB55667788" }
                 ];
                 visagismoDesc += " Seu estilo sofisticado pede acabamentos impecáveis e produtos que entregam brilho e refinamento. Invista em finalizadores de alta performance para um visual elegante e duradouro.";
             } else if (vibe === "Moderno / Arrojado" || vibe === "Edgy / Modern" || vibe === "Moderno / Atrevido") {
                 finishingProducts = [
-                    { nome: "Bumble Texture Spray", desc: "Volume e textura desconstruída", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⚡" },
-                    { nome: "Sea Salt Spray", desc: "Ondas praianas com textura", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊" }
+                    { nome: "Bumble Texture Spray", desc: "Volume e textura desconstruída", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⚡", link: "https://www.mercadolivre.com.br/bumble-bumble-texture-spray/p/MLB11223344" },
+                    { nome: "Sea Salt Spray", desc: "Ondas praianas com textura", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊", link: "https://www.mercadolivre.com.br/sea-salt-spray/p/MLB77889900" }
                 ];
                 visagismoDesc += " Sua vibe moderna pede textura e movimento! Aposte em produtos que criam volume desconstruído e ondas com personalidade. O visual é contemporâneo e cheio de atitude.";
             } else if (vibe === "Romântico / Suave" || vibe === "Romantic / Soft" || vibe === "Romántico / Suave") {
                 finishingProducts = [
-                    { nome: "Gisou Honey Oil", desc: "Maciez e brilho natural", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🍯" },
-                    { nome: "Curl Cream", desc: "Define cachos suavemente", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀" }
+                    { nome: "Gisou Honey Oil", desc: "Maciez e brilho natural", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🍯", link: "https://www.mercadolivre.com.br/gisou-honey-oil/p/MLB44556677" },
+                    { nome: "Curl Cream", desc: "Define cachos suavemente", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀", link: "https://www.mercadolivre.com.br/curl-cream/p/MLB11223355" }
                 ];
                 visagismoDesc += " Seu estilo romântico valoriza suavidade e delicadeza. Produtos que proporcionam maciez e brilho natural são seus aliados. Finalizações suaves e ondas soltas complementam perfeitamente sua essência.";
             } else if (vibe === "Ousado / Confiante" || vibe === "Bold / Confident" || vibe === "Audaz / Confiado") {
                 finishingProducts = [
-                    { nome: "Pulp Riot Color", desc: "Cores vibrantes e duradouras", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🎨" },
-                    { nome: "Strong Hold Gel", desc: "Fixação poderosa e definição", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💪" }
+                    { nome: "Pulp Riot Color", desc: "Cores vibrantes e duradouras", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🎨", link: "https://www.mercadolivre.com.br/pulp-riot-color/p/MLB99001133" },
+                    { nome: "Strong Hold Gel", desc: "Fixação poderosa e definição", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "💪", link: "https://www.mercadolivre.com.br/strong-hold-gel/p/MLB44556688" }
                 ];
                 visagismoDesc += " Sua personalidade ousada merece looks que transmitem confiança! Cores vibrantes e fixações poderosas são suas aliadas para criar visuais impactantes e cheios de atitude.";
             } else {
                 finishingProducts = [
-                    { nome: "Davines OI Oil", desc: "Toque leve e acabamento sedoso", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌿" },
-                    { nome: "Ouai Wave Spray", desc: "Ondas naturais e movimento", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊" }
+                    { nome: "Davines OI Oil", desc: "Toque leve e acabamento sedoso", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌿", link: "https://www.mercadolivre.com.br/davines-oi-oil/p/MLB99001122" },
+                    { nome: "Ouai Wave Spray", desc: "Ondas naturais e movimento", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌊", link: "https://www.mercadolivre.com.br/ouai-wave-spray/p/MLB66778899" }
                 ];
                 visagismoDesc += " Seu estilo natural valoriza a simplicidade com sofisticação. Produtos leves que realçam sua textura natural e criam movimento são ideais para você. Menos é mais, mas com muito estilo!";
             }
-            
+
             // Adicionar produtos baseados na textura
             if (texture === "Cacheado" || texture === "Curly" || texture === "Rizado" || texture === "Crespo" || texture === "Coily / Kinky" || texture === "Afro") {
-                finishingProducts.push({ nome: "Pattern Curl Gel", desc: "Define e hidrata cachos", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀" });
+                finishingProducts.push({ nome: "Pattern Curl Gel", desc: "Define e hidrata cachos", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀", link: "https://www.mercadolivre.com.br/pattern-curl-gel/p/MLB33445566" });
                 visagismoDesc += " Seus cachos são lindos e merecem produtos específicos que definem e hidratam. Invista em cremes e géis que potencializam sua curvatura natural sem pesar.";
             }
-            
+
             if (lifestyle === "Mínimo (lava e sai)" || lifestyle === "Minimal (wash & go)" || lifestyle === "Mínimo (lava y listo)") {
-                finishingProducts.push({ nome: "Living Proof PHD", desc: "5 em 1 para rotina minimalista", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⏱️" });
+                finishingProducts.push({ nome: "Living Proof PHD", desc: "5 em 1 para rotina minimalista", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "⏱️", link: "https://www.mercadolivre.com.br/living-proof-phd/p/MLB12345679" });
                 visagismoDesc += " Seu estilo de vida pede praticidade! Produtos multifuncionais que simplificam sua rotina são perfeitos para você manter um visual incrível com mínimo esforço.";
             }
-            
+
             finishingProducts = finishingProducts.filter((p, i, self) => i === self.findIndex(t => t.nome === p.nome));
             return { haircuts, finishingProducts, visagismoDesc };
         }
@@ -983,6 +1856,13 @@
 
         function getText(key) { return translations[currentLang][key] || key; }
 
+        // Função para redirecionar para link de afiliado
+        function redirectToAffiliate(link) {
+            if (link) {
+                window.open(link, '_blank');
+            }
+        }
+
         function renderCarousels() {
             const inspirationsTrack = document.getElementById('inspirationsTrack');
             if (inspirationsTrack) {
@@ -999,23 +1879,22 @@
                     </div>
                 `).join('');
             }
-            
+
             const productsTrack = document.getElementById('productsTrack');
             if (productsTrack) {
                 productsTrack.innerHTML = productsData.map(prod => `
                     <div class="carousel-item">
-                        <div class="carousel-item-image" style="background-image: url('${prod.imagem}')">
-                            <div class="carousel-star ${isCarouselProdFav(prod.id) ? 'active' : ''}" onclick="event.stopPropagation(); toggleCarouselProduto(${prod.id})">★</div>
-                        </div>
+                        <div class="carousel-item-image" style="background-image: url('${prod.imagem}'); cursor: pointer;" onclick="redirectToAffiliate('${prod.link}')"></div>
                         <div class="carousel-item-info">
                             <div class="carousel-item-title">${prod.nome}</div>
                             <div class="carousel-item-desc">${prod.descricao}</div>
                             <span class="badge">${prod.categoria}</span>
                         </div>
+                        <div class="carousel-star ${isCarouselProdFav(prod.id) ? 'active' : ''}" onclick="event.stopPropagation(); toggleCarouselProduto(${prod.id})">★</div>
                     </div>
                 `).join('');
             }
-            
+
             const inspirationsTitle = document.getElementById('inspirations-carousel-title');
             const productsTitle = document.getElementById('products-carousel-title');
             if (inspirationsTitle) inspirationsTitle.textContent = getText('inspirations_carousel_title');
@@ -1040,14 +1919,14 @@
             saveUserData();
             renderCarousels(); renderFavoritos(); renderInspiracoes(); renderDashboard(); updateMiniStats();
         }
-        
+
         function toggleCarouselProduto(prodId) {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             const produto = productsData.find(p => p.id === prodId);
             if (!produto) return;
             const existsInProdutos = produtos.some(p => p.id === prodId);
             if (!existsInProdutos) {
-                produtos.push({ id: prodId, nome: produto.nome, descricao: produto.descricao, imagem: produto.imagem, categoria: produto.categoria });
+                produtos.push({ id: prodId, nome: produto.nome, descricao: produto.descricao, imagem: produto.imagem, categoria: produto.categoria, link: produto.link });
                 saveUserData();
             }
             const favIndex = favoritos.findIndex(f => f.tipo === 'carousel_produto' && f.id === prodId);
@@ -1056,7 +1935,7 @@
             saveUserData();
             renderCarousels(); renderFavoritos(); renderProdutos(); renderDashboard(); updateMiniStats();
         }
-        
+
         function scrollCarousel(trackId, direction) {
             const track = document.getElementById(trackId);
             if (track) { track.scrollBy({ left: direction * 240, behavior: 'smooth' }); }
@@ -1070,7 +1949,7 @@
             if (!nome || !desc) { alert(getText('save') + ' - Preencha nome e descrição'); return; }
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     inspiracoes.push({ id: Date.now(), nome: nome, descricao: desc, imagem: e.target.result, tipo: "custom" });
                     saveUserData();
                     document.getElementById('novaInspNome').value = '';
@@ -1087,7 +1966,7 @@
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     perfil.avatar = e.target.result;
                     document.getElementById('avatarPreview').innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
                     saveUserData();
@@ -1125,20 +2004,20 @@
 
         function renderDashboard() {
             const t = getText;
-            const proximas = visitas.filter(v => v.dataProxima && new Date(v.dataProxima) >= new Date()).slice(0,3);
-            document.getElementById('proximasVisitas').innerHTML = proximas.length ? proximas.map(v=>`<div class="card">📅 ${v.dataProxima} — ${v.servico || 'Appointment'}</div>`).join('') : `<div class="card">${t('no_upcoming')}</div>`;
-            const recentes = [...favoritos].reverse().slice(0,3);
+            const proximas = visitas.filter(v => v.dataProxima && new Date(v.dataProxima) >= new Date()).slice(0, 3);
+            document.getElementById('proximasVisitas').innerHTML = proximas.length ? proximas.map(v => `<div class="card">📅 ${v.dataProxima} — ${v.servico || 'Appointment'}</div>`).join('') : `<div class="card">${t('no_upcoming')}</div>`;
+            const recentes = [...favoritos].reverse().slice(0, 3);
             let favHtml = '';
-            for(let fav of recentes) {
-                if((fav.tipo === 'inspiracao' || fav.tipo === 'carousel_inspiracao') && inspiracoes.find(i => i.id === fav.id)) {
+            for (let fav of recentes) {
+                if ((fav.tipo === 'inspiracao' || fav.tipo === 'carousel_inspiracao') && inspiracoes.find(i => i.id === fav.id)) {
                     const insp = inspiracoes.find(i => i.id === fav.id);
                     favHtml += `<div class="card"><div class="favorito-item">${fav.imagem ? `<img src="${fav.imagem}" class="favorito-card-img">` : '<span style="font-size:1.5rem;">✨</span>'}<div><strong>${insp?.nome || fav.nome}</strong><br><small>${insp?.descricao || ''}</small></div></div></div>`;
                 }
-                else if((fav.tipo === 'produto' || fav.tipo === 'carousel_produto') && produtos.find(p => p.id === fav.id)) {
+                else if ((fav.tipo === 'produto' || fav.tipo === 'carousel_produto') && produtos.find(p => p.id === fav.id)) {
                     const prod = produtos.find(p => p.id === fav.id);
-                    favHtml += `<div class="card"><div class="favorito-item">${fav.imagem ? `<img src="${fav.imagem}" class="favorito-card-img">` : '<span style="font-size:1.5rem;">🧴</span>'}<div><strong>${prod?.nome || fav.nome}</strong><br><small>${prod?.descricao || ''}</small></div></div></div>`;
+                    favHtml += `<div class="card"><div class="favorito-item">${fav.imagem ? `<img src="${fav.imagem}" class="favorito-card-img" style="cursor: pointer;" onclick="redirectToAffiliate('${prod?.link || ''}')">` : '<span style="font-size:1.5rem;">🧴</span>'}<div><strong>${prod?.nome || fav.nome}</strong><br><small>${prod?.descricao || ''}</small></div></div></div>`;
                 }
-                else if(fav.tipo === 'visita' && visitas[fav.id]) favHtml += `<div class="card">📅 ${visitas[fav.id].dataVisita}</div>`;
+                else if (fav.tipo === 'visita' && visitas[fav.id]) favHtml += `<div class="card">📅 ${visitas[fav.id].dataVisita}</div>`;
             }
             document.getElementById('favoritosRecentes').innerHTML = favHtml || `<div class="card">${t('empty_recent')}</div>`;
         }
@@ -1146,30 +2025,30 @@
         function renderVisitas() {
             const t = getText;
             const lista = document.getElementById('listaVisitas');
-            if(!visitas.length) { lista.innerHTML = `<div class="card">${t('empty_archive')}</div>`; return; }
-            lista.innerHTML = [...visitas].reverse().map((v,i) => `<div class="card"><div class="card-header"><span class="card-title">${v.dataVisita} — ${v.servico || 'Session'}</span><div><button class="delete-btn" onclick="deletarVisita(${i})">✕</button></div></div><div>${v.salao ? `📍 ${v.salao}` : ''}</div>${v.tinta ? `<span class="badge">${v.tinta}</span>` : ''}</div>`).join('');
+            if (!visitas.length) { lista.innerHTML = `<div class="card">${t('empty_archive')}</div>`; return; }
+            lista.innerHTML = [...visitas].reverse().map((v, i) => `<div class="card"><div class="card-header"><span class="card-title">${v.dataVisita} — ${v.servico || 'Session'}</span><div><button class="delete-btn" onclick="deletarVisita(${i})">✕</button></div></div><div>${v.salao ? `📍 ${v.salao}` : ''}</div>${v.tinta ? `<span class="badge">${v.tinta}</span>` : ''}</div>`).join('');
         }
-        function deletarVisita(i) { visitas.splice(i,1); saveUserData(); renderVisitas(); renderDashboard(); updateMiniStats(); }
+        function deletarVisita(i) { visitas.splice(i, 1); saveUserData(); renderVisitas(); renderDashboard(); updateMiniStats(); }
 
         function renderFavoritos() {
             const t = getText;
             const lista = document.getElementById('listaFavoritos');
-            if(!favoritos.length){ lista.innerHTML=`<div class="card">${t('empty_favorites')}</div>`; return; }
-            let html='';
-            favoritos.forEach((fav)=>{
-                if((fav.tipo==='inspiracao' || fav.tipo==='carousel_inspiracao') && inspiracoes.find(i => i.id === fav.id)) {
+            if (!favoritos.length) { lista.innerHTML = `<div class="card">${t('empty_favorites')}</div>`; return; }
+            let html = '';
+            favoritos.forEach((fav) => {
+                if ((fav.tipo === 'inspiracao' || fav.tipo === 'carousel_inspiracao') && inspiracoes.find(i => i.id === fav.id)) {
                     const insp = inspiracoes.find(i => i.id === fav.id);
-                    html+=`<div class="card"><div class="favorito-item">${fav.imagem || insp?.imagem ? `<img src="${fav.imagem || insp?.imagem}" class="favorito-card-img">` : '<span style="font-size:1.8rem;">✨</span>'}<div style="flex:1"><strong>${insp?.nome || fav.nome}</strong><br><small>${insp?.descricao || ''}</small></div><button class="delete-btn" onclick="toggleFavoritoGenerico('${fav.tipo}',${fav.id})">✕</button></div></div>`;
+                    html += `<div class="card"><div class="favorito-item">${fav.imagem || insp?.imagem ? `<img src="${fav.imagem || insp?.imagem}" class="favorito-card-img">` : '<span style="font-size:1.8rem;">✨</span>'}<div style="flex:1"><strong>${insp?.nome || fav.nome}</strong><br><small>${insp?.descricao || ''}</small></div><button class="delete-btn" onclick="toggleFavoritoGenerico('${fav.tipo}',${fav.id})">✕</button></div></div>`;
                 }
-                else if((fav.tipo==='produto' || fav.tipo==='carousel_produto') && produtos.find(p => p.id === fav.id)) {
+                else if ((fav.tipo === 'produto' || fav.tipo === 'carousel_produto') && produtos.find(p => p.id === fav.id)) {
                     const prod = produtos.find(p => p.id === fav.id);
-                    html+=`<div class="card"><div class="favorito-item">${fav.imagem || prod?.imagem ? `<img src="${fav.imagem || prod?.imagem}" class="favorito-card-img">` : '<span style="font-size:1.8rem;">🧴</span>'}<div style="flex:1"><strong>${prod?.nome || fav.nome}</strong><br><small>${prod?.descricao || ''}</small></div><button class="delete-btn" onclick="toggleFavoritoGenerico('${fav.tipo}',${fav.id})">✕</button></div></div>`;
+                    html += `<div class="card"><div class="favorito-item">${fav.imagem || prod?.imagem ? `<img src="${fav.imagem || prod?.imagem}" class="favorito-card-img" style="cursor: pointer;" onclick="redirectToAffiliate('${prod?.link || ''}')">` : '<span style="font-size:1.8rem;">🧴</span>'}<div style="flex:1"><strong>${prod?.nome || fav.nome}</strong><br><small>${prod?.descricao || ''}</small></div><button class="delete-btn" onclick="toggleFavoritoGenerico('${fav.tipo}',${fav.id})">✕</button></div></div>`;
                 }
-                else if(fav.tipo==='visita' && visitas[fav.id]) html+=`<div class="card">📅 ${visitas[fav.id].dataVisita}<button class="delete-btn" style="float:right;" onclick="toggleFavoritoGenerico('visita',${fav.id})">✕</button></div>`;
+                else if (fav.tipo === 'visita' && visitas[fav.id]) html += `<div class="card">📅 ${visitas[fav.id].dataVisita}<button class="delete-btn" style="float:right;" onclick="toggleFavoritoGenerico('visita',${fav.id})">✕</button></div>`;
             });
-            lista.innerHTML=html;
+            lista.innerHTML = html;
         }
-        
+
         function toggleFavoritoGenerico(tipo, id) {
             const index = favoritos.findIndex(f => f.tipo === tipo && f.id === id);
             if (index !== -1) favoritos.splice(index, 1);
@@ -1178,8 +2057,8 @@
         }
 
         function renderInspiracoes() {
-            if(inspiracoes.length === 0) { document.getElementById('inspirationsGrid').innerHTML = `<div class="card">✨ Clique na estrela nos carrosséis ou adicione com imagem!</div>`; return; }
-            document.getElementById('inspirationsGrid').innerHTML = inspiracoes.map((insp,i)=>`
+            if (inspiracoes.length === 0) { document.getElementById('inspirationsGrid').innerHTML = `<div class="card">✨ Clique na estrela nos carrosséis ou adicione com imagem!</div>`; return; }
+            document.getElementById('inspirationsGrid').innerHTML = inspiracoes.map((insp, i) => `
                 <div class="inspiration-card">
                     ${insp.imagem ? `<img src="${insp.imagem}" alt="${insp.nome}">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">✨</div>'}
                     <h3>✨ ${insp.nome}</h3>
@@ -1187,19 +2066,19 @@
                     <button class="delete-btn" onclick="deletarInspiracaoLocal(${i})">✕</button>
                 </div>`).join('');
         }
-        function deletarInspiracaoLocal(i) { inspiracoes.splice(i,1); saveUserData(); renderInspiracoes(); renderFavoritos(); renderCarousels(); }
+        function deletarInspiracaoLocal(i) { inspiracoes.splice(i, 1); saveUserData(); renderInspiracoes(); renderFavoritos(); renderCarousels(); }
 
         function renderProdutos() {
-            if(produtos.length === 0) { document.getElementById('productsGrid').innerHTML = `<div class="card">🧴 Clique na estrela nos carrosséis do Estúdio para adicionar produtos!</div>`; return; }
-            document.getElementById('productsGrid').innerHTML = produtos.map((p,i)=>`
+            if (produtos.length === 0) { document.getElementById('productsGrid').innerHTML = `<div class="card">🧴 Clique na estrela nos carrosséis do Estúdio para adicionar produtos!</div>`; return; }
+            document.getElementById('productsGrid').innerHTML = produtos.map((p, i) => `
                 <div class="product-card">
-                    ${p.imagem ? `<img src="${p.imagem}" alt="${p.nome}">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">🧴</div>'}
+                    ${p.imagem ? `<img src="${p.imagem}" alt="${p.nome}" style="cursor: pointer;" onclick="redirectToAffiliate('${p.link || ''}')">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">🧴</div>'}
                     <h3>🧴 ${p.nome}</h3>
                     <p>${p.descricao}</p>
                     <button class="delete-btn" onclick="event.stopPropagation(); deletarProdutoLocal(${i})">✕</button>
                 </div>`).join('');
         }
-        function deletarProdutoLocal(i) { produtos.splice(i,1); saveUserData(); renderProdutos(); renderCarousels(); renderFavoritos(); updateMiniStats(); }
+        function deletarProdutoLocal(i) { produtos.splice(i, 1); saveUserData(); renderProdutos(); renderCarousels(); renderFavoritos(); updateMiniStats(); }
 
         function carregarPerfil() {
             const t = getText;
@@ -1248,8 +2127,8 @@
             html += `<button class="btn" onclick="submitQuizComIA()">${t('btn_run_analysis')}</button>`;
             container.innerHTML = html;
         }
-        
-        window.selectOptionQuiz = function(questionId, value) {
+
+        window.selectOptionQuiz = function (questionId, value) {
             currentAnswers[questionId] = value;
             const container = document.getElementById('quizContainer');
             const questionDiv = container.querySelector(`.quiz-question:has([data-question="${questionId}"])`);
@@ -1264,16 +2143,16 @@
                 });
             }
         };
-        
-        window.submitQuizComIA = function() {
+
+        window.submitQuizComIA = function () {
             const t = getText;
-            const missing = ["faceShape","bodyType","vibe","hairTexture","lifestyle"].filter(q => !currentAnswers[q]);
+            const missing = ["faceShape", "bodyType", "vibe", "hairTexture", "lifestyle"].filter(q => !currentAnswers[q]);
             if (missing.length > 0) { alert(t('empty_analysis')); return; }
-            
+
             const suggestions = generateAISuggestions(currentAnswers);
             const resultDiv = document.getElementById('quizResult');
             resultDiv.style.display = 'block';
-            
+
             // Mapear os cortes com imagens
             const haircutsHtml = suggestions.haircuts.map(c => {
                 const imgUrl = haircutImages[c] || "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop";
@@ -1288,10 +2167,10 @@
                     </div>
                 `;
             }).join('');
-            
+
             const productsHtml = suggestions.finishingProducts.map(p => `
-                <div class="suggestion-item" onclick="salvarProdutoSugerido('${p.nome.replace(/'/g, "\\'")}', '${p.desc.replace(/'/g, "\\'")}', '${p.imagem}')">
-                    <div class="suggestion-icon" style="background-image: url('${p.imagem}'); background-size: cover; background-position: center; width: 50px; height: 50px; border-radius: 8px;"></div>
+                <div class="suggestion-item" onclick="salvarProdutoSugerido('${p.nome.replace(/'/g, "\\'")}', '${p.desc.replace(/'/g, "\\'")}', '${p.imagem}', '${p.link}')">
+                    <div class="suggestion-icon" style="background-image: url('${p.imagem}'); background-size: cover; background-position: center; width: 50px; height: 50px; border-radius: 8px; cursor: pointer;" onclick="event.stopPropagation(); redirectToAffiliate('${p.link}')"></div>
                     <div class="suggestion-info">
                         <h5>🧴 ${p.nome}</h5>
                         <p>${p.desc}</p>
@@ -1299,9 +2178,9 @@
                     <div style="margin-left: auto; font-size: 0.7rem;">⭐ ${t('save')}</div>
                 </div>
             `).join('');
-            
+
             const answersHtml = Object.entries(currentAnswers).map(([key, val]) => `<span class="style-badge">${val}</span>`).join('');
-            
+
             resultDiv.innerHTML = `
                 <div class="quiz-result">
                     <h3>🤖 ${currentLang === 'pt' ? 'ANÁLISE DE VISAGISMO' : currentLang === 'es' ? 'ANÁLISIS DE VISAGISMO' : 'VISAGISM ANALYSIS'} ✨</h3>
@@ -1331,8 +2210,8 @@
             `;
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
-        
-        window.salvarCorteSugerido = function(nome) {
+
+        window.salvarCorteSugerido = function (nome) {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             const imgUrl = haircutImages[nome] || "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop";
             const existe = inspiracoes.some(i => i.nome === nome);
@@ -1345,12 +2224,12 @@
                 alert(`"${nome}" ${getText('already_exists')}`);
             }
         };
-        
-        window.salvarProdutoSugerido = function(nome, desc, imagem) {
+
+        window.salvarProdutoSugerido = function (nome, desc, imagem, link) {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             const existe = produtos.some(p => p.nome === nome);
             if (!existe) {
-                produtos.push({ id: Date.now(), nome: nome, descricao: desc, imagem: imagem });
+                produtos.push({ id: Date.now(), nome: nome, descricao: desc, imagem: imagem, link: link });
                 saveUserData();
                 alert(`⭐ "${nome}" ${getText('added_to_products')}`);
                 renderProdutos();
@@ -1361,14 +2240,14 @@
 
         function exportarMeusDados() {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
-            const dados = {perfil,visitas,favoritos,inspiracoes,produtos,configuracoes};
+            const dados = { perfil, visitas, favoritos, inspiracoes, produtos, configuracoes };
             const a = document.createElement('a');
             a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(dados));
             a.download = `makerai_backup_${currentUser.username}.json`;
             a.click();
             alert(getText('save'));
         }
-        
+
         function importarMeusDados() {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
             const input = document.createElement('input');
@@ -1379,12 +2258,12 @@
                 const reader = new FileReader();
                 reader.onload = ev => {
                     const dados = JSON.parse(ev.target.result);
-                    if(dados.perfil) perfil = dados.perfil;
-                    if(dados.visitas) visitas = dados.visitas;
-                    if(dados.favoritos) favoritos = dados.favoritos;
-                    if(dados.inspiracoes) inspiracoes = dados.inspiracoes;
-                    if(dados.produtos) produtos = dados.produtos;
-                    if(dados.configuracoes) configuracoes = dados.configuracoes;
+                    if (dados.perfil) perfil = dados.perfil;
+                    if (dados.visitas) visitas = dados.visitas;
+                    if (dados.favoritos) favoritos = dados.favoritos;
+                    if (dados.inspiracoes) inspiracoes = dados.inspiracoes;
+                    if (dados.produtos) produtos = dados.produtos;
+                    if (dados.configuracoes) configuracoes = dados.configuracoes;
                     saveUserData();
                     alert(getText('save'));
                     renderAll();
@@ -1393,10 +2272,10 @@
             };
             input.click();
         }
-        
-        function limparTodosDados() { 
+
+        function limparTodosDados() {
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
-            if(confirm(getText('remove'))){ 
+            if (confirm(getText('remove'))) {
                 perfil = { nome: '' };
                 visitas = [];
                 favoritos = [];
@@ -1405,7 +2284,7 @@
                 saveUserData();
                 renderAll();
                 alert('Todos os dados foram removidos!');
-            } 
+            }
         }
 
         function applyTheme() {
@@ -1416,7 +2295,7 @@
 
         function applyLanguage() {
             const t = getText;
-            document.querySelectorAll('.nav-link').forEach(link => { const key = link.getAttribute('data-key'); if(key && t(key)) link.textContent = t(key); });
+            document.querySelectorAll('.nav-link').forEach(link => { const key = link.getAttribute('data-key'); if (key && t(key)) link.textContent = t(key); });
             document.getElementById('hero-badge').textContent = t('hero_badge');
             document.getElementById('hero-title').textContent = t('hero_title');
             document.getElementById('hero-subtitle').textContent = t('hero_subtitle');
@@ -1434,7 +2313,7 @@
             document.getElementById('label-notes').textContent = t('label_notes');
             document.getElementById('btn-save-profile').textContent = t('btn_save_profile');
             const hairSelect = document.getElementById('perfilCabelo');
-            if(hairSelect) { hairSelect.innerHTML = t('hair_options').map(opt => `<option value="${opt}">${opt}</option>`).join(''); }
+            if (hairSelect) { hairSelect.innerHTML = t('hair_options').map(opt => `<option value="${opt}">${opt}</option>`).join(''); }
             document.getElementById('archive-title').textContent = t('archive_title');
             document.getElementById('label-date').textContent = t('label_date');
             document.getElementById('label-next').textContent = t('label_next');
@@ -1471,54 +2350,54 @@
 
         // Inicialização
         document.querySelectorAll('.nav-link').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
-        document.getElementById('perfilForm').addEventListener('submit', e => { 
-            e.preventDefault(); 
+        document.getElementById('perfilForm').addEventListener('submit', e => {
+            e.preventDefault();
             if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
-            perfil = { 
-                nome:document.getElementById('perfilNome').value, 
-                nascimento:document.getElementById('perfilNascimento').value, 
-                whatsapp:document.getElementById('perfilWhatsapp').value, 
-                instagram:document.getElementById('perfilInstagram').value, 
-                tipoCabelo:document.getElementById('perfilCabelo').value, 
-                corCabelo:document.getElementById('perfilCorCabelo').value, 
-                alergias:document.getElementById('perfilAlergias').value, 
-                obs:document.getElementById('perfilObs').value,
+            perfil = {
+                nome: document.getElementById('perfilNome').value,
+                nascimento: document.getElementById('perfilNascimento').value,
+                whatsapp: document.getElementById('perfilWhatsapp').value,
+                instagram: document.getElementById('perfilInstagram').value,
+                tipoCabelo: document.getElementById('perfilCabelo').value,
+                corCabelo: document.getElementById('perfilCorCabelo').value,
+                alergias: document.getElementById('perfilAlergias').value,
+                obs: document.getElementById('perfilObs').value,
                 avatar: perfil.avatar || null
-            }; 
-            saveUserData(); 
-            alert(getText('btn_save_profile')); 
-        });
-        document.getElementById('visitaForm').addEventListener('submit', e => { 
-            e.preventDefault(); 
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
-            visitas.push({ 
-                dataVisita:document.getElementById('dataVisita').value, 
-                dataProxima:document.getElementById('dataProxima').value, 
-                salao:document.getElementById('salao').value, 
-                servico:document.getElementById('servico').value, 
-                tinta:document.getElementById('tinta').value, 
-                oxigenada:document.getElementById('oxigenada').value, 
-                shampoo:document.getElementById('shampoo').value, 
-                hidratacao:document.getElementById('hidratacao').value, 
-                avaliacao:document.getElementById('avaliacao').value 
-            }); 
+            };
             saveUserData();
-            document.getElementById('visitaForm').reset(); 
-            document.getElementById('dataVisita').valueAsDate = new Date(); 
-            renderVisitas(); 
-            renderDashboard(); 
-            updateMiniStats(); 
-            alert(getText('btn_archive')); 
+            alert(getText('btn_save_profile'));
         });
-        document.getElementById('configNotificacoes').addEventListener('change', () => { configuracoes.notificacoes=document.getElementById('configNotificacoes').value; saveUserData(); });
-        document.getElementById('configLembrarAniversario').addEventListener('change', () => { configuracoes.lembrarAniversario=document.getElementById('configLembrarAniversario').checked; saveUserData(); });
+        document.getElementById('visitaForm').addEventListener('submit', e => {
+            e.preventDefault();
+            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            visitas.push({
+                dataVisita: document.getElementById('dataVisita').value,
+                dataProxima: document.getElementById('dataProxima').value,
+                salao: document.getElementById('salao').value,
+                servico: document.getElementById('servico').value,
+                tinta: document.getElementById('tinta').value,
+                oxigenada: document.getElementById('oxigenada').value,
+                shampoo: document.getElementById('shampoo').value,
+                hidratacao: document.getElementById('hidratacao').value,
+                avaliacao: document.getElementById('avaliacao').value
+            });
+            saveUserData();
+            document.getElementById('visitaForm').reset();
+            document.getElementById('dataVisita').valueAsDate = new Date();
+            renderVisitas();
+            renderDashboard();
+            updateMiniStats();
+            alert(getText('btn_archive'));
+        });
+        document.getElementById('configNotificacoes').addEventListener('change', () => { configuracoes.notificacoes = document.getElementById('configNotificacoes').value; saveUserData(); });
+        document.getElementById('configLembrarAniversario').addEventListener('change', () => { configuracoes.lembrarAniversario = document.getElementById('configLembrarAniversario').checked; saveUserData(); });
 
         const hamburger = document.getElementById('hamburgerBtn');
         const navMenuEl = document.getElementById('navMenu');
         const overlay = document.getElementById('menuOverlay');
         hamburger.addEventListener('click', () => { navMenuEl.classList.toggle('active'); overlay.classList.toggle('active'); });
         overlay.addEventListener('click', () => { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); });
-        window.addEventListener('resize', () => { if(window.innerWidth > 768 && navMenuEl.classList.contains('active')) { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); } });
+        window.addEventListener('resize', () => { if (window.innerWidth > 768 && navMenuEl.classList.contains('active')) { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); } });
 
         currentTheme = localStorage.getItem('theme') || 'light';
         currentLang = localStorage.getItem('language') || 'pt';
@@ -1530,10 +2409,325 @@
         document.getElementById('langSelect').addEventListener('change', (e) => { currentLang = e.target.value; localStorage.setItem('language', currentLang); applyLanguage(); });
 
         document.getElementById('dataVisita').valueAsDate = new Date();
-        
+
         if (currentUser) { loadUserData(currentUser.username); }
         updateLoginUI();
         renderAll();
+
+        // ==================== SISTEMA ADMIN ====================
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "admin123"  // Altere para sua senha desejada
+        };
+
+        // Verificar se o usuário atual é admin
+        function isAdmin() {
+            return currentUser && currentUser.username === ADMIN_CREDENTIALS.username;
+        }
+
+        // Mostrar painel admin (apenas para admin)
+        function showAdminPanel() {
+            if (!isAdmin()) return;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const allData = [];
+
+            users.forEach(user => {
+                const userKey = `user_${user.username}`;
+                const userData = JSON.parse(localStorage.getItem(userKey)) || {};
+
+                allData.push({
+                    username: user.username,
+                    perfil: userData.perfil || {},
+                    visitas: userData.visitas || [],
+                    favoritos: userData.favoritos || [],
+                    inspiracoes: userData.inspiracoes || [],
+                    produtos: userData.produtos || [],
+                    totalVisitas: (userData.visitas || []).length,
+                    totalFavoritos: (userData.favoritos || []).length,
+                    totalProdutos: (userData.produtos || []).length,
+                    totalInspiracoes: (userData.inspiracoes || []).length
+                });
+            });
+
+            // Criar modal com dados
+            const modal = document.createElement('div');
+            modal.id = 'adminModal';
+            modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        z-index: 10000;
+        overflow: auto;
+        padding: 2rem;
+    `;
+
+            let html = `
+        <div style="max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 20px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 style="margin: 0;">📊 PAINEL ADMIN - DADOS DOS USUÁRIOS</h2>
+                <button onclick="document.getElementById('adminModal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <button onclick="exportAllUsersData()" class="btn" style="width: auto; padding: 8px 16px;">📥 EXPORTAR TODOS OS DADOS (JSON)</button>
+                <button onclick="downloadAdminReport()" class="btn" style="width: auto; padding: 8px 16px; margin-left: 1rem;">📄 GERAR RELATÓRIO COMPLETO</button>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div class="card" style="text-align: center;">
+                    <h3>👥 Total de Usuários</h3>
+                    <p style="font-size: 2rem; font-weight: bold;">${allData.length}</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h3>📝 Total de Visitas</h3>
+                    <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalVisitas, 0)}</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h3>⭐ Total de Favoritos</h3>
+                    <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalFavoritos, 0)}</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h3>🧴 Total de Produtos</h3>
+                    <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalProdutos, 0)}</p>
+                </div>
+            </div>
+            
+            <h3>📋 DETALHES POR USUÁRIO</h3>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: var(--badge-bg);">
+                            <th style="padding: 12px; text-align: left;">Usuário</th>
+                            <th style="padding: 12px; text-align: left;">Nome</th>
+                            <th style="padding: 12px; text-align: center;">Visitas</th>
+                            <th style="padding: 12px; text-align: center;">Favoritos</th>
+                            <th style="padding: 12px; text-align: center;">Produtos</th>
+                            <th style="padding: 12px; text-align: center;">Inspirações</th>
+                            <th style="padding: 12px; text-align: center;">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    `;
+
+            allData.forEach(user => {
+                html += `
+            <tr style="border-bottom: 1px solid var(--border-light);">
+                <td style="padding: 12px;"><strong>${user.username}</strong></td>
+                <td style="padding: 12px;">${user.perfil.nome || '-'}</td>
+                <td style="padding: 12px; text-align: center;">${user.totalVisitas}</td>
+                <td style="padding: 12px; text-align: center;">${user.totalFavoritos}</td>
+                <td style="padding: 12px; text-align: center;">${user.totalProdutos}</td>
+                <td style="padding: 12px; text-align: center;">${user.totalInspiracoes}</td>
+                <td style="padding: 12px; text-align: center;">
+                    <button onclick="viewUserDetails('${user.username}')" style="background: none; border: 1px solid var(--border-medium); padding: 4px 8px; border-radius: 8px; cursor: pointer;">🔍 Ver Detalhes</button>
+                </td>
+            </tr>
+        `;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+
+            modal.innerHTML = html;
+            document.body.appendChild(modal);
+        }
+
+        // Ver detalhes de um usuário específico
+        window.viewUserDetails = function (username) {
+            const userKey = `user_${username}`;
+            const userData = JSON.parse(localStorage.getItem(userKey)) || {};
+
+            const modal = document.createElement('div');
+            modal.id = 'userDetailModal';
+            modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        z-index: 10001;
+        overflow: auto;
+        padding: 2rem;
+    `;
+
+            const visitasHtml = (userData.visitas || []).map(v => `
+        <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
+            📅 ${v.dataVisita} - ${v.servico || 'Sem serviço'} ${v.salao ? `📍 ${v.salao}` : ''}
+        </div>
+    `).join('') || '<p>Nenhuma visita registrada</p>';
+
+            const favoritosHtml = (userData.favoritos || []).map(f => `
+        <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
+            ⭐ ${f.nome || f.tipo} - ${f.tipo}
+        </div>
+    `).join('') || '<p>Nenhum favorito</p>';
+
+            const produtosHtml = (userData.produtos || []).map(p => `
+        <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
+            🧴 ${p.nome} - ${p.categoria || 'Produto'}
+        </div>
+    `).join('') || '<p>Nenhum produto</p>';
+
+            modal.innerHTML = `
+        <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border-radius: 20px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2>👤 ${username}</h2>
+                <button onclick="document.getElementById('userDetailModal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+            
+            <div class="row-2cols">
+                <div>
+                    <h3>📋 Perfil</h3>
+                    <div class="card">
+                        <p><strong>Nome:</strong> ${userData.perfil?.nome || '-'}</p>
+                        <p><strong>Data Nasc.:</strong> ${userData.perfil?.nascimento || '-'}</p>
+                        <p><strong>WhatsApp:</strong> ${userData.perfil?.whatsapp || '-'}</p>
+                        <p><strong>Instagram:</strong> ${userData.perfil?.instagram || '-'}</p>
+                        <p><strong>Tipo Cabelo:</strong> ${userData.perfil?.tipoCabelo || '-'}</p>
+                        <p><strong>Cor Cabelo:</strong> ${userData.perfil?.corCabelo || '-'}</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>📊 Estatísticas</h3>
+                    <div class="card">
+                        <p>📝 Visitas: ${(userData.visitas || []).length}</p>
+                        <p>⭐ Favoritos: ${(userData.favoritos || []).length}</p>
+                        <p>🧴 Produtos: ${(userData.produtos || []).length}</p>
+                        <p>✨ Inspirações: ${(userData.inspiracoes || []).length}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>📅 Histórico de Visitas</h3>
+                <div class="card">${visitasHtml}</div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>⭐ Favoritos</h3>
+                <div class="card">${favoritosHtml}</div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <h3>🧴 Produtos Salvos</h3>
+                <div class="card">${produtosHtml}</div>
+            </div>
+        </div>
+    `;
+
+            document.body.appendChild(modal);
+        };
+
+        // Exportar todos os dados dos usuários
+        window.exportAllUsersData = function () {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const allData = {
+                exportDate: new Date().toISOString(),
+                totalUsers: users.length,
+                users: []
+            };
+
+            users.forEach(user => {
+                const userKey = `user_${user.username}`;
+                const userData = JSON.parse(localStorage.getItem(userKey)) || {};
+                allData.users.push({
+                    username: user.username,
+                    data: userData,
+                    stats: {
+                        visitas: (userData.visitas || []).length,
+                        favoritos: (userData.favoritos || []).length,
+                        produtos: (userData.produtos || []).length,
+                        inspiracoes: (userData.inspiracoes || []).length
+                    }
+                });
+            });
+
+            const dataStr = JSON.stringify(allData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `makerai_admin_export_${new Date().toISOString().slice(0, 19)}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert(`✅ Exportado! Total de ${allData.users.length} usuários.`);
+        };
+
+        // Gerar relatório completo em texto
+        window.downloadAdminReport = function () {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            let report = `=== MAKERAI - RELATÓRIO ADMIN ===\n`;
+            report += `Data: ${new Date().toLocaleString()}\n`;
+            report += `Total de Usuários: ${users.length}\n`;
+            report += `\n${'='.repeat(50)}\n\n`;
+
+            users.forEach(user => {
+                const userKey = `user_${user.username}`;
+                const userData = JSON.parse(localStorage.getItem(userKey)) || {};
+
+                report += `👤 USUÁRIO: ${user.username}\n`;
+                report += `   Nome: ${userData.perfil?.nome || 'Não informado'}\n`;
+                report += `   Contato: ${userData.perfil?.whatsapp || 'Não informado'}\n`;
+                report += `   Instagram: ${userData.perfil?.instagram || 'Não informado'}\n`;
+                report += `   Tipo de Cabelo: ${userData.perfil?.tipoCabelo || 'Não informado'}\n`;
+                report += `   📝 Visitas registradas: ${(userData.visitas || []).length}\n`;
+                report += `   ⭐ Favoritos: ${(userData.favoritos || []).length}\n`;
+                report += `   🧴 Produtos salvos: ${(userData.produtos || []).length}\n`;
+                report += `   ✨ Inspirações: ${(userData.inspiracoes || []).length}\n`;
+                report += `\n${'-'.repeat(40)}\n\n`;
+            });
+
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `makerai_admin_report_${new Date().toISOString().slice(0, 19)}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        };
+
+        // Modificar a função de login para verificar se é admin
+        const originalLoginUser = loginUser;
+        window.loginUser = function () {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Verificar se é admin
+            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+                currentUser = { username: ADMIN_CREDENTIALS.username, password: ADMIN_CREDENTIALS.password, dataKey: `user_admin`, isAdmin: true };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                loadUserData(ADMIN_CREDENTIALS.username);
+                closeLoginModal();
+                updateLoginUI();
+
+                // Adicionar botão de admin no menu
+                const navMenu = document.getElementById('navMenu');
+                const adminBtnExists = document.querySelector('[data-tab="adminPanel"]');
+                if (!adminBtnExists) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<button class="nav-link" data-tab="adminPanel" data-key="nav_admin">📊 ADMIN</button>`;
+                    navMenu.appendChild(li);
+                    document.querySelector('[data-tab="adminPanel"]').addEventListener('click', () => showAdminPanel());
+                }
+
+                alert(`🔐 Bem-vindo, Administrador!`);
+                switchTab('dashboard');
+                return;
+            }
+
+            originalLoginUser();
+        };
     </script>
 </body>
+
 </html>
