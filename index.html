@@ -41,6 +41,10 @@
             --quiz-option-bg: #fafaf8;
             --quiz-option-hover: #f0f0f0;
             --social-bg: #f5f5f5;
+            --timeline-line: #e0e0e0;
+            --timeline-dot: #111111;
+            --before-bg: #fff5f0;
+            --after-bg: #f0fff5;
         }
 
         body.dark {
@@ -69,6 +73,10 @@
             --quiz-option-bg: #111111;
             --quiz-option-hover: #1a1a1a;
             --social-bg: #1a1a1a;
+            --timeline-line: #333333;
+            --timeline-dot: #ffffff;
+            --before-bg: #2a1a10;
+            --after-bg: #102a1a;
         }
 
         body {
@@ -156,6 +164,16 @@
             text-transform: uppercase;
             color: var(--text-tertiary);
             margin-top: 2px;
+        }
+
+        .user-name-header {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--badge-bg);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
         }
 
         .login-btn {
@@ -378,6 +396,205 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--timeline-line);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.8rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--timeline-dot);
+            border: 2px solid var(--bg-card);
+        }
+
+        .timeline-date {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(4px);
+            border-color: var(--accent);
+        }
+
+        .timeline-service {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-badge {
+            background: var(--badge-bg);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            color: var(--badge-text);
+        }
+
+        /* Before/After Photos Styles */
+        .photo-comparison {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .photo-before,
+        .photo-after {
+            flex: 1;
+            min-width: 150px;
+            background: var(--badge-bg);
+            border-radius: 12px;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .photo-before {
+            background: var(--before-bg);
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .photo-after {
+            background: var(--after-bg);
+            border-left: 3px solid #4caf50;
+        }
+
+        .photo-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .photo-before .photo-label {
+            color: #ff6b6b;
+        }
+
+        .photo-after .photo-label {
+            color: #4caf50;
+        }
+
+        .photo-grid {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .timeline-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid var(--border-light);
+            transition: transform 0.2s;
+        }
+
+        .timeline-photo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Photo Upload */
+        .photo-upload-group {
+            background: var(--badge-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .photo-upload-group h4 {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .photo-preview {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .photo-preview-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .photo-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .remove-photo {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            cursor: pointer;
         }
 
         .modal {
@@ -896,12 +1113,50 @@
             border-radius: 8px;
             margin-bottom: 8px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
         }
 
-        .inspiration-card img:hover,
-        .product-card img:hover {
+        .inspiration-card img.zoomed,
+        .product-card img.zoomed,
+        .carousel-item-image.zoomed,
+        .timeline-photo.zoomed,
+        .favorito-card-img.zoomed,
+        .suggestion-icon.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: auto;
+            max-width: 90vw;
+            max-height: 90vh;
+            height: auto;
+            object-fit: contain;
+            z-index: 10001;
+            border-radius: 12px;
+            box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.9);
+            cursor: zoom-out;
+            transition: all 0.3s ease;
+        }
+
+        .inspiration-card img:not(.zoomed),
+        .product-card img:not(.zoomed),
+        .carousel-item-image:not(.zoomed),
+        .timeline-photo:not(.zoomed),
+        .favorito-card-img:not(.zoomed),
+        .suggestion-icon:not(.zoomed) {
+            transition: transform 0.2s ease;
+        }
+
+        .inspiration-card img:not(.zoomed):hover,
+        .product-card img:not(.zoomed):hover,
+        .favorito-card-img:not(.zoomed):hover {
             transform: scale(1.02);
+        }
+
+        .inspiration-card img,
+        .product-card img,
+        .favorito-card-img {
+            cursor: pointer;
         }
 
         .star-icon {
@@ -1084,6 +1339,50 @@
             color: #f5f5f5;
         }
 
+        /* Share Buttons */
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .share-btn.instagram {
+            background: #E4405F;
+            color: white;
+        }
+
+        .share-btn.facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0.8rem 1.2rem;
@@ -1168,6 +1467,26 @@
             .social-grid {
                 grid-template-columns: 1fr;
             }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-dot {
+                left: -1rem;
+            }
+
+            .photo-comparison {
+                flex-direction: column;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -1181,6 +1500,7 @@
                     <h1>MakerAI</h1>
                     <p id="logo-subtitle">BEAUTY INTELLIGENCE</p>
                 </div>
+                <span class="user-name-header" id="userNameHeader"></span>
             </div>
             <div class="mini-stats" id="miniStats">
                 <div class="mini-stat"><span class="mini-stat-number" id="miniVisits">0</span><span
@@ -1193,6 +1513,7 @@
             <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
             <ul class="nav-menu" id="navMenu">
                 <li><button class="nav-link active" data-tab="dashboard" data-key="nav_dashboard">STUDIO</button></li>
+                <li><button class="nav-link" data-tab="timeline" data-key="nav_timeline">LINHA DO TEMPO</button></li>
                 <li><button class="nav-link" data-tab="perfil" data-key="nav_profile">PROFILE</button></li>
                 <li><button class="nav-link" data-tab="historico" data-key="nav_archive">ARCHIVE</button></li>
                 <li><button class="nav-link" data-tab="favoritos" data-key="nav_curated">CURATED</button></li>
@@ -1272,6 +1593,12 @@
             <div id="favoritosRecentes"></div>
         </div>
 
+        <!-- LINHA DO TEMPO -->
+        <div id="timeline" class="tab-content">
+            <h2>⏳ Linha do Tempo Capilar</h2>
+            <div id="timelineContainer"></div>
+        </div>
+
         <div id="perfil" class="tab-content">
             <h2 id="profile-title">Profile <span class="ai-badge">AI ENHANCED</span></h2>
             <div class="profile-avatar" onclick="document.getElementById('avatarUpload').click()">
@@ -1337,6 +1664,25 @@
                     <div class="form-group"><label id="label-treatment">Hidratação</label><input type="text"
                             id="hidratacao"></div>
                 </div>
+
+                <div class="form-group">
+                    <label>🎯 Próxima Cor Desejada</label>
+                    <input type="text" id="corDesejada" placeholder="Qual cor você quer na próxima visita?">
+                </div>
+
+                <div class="row-2cols">
+                    <div class="photo-upload-group">
+                        <h4>📸 FOTO ANTES</h4>
+                        <input type="file" id="fotoAntes" accept="image/*" onchange="previewFotoAntes(this)">
+                        <div class="photo-preview" id="previewAntes"></div>
+                    </div>
+                    <div class="photo-upload-group">
+                        <h4>📸 FOTO DEPOIS</h4>
+                        <input type="file" id="fotoDepois" accept="image/*" onchange="previewFotoDepois(this)">
+                        <div class="photo-preview" id="previewDepois"></div>
+                    </div>
+                </div>
+
                 <div class="form-group"><label id="label-reflections">Notas e Reflexões</label><textarea id="avaliacao"
                         rows="3" placeholder="O que você amou? O que mudaria?"></textarea></div>
                 <button type="submit" class="btn" id="btn-archive">ARQUIVAR VISITA</button>
@@ -1389,6 +1735,25 @@
             <div class="form-group"><label id="label-birthday-reminder">Lembrar Aniversário</label><input
                     type="checkbox" id="configLembrarAniversario"> <span id="birthday-text">Receber lembretes de
                     aniversário</span></div>
+
+            <!-- Botões de Compartilhamento -->
+            <div class="social-links-section">
+                <h3>📱 Compartilhar MakerAI</h3>
+                <div class="share-buttons">
+                    <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+                        <span>💬</span> WhatsApp
+                    </button>
+                    <button class="share-btn instagram" onclick="shareOnInstagram()">
+                        <span>📸</span> Instagram
+                    </button>
+                    <button class="share-btn facebook" onclick="shareOnFacebook()">
+                        <span>👍</span> Facebook
+                    </button>
+                </div>
+                <p style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 1rem; text-align: center;">
+                    Compartilhe o MakerAI com suas amigas e espalhe inteligência de beleza!
+                </p>
+            </div>
 
             <!-- Redes Sociais e Portfólio -->
             <div class="social-links-section">
@@ -1455,7 +1820,6 @@
             { id: 6, nome: "Rose Gold Tint", descricao: "Soft pink metallic hue", imagem: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=300&fit=crop", tipo: "cor" }
         ];
 
-        // Produtos com links de afiliado Mercado Livre
         const productsData = [
             { id: 1, nome: "Oribe Gold Lust Oil", descricao: "Repair & restore shine", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo", link: "https://www.mercadolivre.com.br/oribe-gold-lust-hair-oil/p/MLB12345678" },
             { id: 2, nome: "Olaplex No.3", descricao: "Bond maintenance treatment", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Tratamento", link: "https://www.mercadolivre.com.br/olaplex-no3-hair-perfector/p/MLB87654321" },
@@ -1464,6 +1828,86 @@
             { id: 5, nome: "Davines OI Oil", descricao: "Lightweight sleek finish", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Óleo", link: "https://www.mercadolivre.com.br/davines-oi-oil/p/MLB99001122" },
             { id: 6, nome: "Pattern Curl Gel", descricao: "Defines and hydrates curls", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop", categoria: "Cachos", link: "https://www.mercadolivre.com.br/pattern-curl-gel/p/MLB33445566" }
         ];
+
+        // ==================== FUNÇÃO DE ZOOM NAS IMAGENS ====================
+        function toggleZoom(element) {
+            if (element.classList.contains('zoomed')) {
+                element.classList.remove('zoomed');
+            } else {
+                element.classList.add('zoomed');
+            }
+        }
+
+        function addZoomToImages() {
+            document.querySelectorAll('.inspiration-card img').forEach(img => {
+                img.removeEventListener('click', zoomHandler);
+                img.addEventListener('click', zoomHandler);
+            });
+            document.querySelectorAll('.product-card img').forEach(img => {
+                img.removeEventListener('click', zoomHandler);
+                img.addEventListener('click', zoomHandler);
+            });
+            document.querySelectorAll('.carousel-item-image').forEach(el => {
+                el.removeEventListener('click', zoomBackgroundHandler);
+                el.addEventListener('click', zoomBackgroundHandler);
+            });
+            document.querySelectorAll('.timeline-photo').forEach(img => {
+                img.removeEventListener('click', zoomHandler);
+                img.addEventListener('click', zoomHandler);
+            });
+            document.querySelectorAll('.favorito-card-img').forEach(img => {
+                img.removeEventListener('click', zoomHandler);
+                img.addEventListener('click', zoomHandler);
+            });
+            document.querySelectorAll('.suggestion-icon').forEach(el => {
+                el.removeEventListener('click', zoomBackgroundHandler);
+                el.addEventListener('click', zoomBackgroundHandler);
+            });
+        }
+
+        function zoomHandler(e) {
+            e.stopPropagation();
+            toggleZoom(this);
+        }
+
+        function zoomBackgroundHandler(e) {
+            e.stopPropagation();
+            const bgImage = window.getComputedStyle(this).backgroundImage;
+            const url = bgImage.slice(5, -2).replace(/"/g, '');
+            if (url && url !== 'none') {
+                const img = document.createElement('img');
+                img.src = url;
+                img.style.position = 'fixed';
+                img.style.top = '50%';
+                img.style.left = '50%';
+                img.style.transform = 'translate(-50%, -50%)';
+                img.style.maxWidth = '90vw';
+                img.style.maxHeight = '90vh';
+                img.style.objectFit = 'contain';
+                img.style.zIndex = '10001';
+                img.style.borderRadius = '12px';
+                img.style.boxShadow = '0 0 0 100vw rgba(0, 0, 0, 0.9)';
+                img.style.cursor = 'zoom-out';
+                img.onclick = function() { this.remove(); };
+                document.body.appendChild(img);
+            }
+        }
+
+        // ==================== FUNÇÕES DE COMPARTILHAMENTO ====================
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent("✨ Descobri o MakerAI - Beauty Intelligence! Um app incrível para registrar minha evolução capilar, salvar inspirações e produtos. Vem conhecer também! 🚀");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+        }
+
+        function shareOnInstagram() {
+            alert("📸 Para compartilhar no Instagram:\n1. Tire um print da sua tela\n2. Poste nos stories ou feed\n3. Marque @makerai e use #MakerAI\n\nObrigada por espalhar inteligência de beleza! 💫");
+        }
+
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
 
         // ==================== IMAGENS PARA SUGESTÕES ====================
         const haircutImages = {
@@ -1490,7 +1934,7 @@
             pt: {
                 nav_dashboard: "ESTÚDIO", nav_profile: "PERFIL", nav_archive: "ARQUIVO",
                 nav_curated: "FAVORITOS", nav_moodboard: "INSPIRAÇÕES", nav_preferences: "PRODUTOS",
-                nav_analysis: "ANÁLISE", nav_settings: "CONFIGURAÇÕES",
+                nav_analysis: "ANÁLISE", nav_settings: "CONFIGURAÇÕES", nav_timeline: "LINHA DO TEMPO",
                 hero_badge: "ARQUIVO DE BELEZA COM IA", hero_title: "Inspire-se. Registe. Evolua.",
                 hero_subtitle: "Sua inteligência de beleza pessoal — powered by MakerAI",
                 dashboard_title: "Estúdio", upcoming: "PRÓXIMOS", recent: "RECENTEMENTE FAVORITADOS",
@@ -1551,7 +1995,7 @@
             en: {
                 nav_dashboard: "STUDIO", nav_profile: "PROFILE", nav_archive: "ARCHIVE",
                 nav_curated: "CURATED", nav_moodboard: "MOODBOARD", nav_preferences: "PRODUCTS",
-                nav_analysis: "ANALYSIS", nav_settings: "SETTINGS",
+                nav_analysis: "ANALYSIS", nav_settings: "SETTINGS", nav_timeline: "TIMELINE",
                 hero_badge: "AI-POWERED BEAUTY ARCHIVE", hero_title: "Inspire. Register. Evolve.",
                 hero_subtitle: "Your personal beauty intelligence — powered by MakerAI",
                 dashboard_title: "Studio", upcoming: "UPCOMING", recent: "RECENTLY CURATED",
@@ -1612,7 +2056,7 @@
             es: {
                 nav_dashboard: "ESTUDIO", nav_profile: "PERFIL", nav_archive: "ARCHIVO",
                 nav_curated: "FAVORITOS", nav_moodboard: "INSPIRACIONES", nav_preferences: "PRODUCTOS",
-                nav_analysis: "ANÁLISIS", nav_settings: "AJUSTES",
+                nav_analysis: "ANÁLISIS", nav_settings: "AJUSTES", nav_timeline: "LÍNEA DE TIEMPO",
                 hero_badge: "ARCHIVO DE BELLEZA CON IA", hero_title: "Inspírate. Registra. Evoluciona.",
                 hero_subtitle: "Tu inteligencia de belleza personal — powered by MakerAI",
                 dashboard_title: "Estudio", upcoming: "PRÓXIMOS", recent: "FAVORITOS RECIENTES",
@@ -1684,7 +2128,6 @@
             let finishingProducts = [];
             let visagismoDesc = "";
 
-            // Sugestões de cortes baseadas no rosto
             if (face === "Oval" || face === "Oval") {
                 haircuts = ["Bob Clássico", "Long Layers", "Pixie Moderno", "Middle Part Sleek"];
                 visagismoDesc = "Seu rosto oval é considerado o mais versátil para cortes de cabelo! Praticamente qualquer estilo combina com você, desde um bob clássico até um pixie ousado. O segredo é equilibrar a largura do rosto com volume nas laterais ou no topo, criando harmonia. Aproveite essa versatilidade para experimentar diferentes comprimentos e texturas!";
@@ -1705,7 +2148,6 @@
                 visagismoDesc = "Seu rosto diamante tem maçãs do rosto proeminentes e testa e queixo mais estreitos. O segredo é suavizar as maçãs com volume suave nas laterais e na parte superior. Cortes texturizados e franjas cortina ajudam a equilibrar as proporções. Ondas suaves também são ótimas para criar movimento e suavizar os traços marcantes.";
             }
 
-            // Sugestões de produtos baseadas na vibe
             if (vibe === "Sofisticado / Elegante" || vibe === "Sophisticated / Elegant" || vibe === "Sofisticado / Elegante") {
                 finishingProducts = [
                     { nome: "Oribe Gold Lust Oil", desc: "Brilho espelhado e maciez", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "✨", link: "https://www.mercadolivre.com.br/oribe-gold-lust-hair-oil/p/MLB12345678" },
@@ -1738,7 +2180,6 @@
                 visagismoDesc += " Seu estilo natural valoriza a simplicidade com sofisticação. Produtos leves que realçam sua textura natural e criam movimento são ideais para você. Menos é mais, mas com muito estilo!";
             }
 
-            // Adicionar produtos baseados na textura
             if (texture === "Cacheado" || texture === "Curly" || texture === "Rizado" || texture === "Crespo" || texture === "Coily / Kinky" || texture === "Afro") {
                 finishingProducts.push({ nome: "Pattern Curl Gel", desc: "Define e hidrata cachos", imagem: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=200&h=200&fit=crop", icon: "🌀", link: "https://www.mercadolivre.com.br/pattern-curl-gel/p/MLB33445566" });
                 visagismoDesc += " Seus cachos são lindos e merecem produtos específicos que definem e hidratam. Invista em cremes e géis que potencializam sua curvatura natural sem pesar.";
@@ -1759,14 +2200,39 @@
 
         function updateLoginUI() {
             const loginBtn = document.getElementById('loginButton');
+            const userNameHeader = document.getElementById('userNameHeader');
+            
             if (currentUser) {
                 loginBtn.innerHTML = `👤 ${currentUser.username}`;
                 loginBtn.onclick = () => switchTab('perfil');
                 document.getElementById('btn-logout').style.display = 'block';
+                
+                // Exibir nome do perfil no header
+                if (perfil && perfil.nome && perfil.nome.trim() !== '') {
+                    userNameHeader.textContent = perfil.nome.split(' ')[0];
+                    userNameHeader.style.display = 'inline-block';
+                } else {
+                    userNameHeader.textContent = currentUser.username;
+                    userNameHeader.style.display = 'inline-block';
+                }
             } else {
                 loginBtn.innerHTML = '🔐 ENTRAR';
                 loginBtn.onclick = () => openLoginModal();
                 document.getElementById('btn-logout').style.display = 'none';
+                userNameHeader.style.display = 'none';
+            }
+        }
+
+        function updateHeaderName() {
+            const userNameHeader = document.getElementById('userNameHeader');
+            if (currentUser && perfil && perfil.nome && perfil.nome.trim() !== '') {
+                userNameHeader.textContent = perfil.nome.split(' ')[0];
+                userNameHeader.style.display = 'inline-block';
+            } else if (currentUser) {
+                userNameHeader.textContent = currentUser.username;
+                userNameHeader.style.display = 'inline-block';
+            } else {
+                userNameHeader.style.display = 'none';
             }
         }
 
@@ -1831,6 +2297,7 @@
             inspiracoes = savedData.inspiracoes || [];
             produtos = savedData.produtos || [];
             renderAll();
+            updateHeaderName();
         }
 
         function saveUserData() {
@@ -1838,6 +2305,7 @@
                 const dataKey = `user_${currentUser.username}`;
                 const data = { perfil, visitas, favoritos, inspiracoes, produtos };
                 localStorage.setItem(dataKey, JSON.stringify(data));
+                updateHeaderName();
             }
         }
 
@@ -1854,13 +2322,116 @@
         let produtos = [];
         let configuracoes = { notificacoes: 'sim', lembrarAniversario: false };
 
+        let tempFotoAntes = null;
+        let tempFotoDepois = null;
+
         function getText(key) { return translations[currentLang][key] || key; }
 
-        // Função para redirecionar para link de afiliado
         function redirectToAffiliate(link) {
             if (link) {
                 window.open(link, '_blank');
             }
+        }
+
+        window.previewFotoAntes = function (input) {
+            const preview = document.getElementById('previewAntes');
+            preview.innerHTML = '';
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    tempFotoAntes = e.target.result;
+                    const div = document.createElement('div');
+                    div.className = 'photo-preview-item';
+                    div.innerHTML = `<img src="${e.target.result}"><span class="remove-photo" onclick="removerFotoAntes()">✕</span>`;
+                    preview.appendChild(div);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        window.previewFotoDepois = function (input) {
+            const preview = document.getElementById('previewDepois');
+            preview.innerHTML = '';
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    tempFotoDepois = e.target.result;
+                    const div = document.createElement('div');
+                    div.className = 'photo-preview-item';
+                    div.innerHTML = `<img src="${e.target.result}"><span class="remove-photo" onclick="removerFotoDepois()">✕</span>`;
+                    preview.appendChild(div);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        window.removerFotoAntes = function () {
+            tempFotoAntes = null;
+            document.getElementById('previewAntes').innerHTML = '';
+            document.getElementById('fotoAntes').value = '';
+        };
+
+        window.removerFotoDepois = function () {
+            tempFotoDepois = null;
+            document.getElementById('previewDepois').innerHTML = '';
+            document.getElementById('fotoDepois').value = '';
+        };
+
+        window.abrirModalFoto = function (url) {
+            const modal = document.createElement('div');
+            modal.className = 'modal active';
+            modal.style.display = 'flex';
+            modal.innerHTML = `<div style="max-width: 90vw; max-height: 90vh; position: relative;"><img src="${url}" style="max-width: 100%; max-height: 90vh; border-radius: 8px;"><span class="close-modal" onclick="this.parentElement.parentElement.remove()" style="color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 50%;">&times;</span></div>`;
+            document.body.appendChild(modal);
+        };
+
+        function renderTimeline() {
+            if (!visitas.length) {
+                document.getElementById('timelineContainer').innerHTML = '<div class="card" style="text-align: center;">✨ Nenhuma visita registrada ainda. Comece seu diário!</div>';
+                return;
+            }
+            const sortedVisitas = [...visitas].reverse();
+            let html = `<div class="timeline">`;
+            sortedVisitas.forEach(v => {
+                html += `
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">📅 ${v.dataVisita}</div>
+                        <div class="timeline-content">
+                            <div class="timeline-service">✂️ ${v.servico || 'Visita ao salão'}</div>
+                            <div class="timeline-details">
+                                ${v.salao ? `<span class="timeline-badge">📍 ${v.salao}</span>` : ''}
+                                ${v.tinta ? `<span class="timeline-badge">🎨 ${v.tinta}</span>` : ''}
+                                ${v.corDesejada ? `<span class="timeline-badge">🎯 Próxima: ${v.corDesejada}</span>` : ''}
+                            </div>
+                            ${v.avaliacao ? `<p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">💭 "${v.avaliacao}"</p>` : ''}
+                            ${(v.fotoAntes || v.fotoDepois) ? `
+                            <div class="photo-comparison">
+                                ${v.fotoAntes ? `
+                                <div class="photo-before">
+                                    <span class="photo-label">📸 ANTES</span>
+                                    <div class="photo-grid">
+                                        <img src="${v.fotoAntes}" class="timeline-photo" onclick="abrirModalFoto('${v.fotoAntes}')">
+                                    </div>
+                                </div>
+                                ` : ''}
+                                ${v.fotoDepois ? `
+                                <div class="photo-after">
+                                    <span class="photo-label">📸 DEPOIS</span>
+                                    <div class="photo-grid">
+                                        <img src="${v.fotoDepois}" class="timeline-photo" onclick="abrirModalFoto('${v.fotoDepois}')">
+                                    </div>
+                                </div>
+                                ` : ''}
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            document.getElementById('timelineContainer').innerHTML = html;
+            addZoomToImages();
         }
 
         function renderCarousels() {
@@ -1899,6 +2470,8 @@
             const productsTitle = document.getElementById('products-carousel-title');
             if (inspirationsTitle) inspirationsTitle.textContent = getText('inspirations_carousel_title');
             if (productsTitle) productsTitle.textContent = getText('products_carousel_title');
+            
+            addZoomToImages();
         }
 
         function isCarouselInspFav(inspId) { return favoritos.some(f => (f.tipo === 'carousel_inspiracao' || f.tipo === 'inspiracao') && f.id === inspId); }
@@ -1984,7 +2557,19 @@
             document.getElementById('miniProductsLabel').textContent = getText('mini_prod');
         }
 
-        function renderAll() { renderDashboard(); renderVisitas(); renderFavoritos(); renderInspiracoes(); renderProdutos(); renderCarousels(); updateMiniStats(); if (document.getElementById('perfil').classList.contains('active')) carregarPerfil(); }
+        function renderAll() {
+            renderDashboard();
+            renderVisitas();
+            renderFavoritos();
+            renderInspiracoes();
+            renderProdutos();
+            renderCarousels();
+            renderTimeline();
+            updateMiniStats();
+            if (document.getElementById('perfil').classList.contains('active')) carregarPerfil();
+            addZoomToImages();
+            updateHeaderName();
+        }
 
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1994,12 +2579,17 @@
             const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
             if (activeBtn) activeBtn.classList.add('active');
             if (tabName === 'visagismo') renderQuiz();
-            if (tabName === 'dashboard') { renderDashboard(); renderCarousels(); }
+            if (tabName === 'dashboard') {
+                renderDashboard();
+                renderCarousels();
+            }
+            if (tabName === 'timeline') renderTimeline();
             if (tabName === 'perfil') carregarPerfil();
             if (tabName === 'historico') renderVisitas();
             if (tabName === 'favoritos') renderFavoritos();
             if (tabName === 'inspiracoes') renderInspiracoes();
             if (tabName === 'produtos') renderProdutos();
+            addZoomToImages();
         }
 
         function renderDashboard() {
@@ -2020,20 +2610,67 @@
                 else if (fav.tipo === 'visita' && visitas[fav.id]) favHtml += `<div class="card">📅 ${visitas[fav.id].dataVisita}</div>`;
             }
             document.getElementById('favoritosRecentes').innerHTML = favHtml || `<div class="card">${t('empty_recent')}</div>`;
+            addZoomToImages();
         }
 
         function renderVisitas() {
             const t = getText;
             const lista = document.getElementById('listaVisitas');
-            if (!visitas.length) { lista.innerHTML = `<div class="card">${t('empty_archive')}</div>`; return; }
-            lista.innerHTML = [...visitas].reverse().map((v, i) => `<div class="card"><div class="card-header"><span class="card-title">${v.dataVisita} — ${v.servico || 'Session'}</span><div><button class="delete-btn" onclick="deletarVisita(${i})">✕</button></div></div><div>${v.salao ? `📍 ${v.salao}` : ''}</div>${v.tinta ? `<span class="badge">${v.tinta}</span>` : ''}</div>`).join('');
+            if (!visitas.length) {
+                lista.innerHTML = `<div class="card">${t('empty_archive')}</div>`;
+                return;
+            }
+            lista.innerHTML = [...visitas].reverse().map((v, i) => `
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">📅 ${v.dataVisita} — ${v.servico || 'Session'}</span>
+                        <button class="delete-btn" onclick="deletarVisita(${visitas.length - 1 - i})">✕</button>
+                    </div>
+                    <div>${v.salao ? `📍 ${v.salao}` : ''}</div>
+                    <div class="timeline-details" style="margin-top: 0.5rem;">
+                        ${v.tinta ? `<span class="timeline-badge">🎨 ${v.tinta}</span>` : ''}
+                        ${v.oxigenada ? `<span class="timeline-badge">🧪 ${v.oxigenada}</span>` : ''}
+                        ${v.corDesejada ? `<span class="timeline-badge">🎯 ${v.corDesejada}</span>` : ''}
+                    </div>
+                    ${v.avaliacao ? `<p style="margin-top: 0.5rem;">💭 ${v.avaliacao}</p>` : ''}
+                    ${(v.fotoAntes || v.fotoDepois) ? `
+                    <div class="photo-comparison" style="margin-top: 0.75rem;">
+                        ${v.fotoAntes ? `
+                        <div class="photo-before">
+                            <span class="photo-label">📸 ANTES</span>
+                            <div class="photo-grid">
+                                <img src="${v.fotoAntes}" class="timeline-photo" onclick="abrirModalFoto('${v.fotoAntes}')">
+                            </div>
+                        </div>
+                        ` : ''}
+                        ${v.fotoDepois ? `
+                        <div class="photo-after">
+                            <span class="photo-label">📸 DEPOIS</span>
+                            <div class="photo-grid">
+                                <img src="${v.fotoDepois}" class="timeline-photo" onclick="abrirModalFoto('${v.fotoDepois}')">
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    ` : ''}
+                </div>
+            `).join('');
+            addZoomToImages();
         }
-        function deletarVisita(i) { visitas.splice(i, 1); saveUserData(); renderVisitas(); renderDashboard(); updateMiniStats(); }
+
+        function deletarVisita(index) {
+            visitas.splice(index, 1);
+            saveUserData();
+            renderAll();
+        }
 
         function renderFavoritos() {
             const t = getText;
             const lista = document.getElementById('listaFavoritos');
-            if (!favoritos.length) { lista.innerHTML = `<div class="card">${t('empty_favorites')}</div>`; return; }
+            if (!favoritos.length) {
+                lista.innerHTML = `<div class="card">${t('empty_favorites')}</div>`;
+                return;
+            }
             let html = '';
             favoritos.forEach((fav) => {
                 if ((fav.tipo === 'inspiracao' || fav.tipo === 'carousel_inspiracao') && inspiracoes.find(i => i.id === fav.id)) {
@@ -2047,17 +2684,24 @@
                 else if (fav.tipo === 'visita' && visitas[fav.id]) html += `<div class="card">📅 ${visitas[fav.id].dataVisita}<button class="delete-btn" style="float:right;" onclick="toggleFavoritoGenerico('visita',${fav.id})">✕</button></div>`;
             });
             lista.innerHTML = html;
+            addZoomToImages();
         }
 
         function toggleFavoritoGenerico(tipo, id) {
             const index = favoritos.findIndex(f => f.tipo === tipo && f.id === id);
             if (index !== -1) favoritos.splice(index, 1);
             saveUserData();
-            renderFavoritos(); renderDashboard(); renderCarousels(); updateMiniStats();
+            renderFavoritos();
+            renderDashboard();
+            renderCarousels();
+            updateMiniStats();
         }
 
         function renderInspiracoes() {
-            if (inspiracoes.length === 0) { document.getElementById('inspirationsGrid').innerHTML = `<div class="card">✨ Clique na estrela nos carrosséis ou adicione com imagem!</div>`; return; }
+            if (inspiracoes.length === 0) {
+                document.getElementById('inspirationsGrid').innerHTML = `<div class="card">✨ Clique na estrela nos carrosséis ou adicione com imagem!</div>`;
+                return;
+            }
             document.getElementById('inspirationsGrid').innerHTML = inspiracoes.map((insp, i) => `
                 <div class="inspiration-card">
                     ${insp.imagem ? `<img src="${insp.imagem}" alt="${insp.nome}">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">✨</div>'}
@@ -2065,11 +2709,22 @@
                     <p>${insp.descricao}</p>
                     <button class="delete-btn" onclick="deletarInspiracaoLocal(${i})">✕</button>
                 </div>`).join('');
+            addZoomToImages();
         }
-        function deletarInspiracaoLocal(i) { inspiracoes.splice(i, 1); saveUserData(); renderInspiracoes(); renderFavoritos(); renderCarousels(); }
+
+        function deletarInspiracaoLocal(i) {
+            inspiracoes.splice(i, 1);
+            saveUserData();
+            renderInspiracoes();
+            renderFavoritos();
+            renderCarousels();
+        }
 
         function renderProdutos() {
-            if (produtos.length === 0) { document.getElementById('productsGrid').innerHTML = `<div class="card">🧴 Clique na estrela nos carrosséis do Estúdio para adicionar produtos!</div>`; return; }
+            if (produtos.length === 0) {
+                document.getElementById('productsGrid').innerHTML = `<div class="card">🧴 Clique na estrela nos carrosséis do Estúdio para adicionar produtos!</div>`;
+                return;
+            }
             document.getElementById('productsGrid').innerHTML = produtos.map((p, i) => `
                 <div class="product-card">
                     ${p.imagem ? `<img src="${p.imagem}" alt="${p.nome}" style="cursor: pointer;" onclick="redirectToAffiliate('${p.link || ''}')">` : '<div style="height:160px; background:var(--badge-bg); display:flex;align-items:center;justify-content:center;">🧴</div>'}
@@ -2077,8 +2732,17 @@
                     <p>${p.descricao}</p>
                     <button class="delete-btn" onclick="event.stopPropagation(); deletarProdutoLocal(${i})">✕</button>
                 </div>`).join('');
+            addZoomToImages();
         }
-        function deletarProdutoLocal(i) { produtos.splice(i, 1); saveUserData(); renderProdutos(); renderCarousels(); renderFavoritos(); updateMiniStats(); }
+
+        function deletarProdutoLocal(i) {
+            produtos.splice(i, 1);
+            saveUserData();
+            renderProdutos();
+            renderCarousels();
+            renderFavoritos();
+            updateMiniStats();
+        }
 
         function carregarPerfil() {
             const t = getText;
@@ -2090,8 +2754,11 @@
             document.getElementById('perfilCorCabelo').value = perfil.corCabelo || '';
             document.getElementById('perfilAlergias').value = perfil.alergias || '';
             document.getElementById('perfilObs').value = perfil.obs || '';
-            if (perfil.avatar) { document.getElementById('avatarPreview').innerHTML = `<img src="${perfil.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`; }
-            else { document.getElementById('avatarPreview').innerHTML = '✨'; }
+            if (perfil.avatar) {
+                document.getElementById('avatarPreview').innerHTML = `<img src="${perfil.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+            } else {
+                document.getElementById('avatarPreview').innerHTML = '✨';
+            }
             document.getElementById('change-avatar-text').textContent = t('change_avatar');
             document.getElementById('perfilNome').placeholder = t('placeholder_name');
             document.getElementById('perfilWhatsapp').placeholder = t('placeholder_contact');
@@ -2147,13 +2814,15 @@
         window.submitQuizComIA = function () {
             const t = getText;
             const missing = ["faceShape", "bodyType", "vibe", "hairTexture", "lifestyle"].filter(q => !currentAnswers[q]);
-            if (missing.length > 0) { alert(t('empty_analysis')); return; }
+            if (missing.length > 0) {
+                alert(t('empty_analysis'));
+                return;
+            }
 
             const suggestions = generateAISuggestions(currentAnswers);
             const resultDiv = document.getElementById('quizResult');
             resultDiv.style.display = 'block';
 
-            // Mapear os cortes com imagens
             const haircutsHtml = suggestions.haircuts.map(c => {
                 const imgUrl = haircutImages[c] || "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop";
                 return `
@@ -2209,10 +2878,15 @@
                 </div>
             `;
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            addZoomToImages();
         };
 
         window.salvarCorteSugerido = function (nome) {
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             const imgUrl = haircutImages[nome] || "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop";
             const existe = inspiracoes.some(i => i.nome === nome);
             if (!existe) {
@@ -2221,12 +2895,16 @@
                 alert(`✂️ "${nome}" ${getText('added_to_inspirations')}`);
                 renderInspiracoes();
             } else {
-                alert(`"${nome}" ${getText('already_exists')}`);
+                alert(`"${nome}" já existe nas inspirações!`);
             }
         };
 
         window.salvarProdutoSugerido = function (nome, desc, imagem, link) {
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             const existe = produtos.some(p => p.nome === nome);
             if (!existe) {
                 produtos.push({ id: Date.now(), nome: nome, descricao: desc, imagem: imagem, link: link });
@@ -2234,12 +2912,16 @@
                 alert(`⭐ "${nome}" ${getText('added_to_products')}`);
                 renderProdutos();
             } else {
-                alert(`"${nome}" ${getText('already_exists')}`);
+                alert(`"${nome}" já existe nos produtos!`);
             }
         };
 
         function exportarMeusDados() {
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             const dados = { perfil, visitas, favoritos, inspiracoes, produtos, configuracoes };
             const a = document.createElement('a');
             a.href = 'data:application/json,' + encodeURIComponent(JSON.stringify(dados));
@@ -2249,7 +2931,11 @@
         }
 
         function importarMeusDados() {
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'application/json';
@@ -2274,7 +2960,11 @@
         }
 
         function limparTodosDados() {
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             if (confirm(getText('remove'))) {
                 perfil = { nome: '' };
                 visitas = [];
@@ -2295,7 +2985,10 @@
 
         function applyLanguage() {
             const t = getText;
-            document.querySelectorAll('.nav-link').forEach(link => { const key = link.getAttribute('data-key'); if (key && t(key)) link.textContent = t(key); });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const key = link.getAttribute('data-key');
+                if (key && t(key)) link.textContent = t(key);
+            });
             document.getElementById('hero-badge').textContent = t('hero_badge');
             document.getElementById('hero-title').textContent = t('hero_title');
             document.getElementById('hero-subtitle').textContent = t('hero_subtitle');
@@ -2313,7 +3006,9 @@
             document.getElementById('label-notes').textContent = t('label_notes');
             document.getElementById('btn-save-profile').textContent = t('btn_save_profile');
             const hairSelect = document.getElementById('perfilCabelo');
-            if (hairSelect) { hairSelect.innerHTML = t('hair_options').map(opt => `<option value="${opt}">${opt}</option>`).join(''); }
+            if (hairSelect) {
+                hairSelect.innerHTML = t('hair_options').map(opt => `<option value="${opt}">${opt}</option>`).join('');
+            }
             document.getElementById('archive-title').textContent = t('archive_title');
             document.getElementById('label-date').textContent = t('label_date');
             document.getElementById('label-next').textContent = t('label_next');
@@ -2348,11 +3043,14 @@
             renderAll();
         }
 
-        // Inicialização
         document.querySelectorAll('.nav-link').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
         document.getElementById('perfilForm').addEventListener('submit', e => {
             e.preventDefault();
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             perfil = {
                 nome: document.getElementById('perfilNome').value,
                 nascimento: document.getElementById('perfilNascimento').value,
@@ -2365,11 +3063,16 @@
                 avatar: perfil.avatar || null
             };
             saveUserData();
+            updateHeaderName();
             alert(getText('btn_save_profile'));
         });
         document.getElementById('visitaForm').addEventListener('submit', e => {
             e.preventDefault();
-            if (!currentUser) { alert(getText('login_required')); openLoginModal(); return; }
+            if (!currentUser) {
+                alert(getText('login_required'));
+                openLoginModal();
+                return;
+            }
             visitas.push({
                 dataVisita: document.getElementById('dataVisita').value,
                 dataProxima: document.getElementById('dataProxima').value,
@@ -2379,25 +3082,47 @@
                 oxigenada: document.getElementById('oxigenada').value,
                 shampoo: document.getElementById('shampoo').value,
                 hidratacao: document.getElementById('hidratacao').value,
+                corDesejada: document.getElementById('corDesejada').value,
+                fotoAntes: tempFotoAntes,
+                fotoDepois: tempFotoDepois,
                 avaliacao: document.getElementById('avaliacao').value
             });
             saveUserData();
             document.getElementById('visitaForm').reset();
+            document.getElementById('previewAntes').innerHTML = '';
+            document.getElementById('previewDepois').innerHTML = '';
+            tempFotoAntes = null;
+            tempFotoDepois = null;
             document.getElementById('dataVisita').valueAsDate = new Date();
-            renderVisitas();
-            renderDashboard();
-            updateMiniStats();
+            renderAll();
             alert(getText('btn_archive'));
         });
-        document.getElementById('configNotificacoes').addEventListener('change', () => { configuracoes.notificacoes = document.getElementById('configNotificacoes').value; saveUserData(); });
-        document.getElementById('configLembrarAniversario').addEventListener('change', () => { configuracoes.lembrarAniversario = document.getElementById('configLembrarAniversario').checked; saveUserData(); });
+        document.getElementById('configNotificacoes').addEventListener('change', () => {
+            configuracoes.notificacoes = document.getElementById('configNotificacoes').value;
+            saveUserData();
+        });
+        document.getElementById('configLembrarAniversario').addEventListener('change', () => {
+            configuracoes.lembrarAniversario = document.getElementById('configLembrarAniversario').checked;
+            saveUserData();
+        });
 
         const hamburger = document.getElementById('hamburgerBtn');
         const navMenuEl = document.getElementById('navMenu');
         const overlay = document.getElementById('menuOverlay');
-        hamburger.addEventListener('click', () => { navMenuEl.classList.toggle('active'); overlay.classList.toggle('active'); });
-        overlay.addEventListener('click', () => { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); });
-        window.addEventListener('resize', () => { if (window.innerWidth > 768 && navMenuEl.classList.contains('active')) { navMenuEl.classList.remove('active'); overlay.classList.remove('active'); } });
+        hamburger.addEventListener('click', () => {
+            navMenuEl.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        overlay.addEventListener('click', () => {
+            navMenuEl.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navMenuEl.classList.contains('active')) {
+                navMenuEl.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
 
         currentTheme = localStorage.getItem('theme') || 'light';
         currentLang = localStorage.getItem('language') || 'pt';
@@ -2405,27 +3130,35 @@
         document.getElementById('langSelect').value = currentLang;
         applyTheme();
         applyLanguage();
-        document.getElementById('themeSelect').addEventListener('change', (e) => { currentTheme = e.target.value; localStorage.setItem('theme', currentTheme); applyTheme(); });
-        document.getElementById('langSelect').addEventListener('change', (e) => { currentLang = e.target.value; localStorage.setItem('language', currentLang); applyLanguage(); });
+        document.getElementById('themeSelect').addEventListener('change', (e) => {
+            currentTheme = e.target.value;
+            localStorage.setItem('theme', currentTheme);
+            applyTheme();
+        });
+        document.getElementById('langSelect').addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            localStorage.setItem('language', currentLang);
+            applyLanguage();
+        });
 
         document.getElementById('dataVisita').valueAsDate = new Date();
 
-        if (currentUser) { loadUserData(currentUser.username); }
+        if (currentUser) {
+            loadUserData(currentUser.username);
+        }
         updateLoginUI();
         renderAll();
 
         // ==================== SISTEMA ADMIN ====================
         const ADMIN_CREDENTIALS = {
             username: "admin",
-            password: "admin123"  // Altere para sua senha desejada
+            password: "admin123"
         };
 
-        // Verificar se o usuário atual é admin
         function isAdmin() {
             return currentUser && currentUser.username === ADMIN_CREDENTIALS.username;
         }
 
-        // Mostrar painel admin (apenas para admin)
         function showAdminPanel() {
             if (!isAdmin()) return;
 
@@ -2450,97 +3183,88 @@
                 });
             });
 
-            // Criar modal com dados
             const modal = document.createElement('div');
             modal.id = 'adminModal';
             modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.9);
-        z-index: 10000;
-        overflow: auto;
-        padding: 2rem;
-    `;
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.9); z-index: 10000; overflow: auto; padding: 2rem;
+            `;
 
             let html = `
-        <div style="max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 20px; padding: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h2 style="margin: 0;">📊 PAINEL ADMIN - DADOS DOS USUÁRIOS</h2>
-                <button onclick="document.getElementById('adminModal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
-            </div>
-            
-            <div style="margin-bottom: 2rem;">
-                <button onclick="exportAllUsersData()" class="btn" style="width: auto; padding: 8px 16px;">📥 EXPORTAR TODOS OS DADOS (JSON)</button>
-                <button onclick="downloadAdminReport()" class="btn" style="width: auto; padding: 8px 16px; margin-left: 1rem;">📄 GERAR RELATÓRIO COMPLETO</button>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-                <div class="card" style="text-align: center;">
-                    <h3>👥 Total de Usuários</h3>
-                    <p style="font-size: 2rem; font-weight: bold;">${allData.length}</p>
-                </div>
-                <div class="card" style="text-align: center;">
-                    <h3>📝 Total de Visitas</h3>
-                    <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalVisitas, 0)}</p>
-                </div>
-                <div class="card" style="text-align: center;">
-                    <h3>⭐ Total de Favoritos</h3>
-                    <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalFavoritos, 0)}</p>
-                </div>
-                <div class="card" style="text-align: center;">
-                    <h3>🧴 Total de Produtos</h3>
-                    <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalProdutos, 0)}</p>
-                </div>
-            </div>
-            
-            <h3>📋 DETALHES POR USUÁRIO</h3>
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr style="background: var(--badge-bg);">
-                            <th style="padding: 12px; text-align: left;">Usuário</th>
-                            <th style="padding: 12px; text-align: left;">Nome</th>
-                            <th style="padding: 12px; text-align: center;">Visitas</th>
-                            <th style="padding: 12px; text-align: center;">Favoritos</th>
-                            <th style="padding: 12px; text-align: center;">Produtos</th>
-                            <th style="padding: 12px; text-align: center;">Inspirações</th>
-                            <th style="padding: 12px; text-align: center;">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-    `;
+                <div style="max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 20px; padding: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2 style="margin: 0;">📊 PAINEL ADMIN - DADOS DOS USUÁRIOS</h2>
+                        <button onclick="document.getElementById('adminModal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem;">
+                        <button onclick="exportAllUsersData()" class="btn" style="width: auto; padding: 8px 16px;">📥 EXPORTAR TODOS OS DADOS (JSON)</button>
+                        <button onclick="downloadAdminReport()" class="btn" style="width: auto; padding: 8px 16px; margin-left: 1rem;">📄 GERAR RELATÓRIO COMPLETO</button>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                        <div class="card" style="text-align: center;">
+                            <h3>👥 Total de Usuários</h3>
+                            <p style="font-size: 2rem; font-weight: bold;">${allData.length}</p>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <h3>📝 Total de Visitas</h3>
+                            <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalVisitas, 0)}</p>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <h3>⭐ Total de Favoritos</h3>
+                            <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalFavoritos, 0)}</p>
+                        </div>
+                        <div class="card" style="text-align: center;">
+                            <h3>🧴 Total de Produtos</h3>
+                            <p style="font-size: 2rem; font-weight: bold;">${allData.reduce((sum, u) => sum + u.totalProdutos, 0)}</p>
+                        </div>
+                    </div>
+                    
+                    <h3>📋 DETALHES POR USUÁRIO</h3>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: var(--badge-bg);">
+                                    <th style="padding: 12px; text-align: left;">Usuário</th>
+                                    <th style="padding: 12px; text-align: left;">Nome</th>
+                                    <th style="padding: 12px; text-align: center;">Visitas</th>
+                                    <th style="padding: 12px; text-align: center;">Favoritos</th>
+                                    <th style="padding: 12px; text-align: center;">Produtos</th>
+                                    <th style="padding: 12px; text-align: center;">Inspirações</th>
+                                    <th style="padding: 12px; text-align: center;">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
 
             allData.forEach(user => {
                 html += `
-            <tr style="border-bottom: 1px solid var(--border-light);">
-                <td style="padding: 12px;"><strong>${user.username}</strong></td>
-                <td style="padding: 12px;">${user.perfil.nome || '-'}</td>
-                <td style="padding: 12px; text-align: center;">${user.totalVisitas}</td>
-                <td style="padding: 12px; text-align: center;">${user.totalFavoritos}</td>
-                <td style="padding: 12px; text-align: center;">${user.totalProdutos}</td>
-                <td style="padding: 12px; text-align: center;">${user.totalInspiracoes}</td>
-                <td style="padding: 12px; text-align: center;">
-                    <button onclick="viewUserDetails('${user.username}')" style="background: none; border: 1px solid var(--border-medium); padding: 4px 8px; border-radius: 8px; cursor: pointer;">🔍 Ver Detalhes</button>
-                </td>
-            </tr>
-        `;
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 12px;"><strong>${user.username}</strong></td>
+                        <td style="padding: 12px;">${user.perfil.nome || '-'}</td>
+                        <td style="padding: 12px; text-align: center;">${user.totalVisitas}</td>
+                        <td style="padding: 12px; text-align: center;">${user.totalFavoritos}</td>
+                        <td style="padding: 12px; text-align: center;">${user.totalProdutos}</td>
+                        <td style="padding: 12px; text-align: center;">${user.totalInspiracoes}</td>
+                        <td style="padding: 12px; text-align: center;">
+                            <button onclick="viewUserDetails('${user.username}')" style="background: none; border: 1px solid var(--border-medium); padding: 4px 8px; border-radius: 8px; cursor: pointer;">🔍 Ver Detalhes</button>
+                        </td>
+                    </tr>
+                `;
             });
 
             html += `
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    `;
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
 
             modal.innerHTML = html;
             document.body.appendChild(modal);
         }
 
-        // Ver detalhes de um usuário específico
         window.viewUserDetails = function (username) {
             const userKey = `user_${username}`;
             const userData = JSON.parse(localStorage.getItem(userKey)) || {};
@@ -2548,86 +3272,78 @@
             const modal = document.createElement('div');
             modal.id = 'userDetailModal';
             modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.95);
-        z-index: 10001;
-        overflow: auto;
-        padding: 2rem;
-    `;
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.95); z-index: 10001; overflow: auto; padding: 2rem;
+            `;
 
             const visitasHtml = (userData.visitas || []).map(v => `
-        <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
-            📅 ${v.dataVisita} - ${v.servico || 'Sem serviço'} ${v.salao ? `📍 ${v.salao}` : ''}
-        </div>
-    `).join('') || '<p>Nenhuma visita registrada</p>';
+                <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
+                    📅 ${v.dataVisita} - ${v.servico || 'Sem serviço'} ${v.salao ? `📍 ${v.salao}` : ''}
+                </div>
+            `).join('') || '<p>Nenhuma visita registrada</p>';
 
             const favoritosHtml = (userData.favoritos || []).map(f => `
-        <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
-            ⭐ ${f.nome || f.tipo} - ${f.tipo}
-        </div>
-    `).join('') || '<p>Nenhum favorito</p>';
+                <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
+                    ⭐ ${f.nome || f.tipo} - ${f.tipo}
+                </div>
+            `).join('') || '<p>Nenhum favorito</p>';
 
             const produtosHtml = (userData.produtos || []).map(p => `
-        <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
-            🧴 ${p.nome} - ${p.categoria || 'Produto'}
-        </div>
-    `).join('') || '<p>Nenhum produto</p>';
+                <div style="padding: 8px; border-bottom: 1px solid var(--border-light);">
+                    🧴 ${p.nome} - ${p.categoria || 'Produto'}
+                </div>
+            `).join('') || '<p>Nenhum produto</p>';
 
             modal.innerHTML = `
-        <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border-radius: 20px; padding: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h2>👤 ${username}</h2>
-                <button onclick="document.getElementById('userDetailModal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
-            </div>
-            
-            <div class="row-2cols">
-                <div>
-                    <h3>📋 Perfil</h3>
-                    <div class="card">
-                        <p><strong>Nome:</strong> ${userData.perfil?.nome || '-'}</p>
-                        <p><strong>Data Nasc.:</strong> ${userData.perfil?.nascimento || '-'}</p>
-                        <p><strong>WhatsApp:</strong> ${userData.perfil?.whatsapp || '-'}</p>
-                        <p><strong>Instagram:</strong> ${userData.perfil?.instagram || '-'}</p>
-                        <p><strong>Tipo Cabelo:</strong> ${userData.perfil?.tipoCabelo || '-'}</p>
-                        <p><strong>Cor Cabelo:</strong> ${userData.perfil?.corCabelo || '-'}</p>
+                <div style="max-width: 800px; margin: 0 auto; background: var(--bg-card); border-radius: 20px; padding: 2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2>👤 ${username}</h2>
+                        <button onclick="document.getElementById('userDetailModal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+                    </div>
+                    
+                    <div class="row-2cols">
+                        <div>
+                            <h3>📋 Perfil</h3>
+                            <div class="card">
+                                <p><strong>Nome:</strong> ${userData.perfil?.nome || '-'}</p>
+                                <p><strong>Data Nasc.:</strong> ${userData.perfil?.nascimento || '-'}</p>
+                                <p><strong>WhatsApp:</strong> ${userData.perfil?.whatsapp || '-'}</p>
+                                <p><strong>Instagram:</strong> ${userData.perfil?.instagram || '-'}</p>
+                                <p><strong>Tipo Cabelo:</strong> ${userData.perfil?.tipoCabelo || '-'}</p>
+                                <p><strong>Cor Cabelo:</strong> ${userData.perfil?.corCabelo || '-'}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>📊 Estatísticas</h3>
+                            <div class="card">
+                                <p>📝 Visitas: ${(userData.visitas || []).length}</p>
+                                <p>⭐ Favoritos: ${(userData.favoritos || []).length}</p>
+                                <p>🧴 Produtos: ${(userData.produtos || []).length}</p>
+                                <p>✨ Inspirações: ${(userData.inspiracoes || []).length}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3>📅 Histórico de Visitas</h3>
+                        <div class="card">${visitasHtml}</div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3>⭐ Favoritos</h3>
+                        <div class="card">${favoritosHtml}</div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h3>🧴 Produtos Salvos</h3>
+                        <div class="card">${produtosHtml}</div>
                     </div>
                 </div>
-                <div>
-                    <h3>📊 Estatísticas</h3>
-                    <div class="card">
-                        <p>📝 Visitas: ${(userData.visitas || []).length}</p>
-                        <p>⭐ Favoritos: ${(userData.favoritos || []).length}</p>
-                        <p>🧴 Produtos: ${(userData.produtos || []).length}</p>
-                        <p>✨ Inspirações: ${(userData.inspiracoes || []).length}</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 2rem;">
-                <h3>📅 Histórico de Visitas</h3>
-                <div class="card">${visitasHtml}</div>
-            </div>
-            
-            <div style="margin-top: 2rem;">
-                <h3>⭐ Favoritos</h3>
-                <div class="card">${favoritosHtml}</div>
-            </div>
-            
-            <div style="margin-top: 2rem;">
-                <h3>🧴 Produtos Salvos</h3>
-                <div class="card">${produtosHtml}</div>
-            </div>
-        </div>
-    `;
+            `;
 
             document.body.appendChild(modal);
         };
 
-        // Exportar todos os dados dos usuários
         window.exportAllUsersData = function () {
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const allData = {
@@ -2663,7 +3379,6 @@
             alert(`✅ Exportado! Total de ${allData.users.length} usuários.`);
         };
 
-        // Gerar relatório completo em texto
         window.downloadAdminReport = function () {
             const users = JSON.parse(localStorage.getItem('users')) || [];
             let report = `=== MAKERAI - RELATÓRIO ADMIN ===\n`;
@@ -2696,13 +3411,11 @@
             URL.revokeObjectURL(url);
         };
 
-        // Modificar a função de login para verificar se é admin
         const originalLoginUser = loginUser;
         window.loginUser = function () {
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
 
-            // Verificar se é admin
             if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
                 currentUser = { username: ADMIN_CREDENTIALS.username, password: ADMIN_CREDENTIALS.password, dataKey: `user_admin`, isAdmin: true };
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -2710,7 +3423,6 @@
                 closeLoginModal();
                 updateLoginUI();
 
-                // Adicionar botão de admin no menu
                 const navMenu = document.getElementById('navMenu');
                 const adminBtnExists = document.querySelector('[data-tab="adminPanel"]');
                 if (!adminBtnExists) {
