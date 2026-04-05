@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#111111">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="MakerAI">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="makerai-pwa-icon.svg" type="image/svg+xml">
     <title>MakerAI - Beauty Intelligence</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,6 +18,8 @@
         }
 
         :root {
+            --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-serif: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
             --bg-body: #fefefe;
             --bg-surface: #ffffff;
             --bg-card: #ffffff;
@@ -80,7 +84,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             background: var(--bg-body);
             color: var(--text-primary);
             line-height: 1.5;
@@ -92,7 +96,7 @@
         h3,
         .logo-text h1,
         .card-title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
         }
 
         h2 {
@@ -127,11 +131,34 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
             align-items: center;
-            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
             gap: 1rem;
+            justify-self: start;
+            min-width: 0;
+        }
+
+        .nav-header-center {
+            justify-self: center;
+            text-align: center;
+            min-width: 0;
+            max-width: min(220px, 42vw);
+        }
+
+        .nav-end {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            justify-self: end;
+            min-width: 0;
         }
 
         .logo-area {
@@ -144,7 +171,7 @@
         .logo-icon {
             font-size: 1.4rem;
             font-weight: 500;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             letter-spacing: -0.5px;
             color: var(--text-primary);
         }
@@ -157,6 +184,10 @@
             margin: 0;
         }
 
+        .logo-text {
+            min-width: 0;
+        }
+
         .logo-text p {
             font-size: 0.6rem;
             font-weight: 400;
@@ -164,60 +195,29 @@
             text-transform: uppercase;
             color: var(--text-tertiary);
             margin-top: 2px;
+            line-height: 1.15;
         }
 
         .user-name-header {
-            font-size: 0.7rem;
-            font-weight: 500;
+            display: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.07em;
             color: var(--accent);
             background: var(--badge-bg);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            margin-left: 0.5rem;
-        }
-
-        .login-btn {
-            background: transparent;
+            padding: 0.45rem 1.2rem;
+            border-radius: 999px;
             border: 1px solid var(--border-medium);
-            padding: 0.4rem 1rem;
-            font-size: 0.7rem;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            border-radius: 20px;
-            color: var(--text-secondary);
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            vertical-align: middle;
         }
 
-        .login-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-
-        .user-avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        .mini-stats {
-            display: flex;
+        .mini-stats-desktop {
+            display: none !important;
             gap: 1.5rem;
             align-items: center;
             background: var(--badge-bg);
@@ -245,7 +245,13 @@
             letter-spacing: 0.5px;
         }
 
-        .nav-menu {
+        .nav-right-desktop {
+            display: none !important;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-menu-desktop {
             display: flex;
             gap: 0.25rem;
             list-style: none;
@@ -254,7 +260,7 @@
 
         .nav-link {
             padding: 0.6rem 1.2rem;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             font-weight: 400;
             font-size: 0.7rem;
             letter-spacing: 1px;
@@ -287,10 +293,30 @@
             background: var(--accent);
         }
 
-        .controls {
+        .controls-desktop {
             display: flex;
             gap: 0.5rem;
             align-items: center;
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 1px solid var(--border-medium);
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .login-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .lang-select,
@@ -299,7 +325,7 @@
             border: 1px solid var(--border-medium);
             padding: 0.4rem 0.8rem;
             font-size: 0.7rem;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             cursor: pointer;
             border-radius: 20px;
             color: var(--text-secondary);
@@ -313,12 +339,13 @@
         }
 
         .hamburger {
-            display: none;
+            display: flex;
             flex-direction: column;
             cursor: pointer;
             background: none;
             border: none;
             padding: 0.5rem;
+            flex-shrink: 0;
         }
 
         .hamburger span {
@@ -327,6 +354,404 @@
             background: var(--text-primary);
             margin: 3px 0;
             transition: 0.2s;
+        }
+
+        .nav-menu-mobile {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--bg-navbar);
+            flex-direction: column;
+            padding: 80px 20px 20px;
+            transition: 0.3s;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            overflow-y: auto;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-menu-mobile.active {
+            right: 0;
+        }
+
+        .nav-menu-mobile .nav-link {
+            padding: 0.8rem;
+            width: 100%;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+            white-space: normal;
+        }
+
+        .nav-menu-mobile .nav-link.active::after {
+            display: none;
+        }
+
+        .nav-menu-mobile > li {
+            width: 100%;
+            list-style: none;
+        }
+
+        .mobile-stats {
+            display: flex;
+            justify-content: space-around;
+            background: var(--badge-bg);
+            border-radius: 40px;
+            padding: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-stat {
+            text-align: center;
+        }
+
+        .mobile-stat-number {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: block;
+            color: var(--text-primary);
+        }
+
+        .mobile-stat-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+
+        .mobile-controls {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            border-top: 1px solid var(--border-light);
+            padding-top: 1rem;
+        }
+
+        .mobile-controls button,
+        .mobile-controls select {
+            width: 100%;
+            text-align: center;
+            padding: 0.6rem;
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .install-app-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1002;
+            padding: 0.75rem 1rem;
+            padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-medium);
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
+            transition: transform 0.35s ease, opacity 0.3s ease;
+        }
+
+        body.dark .install-app-banner {
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45);
+        }
+
+        .install-app-banner--hidden {
+            transform: translateY(110%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .install-app-banner__close {
+            position: absolute;
+            top: 0.45rem;
+            right: 0.5rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            border: none;
+            background: transparent;
+            color: var(--text-tertiary);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .install-app-banner__close:hover {
+            color: var(--text-primary);
+            background: var(--badge-bg);
+        }
+
+        .install-app-banner__inner {
+            max-width: 520px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            padding-right: 2rem;
+        }
+
+        .install-app-banner__row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+        }
+
+        .install-app-banner__emoji {
+            font-size: 1.75rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .install-app-banner__title {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .install-app-banner__desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        .install-app-banner__cta {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-family: var(--font-sans);
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: var(--btn-hover-text);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .install-app-banner__cta:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        body.dark .install-app-banner__cta {
+            color: #111111;
+        }
+
+        .install-guide-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10050;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1rem;
+            padding-bottom: max(1rem, env(safe-area-inset-bottom));
+        }
+
+        .install-guide-modal--hidden {
+            display: none;
+        }
+
+        .install-guide-modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+        }
+
+        body.dark .install-guide-modal__backdrop {
+            background: rgba(0, 0, 0, 0.65);
+        }
+
+        .install-guide-modal__panel {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            max-height: min(85vh, 640px);
+            overflow-y: auto;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            border-radius: 16px;
+            padding: 1.25rem 1.25rem 1.5rem;
+            box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.18);
+            margin-bottom: env(safe-area-inset-bottom);
+        }
+
+        .install-guide-modal__x {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            border: none;
+            background: transparent;
+            color: var(--text-tertiary);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .install-guide-modal__x:hover {
+            color: var(--text-primary);
+            background: var(--badge-bg);
+        }
+
+        .install-guide-modal__title {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 0 2rem 0.5rem 0;
+            padding-right: 0.25rem;
+        }
+
+        .install-guide-modal__intro {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            margin-bottom: 1rem;
+        }
+
+        .install-guide-modal__chrome {
+            display: none;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.55rem 0.85rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: var(--font-sans);
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: var(--btn-hover-text);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .install-guide-modal__chrome.is-visible {
+            display: block;
+        }
+
+        body.dark .install-guide-modal__chrome {
+            color: #111111;
+        }
+
+        .install-guide-modal__block {
+            margin-bottom: 1.15rem;
+        }
+
+        .install-guide-modal__block:last-child {
+            margin-bottom: 0;
+        }
+
+        .install-guide-modal__block h3 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.45rem;
+            font-family: var(--font-sans);
+        }
+
+        .install-guide-modal__list {
+            margin: 0;
+            padding-left: 1.15rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .install-guide-modal__list li {
+            margin-bottom: 0.35rem;
+        }
+
+        @media (min-width: 480px) {
+            .install-guide-modal {
+                align-items: center;
+            }
+
+            .install-guide-modal__panel {
+                margin-bottom: 0;
+                max-height: min(80vh, 560px);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-container {
+                padding: 0.8rem 1.2rem;
+            }
+
+            .nav-header-center {
+                max-width: min(200px, 48vw);
+            }
+
+            .user-name-header {
+                font-size: 0.82rem;
+                padding: 0.38rem 1rem;
+                letter-spacing: 0.08em;
+            }
+
+            .logo-area {
+                align-items: center;
+                gap: 6px;
+                min-width: 0;
+            }
+
+            .logo-icon {
+                font-size: 1.15rem;
+                line-height: 1;
+                flex-shrink: 0;
+            }
+
+            .logo-text h1 {
+                font-size: 1.05rem;
+                line-height: 1.15;
+            }
+
+            .logo-text p {
+                font-size: 0.5rem;
+                letter-spacing: 0.06em;
+                margin-top: 1px;
+            }
+        }
+
+        @media (min-width: 993px) {
+            .nav-menu-mobile {
+                max-width: min(380px, 32vw);
+                width: min(380px, 32vw);
+            }
         }
 
         .hero {
@@ -615,6 +1040,7 @@
         }
 
         .modal-content {
+            position: relative;
             background: var(--bg-card);
             border-radius: 20px;
             padding: 2rem;
@@ -624,7 +1050,7 @@
         }
 
         .modal-content h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             margin-bottom: 1.5rem;
             text-align: center;
         }
@@ -810,7 +1236,7 @@
         }
 
         .quiz-question h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.3rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
@@ -872,7 +1298,7 @@
         }
 
         .quiz-result h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.5rem;
             font-weight: 500;
             margin-bottom: 1rem;
@@ -887,7 +1313,7 @@
         }
 
         .result-section h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 1rem;
@@ -986,7 +1412,7 @@
         }
 
         .card-title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 0.95rem;
             font-weight: 500;
             color: var(--text-primary);
@@ -1027,7 +1453,7 @@
             border: none;
             border-bottom: 1px solid var(--input-border);
             font-size: 0.85rem;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             background: transparent;
             color: var(--text-primary);
         }
@@ -1062,7 +1488,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             width: 100%;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             border-radius: 30px;
         }
 
@@ -1097,7 +1523,7 @@
 
         .inspiration-card h3,
         .product-card h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 0.95rem;
             font-weight: 500;
             margin-bottom: 6px;
@@ -1211,27 +1637,12 @@
             padding: 3px 8px;
             font-size: 0.6rem;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             color: var(--text-tertiary);
         }
 
         .delete-btn:hover {
             color: var(--accent);
-        }
-
-        .menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        .menu-overlay.active {
-            display: block;
         }
 
         .ai-badge {
@@ -1269,7 +1680,7 @@
         }
 
         .social-links-section h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 1rem;
@@ -1339,97 +1750,49 @@
             color: #f5f5f5;
         }
 
-        /* Share Buttons */
+        /* Share — mesmo vocabulário visual dos .social-card e .btn */
         .share-buttons {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 1rem;
-            flex-wrap: wrap;
             margin-top: 1rem;
         }
 
         .share-btn {
-            flex: 1;
-            min-width: 100px;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            background: var(--social-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            width: 100%;
+            min-width: 0;
         }
 
-        .share-btn.whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .share-btn.instagram {
-            background: #E4405F;
-            color: white;
-        }
-
-        .share-btn.facebook {
-            background: #1877F2;
-            color: white;
+        .share-btn .share-btn-icon {
+            font-size: 1.35rem;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
         .share-btn:hover {
             transform: translateY(-2px);
-            opacity: 0.9;
+            border-color: var(--accent);
+            background: var(--bg-surface);
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0.8rem 1.2rem;
-                flex-wrap: wrap;
-            }
-
-            .controls {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                margin-top: 0.5rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                max-width: 280px;
-                height: 100vh;
-                background: var(--bg-navbar);
-                flex-direction: column;
-                padding: 80px 20px 20px;
-                transition: 0.3s;
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
-                z-index: 1001;
-            }
-
-            .nav-menu.active {
-                right: 0;
-            }
-
-            .nav-link {
-                padding: 0.8rem;
-                width: 100%;
-                text-align: left;
-                border-bottom: 1px solid var(--border-light);
-            }
-
-            .nav-link.active::after {
-                display: none;
-            }
-
             .row-2cols {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -1460,10 +1823,6 @@
                 height: 150px;
             }
 
-            .mini-stats {
-                display: none;
-            }
-
             .social-grid {
                 grid-template-columns: 1fr;
             }
@@ -1485,7 +1844,7 @@
             }
 
             .share-buttons {
-                flex-direction: column;
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1494,47 +1853,95 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo-area" onclick="switchTab('dashboard')">
-                <span class="logo-icon">▲</span>
-                <div class="logo-text">
-                    <h1>MakerAI</h1>
-                    <p id="logo-subtitle">BEAUTY INTELLIGENCE</p>
+            <div class="nav-left">
+                <div class="logo-area" onclick="switchTab('dashboard')">
+                    <span class="logo-icon">▲</span>
+                    <div class="logo-text">
+                        <h1>MakerAI</h1>
+                        <p id="logo-subtitle">BEAUTY INTELLIGENCE</p>
+                    </div>
                 </div>
+                <div class="mini-stats-desktop" id="miniStatsDesktop">
+                    <div class="mini-stat"><span class="mini-stat-number" id="miniVisits">0</span><span
+                            class="mini-stat-label" id="miniVisitsLabel">VISITAS</span></div>
+                    <div class="mini-stat"><span class="mini-stat-number" id="miniFavorites">0</span><span
+                            class="mini-stat-label" id="miniFavoritesLabel">FAV</span></div>
+                    <div class="mini-stat"><span class="mini-stat-number" id="miniProducts">0</span><span
+                            class="mini-stat-label" id="miniProductsLabel">PROD</span></div>
+                </div>
+            </div>
+
+            <div class="nav-header-center">
                 <span class="user-name-header" id="userNameHeader"></span>
             </div>
-            <div class="mini-stats" id="miniStats">
-                <div class="mini-stat"><span class="mini-stat-number" id="miniVisits">0</span><span
-                        class="mini-stat-label" id="miniVisitsLabel">VISITAS</span></div>
-                <div class="mini-stat"><span class="mini-stat-number" id="miniFavorites">0</span><span
-                        class="mini-stat-label" id="miniFavoritesLabel">FAV</span></div>
-                <div class="mini-stat"><span class="mini-stat-number" id="miniProducts">0</span><span
-                        class="mini-stat-label" id="miniProductsLabel">PROD</span></div>
-            </div>
-            <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
-            <ul class="nav-menu" id="navMenu">
-                <li><button class="nav-link active" data-tab="dashboard" data-key="nav_dashboard">STUDIO</button></li>
-                <li><button class="nav-link" data-tab="timeline" data-key="nav_timeline">LINHA DO TEMPO</button></li>
-                <li><button class="nav-link" data-tab="perfil" data-key="nav_profile">PROFILE</button></li>
-                <li><button class="nav-link" data-tab="historico" data-key="nav_archive">ARCHIVE</button></li>
-                <li><button class="nav-link" data-tab="favoritos" data-key="nav_curated">CURATED</button></li>
-                <li><button class="nav-link" data-tab="inspiracoes" data-key="nav_moodboard">MOODBOARD</button></li>
-                <li><button class="nav-link" data-tab="produtos" data-key="nav_preferences">PRODUCTS</button></li>
-                <li><button class="nav-link" data-tab="visagismo" data-key="nav_analysis">ANALYSIS</button></li>
-                <li><button class="nav-link" data-tab="configuracoes" data-key="nav_settings">SETTINGS</button></li>
-            </ul>
-            <div class="controls">
-                <button id="loginButton" class="login-btn">🔐 ENTRAR</button>
-                <select id="themeSelect" class="theme-toggle">
-                    <option value="light">☀️</option>
-                    <option value="dark">🌙</option>
-                </select>
-                <select id="langSelect" class="lang-select">
-                    <option value="pt">🇧🇷 PT</option>
-                    <option value="en">🇺🇸 EN</option>
-                    <option value="es">🇪🇸 ES</option>
-                </select>
+
+            <div class="nav-end">
+                <div class="nav-right-desktop">
+                    <ul class="nav-menu-desktop" id="navMenuDesktop">
+                        <li><button type="button" class="nav-link active" data-tab="dashboard" data-key="nav_dashboard">STUDIO</button></li>
+                        <li><button type="button" class="nav-link" data-tab="timeline" data-key="nav_timeline">LINHA DO TEMPO</button></li>
+                        <li><button type="button" class="nav-link" data-tab="perfil" data-key="nav_profile">PROFILE</button></li>
+                        <li><button type="button" class="nav-link" data-tab="historico" data-key="nav_archive">ARCHIVE</button></li>
+                        <li><button type="button" class="nav-link" data-tab="favoritos" data-key="nav_curated">CURATED</button></li>
+                        <li><button type="button" class="nav-link" data-tab="inspiracoes" data-key="nav_moodboard">MOODBOARD</button></li>
+                        <li><button type="button" class="nav-link" data-tab="produtos" data-key="nav_preferences">PRODUCTS</button></li>
+                        <li><button type="button" class="nav-link" data-tab="visagismo" data-key="nav_analysis">ANALYSIS</button></li>
+                        <li><button type="button" class="nav-link" data-tab="configuracoes" data-key="nav_settings">SETTINGS</button></li>
+                    </ul>
+                    <div class="controls-desktop">
+                        <button type="button" id="loginButton" class="login-btn">🔐 ENTRAR</button>
+                        <select id="themeSelect" class="theme-toggle" aria-label="Tema">
+                            <option value="light">☀️</option>
+                            <option value="dark">🌙</option>
+                        </select>
+                        <select id="langSelect" class="lang-select" aria-label="Idioma">
+                            <option value="pt">🇧🇷 PT</option>
+                            <option value="en">🇺🇸 EN</option>
+                            <option value="es">🇪🇸 ES</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Abrir menu"><span></span><span></span><span></span></button>
             </div>
         </div>
+
+        <ul class="nav-menu-mobile" id="navMenuMobile">
+            <li class="mobile-stats-wrap">
+                <div class="mobile-stats" id="mobileStats">
+                    <div class="mobile-stat"><span class="mobile-stat-number" id="mobileVisits">0</span><span
+                            class="mobile-stat-label" id="mobileVisitsLabel">VISITAS</span></div>
+                    <div class="mobile-stat"><span class="mobile-stat-number" id="mobileFavorites">0</span><span
+                            class="mobile-stat-label" id="mobileFavoritesLabel">FAV</span></div>
+                    <div class="mobile-stat"><span class="mobile-stat-number" id="mobileProducts">0</span><span
+                            class="mobile-stat-label" id="mobileProductsLabel">PROD</span></div>
+                </div>
+            </li>
+            <li><button type="button" class="nav-link active" data-tab="dashboard" data-key="nav_dashboard">STUDIO</button></li>
+            <li><button type="button" class="nav-link" data-tab="timeline" data-key="nav_timeline">LINHA DO TEMPO</button></li>
+            <li><button type="button" class="nav-link" data-tab="perfil" data-key="nav_profile">PROFILE</button></li>
+            <li><button type="button" class="nav-link" data-tab="historico" data-key="nav_archive">ARCHIVE</button></li>
+            <li><button type="button" class="nav-link" data-tab="favoritos" data-key="nav_curated">CURATED</button></li>
+            <li><button type="button" class="nav-link" data-tab="inspiracoes" data-key="nav_moodboard">MOODBOARD</button></li>
+            <li><button type="button" class="nav-link" data-tab="produtos" data-key="nav_preferences">PRODUCTS</button></li>
+            <li><button type="button" class="nav-link" data-tab="visagismo" data-key="nav_analysis">ANALYSIS</button></li>
+            <li><button type="button" class="nav-link" data-tab="configuracoes" data-key="nav_settings">SETTINGS</button></li>
+            <li class="mobile-controls-wrap">
+                <div class="mobile-controls">
+                    <button type="button" id="loginButtonMobile" class="login-btn">🔐 ENTRAR</button>
+                    <select id="themeSelectMobile" class="theme-toggle" aria-label="Tema">
+                        <option value="light">☀️</option>
+                        <option value="dark">🌙</option>
+                    </select>
+                    <select id="langSelectMobile" class="lang-select" aria-label="Idioma">
+                        <option value="pt">🇧🇷 PT</option>
+                        <option value="en">🇺🇸 EN</option>
+                        <option value="es">🇪🇸 ES</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+        <div class="menu-overlay" id="menuOverlay"></div>
     </nav>
 
     <div id="loginModal" class="modal">
@@ -1548,8 +1955,6 @@
                 CONTA</button>
         </div>
     </div>
-
-    <div class="menu-overlay" id="menuOverlay"></div>
 
     <div class="hero">
         <div class="hero-badge" id="hero-badge">AI-POWERED BEAUTY ARCHIVE</div>
@@ -1740,14 +2145,14 @@
             <div class="social-links-section">
                 <h3>📱 Compartilhar MakerAI</h3>
                 <div class="share-buttons">
-                    <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
-                        <span>💬</span> WhatsApp
+                    <button type="button" class="share-btn" onclick="shareOnWhatsApp()">
+                        <span class="share-btn-icon" aria-hidden="true">💬</span> WhatsApp
                     </button>
-                    <button class="share-btn instagram" onclick="shareOnInstagram()">
-                        <span>📸</span> Instagram
+                    <button type="button" class="share-btn" onclick="shareOnInstagram()">
+                        <span class="share-btn-icon" aria-hidden="true">📸</span> Instagram
                     </button>
-                    <button class="share-btn facebook" onclick="shareOnFacebook()">
-                        <span>👍</span> Facebook
+                    <button type="button" class="share-btn" onclick="shareOnFacebook()">
+                        <span class="share-btn-icon" aria-hidden="true">👍</span> Facebook
                     </button>
                 </div>
                 <p style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 1rem; text-align: center;">
@@ -1806,6 +2211,42 @@
                 DADOS</button>
             <button class="btn" onclick="limparTodosDados()" style="margin-top: 0.8rem;" id="btn-delete-all">APAGAR
                 TODOS OS DADOS</button>
+        </div>
+    </div>
+
+    <div id="install-app-banner" class="install-app-banner install-app-banner--hidden" role="dialog"
+        aria-labelledby="install-banner-title" aria-hidden="true">
+        <button type="button" class="install-app-banner__close" id="installBannerClose"
+            aria-label="Fechar">&times;</button>
+        <div class="install-app-banner__inner">
+            <div class="install-app-banner__row">
+                <span class="install-app-banner__emoji" aria-hidden="true">📲</span>
+                <div class="install-app-banner__copy">
+                    <strong id="install-banner-title" class="install-app-banner__title">Instale o MakerAI</strong>
+                    <p id="install-banner-desc" class="install-app-banner__desc">Acesso rápido na tela inicial.</p>
+                </div>
+            </div>
+            <button type="button" class="install-app-banner__cta" id="installBannerBtn">INSTALAR APP</button>
+        </div>
+    </div>
+
+    <div id="install-guide-modal" class="install-guide-modal install-guide-modal--hidden" role="dialog"
+        aria-modal="true" aria-labelledby="install-guide-modal-title" aria-hidden="true">
+        <div class="install-guide-modal__backdrop" id="installGuideBackdrop" aria-hidden="true"></div>
+        <div class="install-guide-modal__panel">
+            <button type="button" class="install-guide-modal__x" id="installGuideClose"
+                aria-label="Fechar">&times;</button>
+            <h2 id="install-guide-modal-title" class="install-guide-modal__title">Instalar o MakerAI</h2>
+            <p id="install-guide-intro" class="install-guide-modal__intro"></p>
+            <button type="button" class="install-guide-modal__chrome" id="installGuideChromeBtn"></button>
+            <section class="install-guide-modal__block" aria-labelledby="install-guide-apple-heading">
+                <h3 id="install-guide-apple-heading">Apple (iPhone / iPad)</h3>
+                <ol id="install-guide-apple-steps" class="install-guide-modal__list"></ol>
+            </section>
+            <section class="install-guide-modal__block" aria-labelledby="install-guide-samsung-heading">
+                <h3 id="install-guide-samsung-heading">Samsung / Android</h3>
+                <ol id="install-guide-samsung-steps" class="install-guide-modal__list"></ol>
+            </section>
         </div>
     </div>
 
@@ -1990,7 +2431,30 @@
                 login_required: "Faça login para salvar seus dados",
                 haircut_suggestions: "✂️ CORTES SUGERIDOS",
                 finishing_products: "💧 PRODUTOS DE FINALIZAÇÃO",
-                your_profile_summary: "📋 SEU PERFIL DE VISAGISMO"
+                your_profile_summary: "📋 SEU PERFIL DE VISAGISMO",
+                install_banner_title: "Instale o MakerAI",
+                install_banner_desc: "Acesso rápido na tela inicial, tela cheia e experiência de app.",
+                install_app_btn: "INSTALAR APP",
+                install_banner_close: "Fechar",
+                install_guide_modal_title: "Como instalar o MakerAI",
+                install_guide_intro: "Escolha seu tipo de celular e siga os passos. Se o Chrome oferecer instalação automática, use o botão abaixo.",
+                install_guide_apple_heading: "Apple — iPhone e iPad",
+                install_guide_samsung_heading: "Samsung e outros Android",
+                install_help_chrome_install: "Instalar automaticamente (Chrome / Edge)",
+                install_guide_close: "Fechar guia",
+                install_apple_steps: [
+                    "Abra este site no Safari. No iPhone, a opção oficial de \"app na tela inicial\" aparece no Safari (não no Chrome).",
+                    "Toque no ícone Compartilhar: quadrado com seta para cima (na barra inferior ou superior).",
+                    "Role a lista e escolha \"Adicionar à Tela de Início\".",
+                    "Toque em Adicionar. O ícone do MakerAI ficará junto aos seus apps."
+                ],
+                install_samsung_steps: [
+                    "Abra o site no Samsung Internet ou no Google Chrome.",
+                    "Toque no menu ⋮ (três pontos), em geral no canto superior direito.",
+                    "Procure \"Adicionar página à\", \"Instalar aplicativo\", \"Adicionar à tela inicial\" ou \"Instalar app\" — o nome varia conforme o aparelho.",
+                    "Confirme em Instalar ou Adicionar. Em muitos Samsung, o atalho também pode aparecer na barra do navegador.",
+                    "No Chrome, se aparecer o ícone de instalar (⊕ ou download) na barra de endereço, toque nele para instalar em um passo."
+                ]
             },
             en: {
                 nav_dashboard: "STUDIO", nav_profile: "PROFILE", nav_archive: "ARCHIVE",
@@ -2051,7 +2515,30 @@
                 login_required: "Please login to save your data",
                 haircut_suggestions: "✂️ SUGGESTED HAIRCUTS",
                 finishing_products: "💧 FINISHING PRODUCTS",
-                your_profile_summary: "📋 YOUR VISAGISM PROFILE"
+                your_profile_summary: "📋 YOUR VISAGISM PROFILE",
+                install_banner_title: "Install MakerAI",
+                install_banner_desc: "Quick access from your home screen and a full app-like experience.",
+                install_app_btn: "INSTALL APP",
+                install_banner_close: "Close",
+                install_guide_modal_title: "How to install MakerAI",
+                install_guide_intro: "Pick your device and follow the steps. If Chrome offers one-tap install, use the button below.",
+                install_guide_apple_heading: "Apple — iPhone & iPad",
+                install_guide_samsung_heading: "Samsung & other Android",
+                install_help_chrome_install: "Install automatically (Chrome / Edge)",
+                install_guide_close: "Close guide",
+                install_apple_steps: [
+                    "Open this site in Safari. On iPhone, \"Add to Home Screen\" is offered in Safari (not in Chrome).",
+                    "Tap the Share icon: square with an arrow pointing up (bottom or top bar).",
+                    "Scroll and choose \"Add to Home Screen\".",
+                    "Tap Add. The MakerAI icon will appear with your apps."
+                ],
+                install_samsung_steps: [
+                    "Open the site in Samsung Internet or Google Chrome.",
+                    "Tap the ⋮ menu (three dots), usually top-right.",
+                    "Look for \"Add page to\", \"Install app\", or \"Add to Home screen\" — wording depends on your phone.",
+                    "Confirm Install or Add. On many Samsung phones, a shortcut may also show in the browser bar.",
+                    "In Chrome, if an install icon (⊕) appears in the address bar, tap it for one-step install."
+                ]
             },
             es: {
                 nav_dashboard: "ESTUDIO", nav_profile: "PERFIL", nav_archive: "ARCHIVO",
@@ -2112,7 +2599,30 @@
                 login_required: "Inicia sesión para guardar tus datos",
                 haircut_suggestions: "✂️ CORTES SUGERIDOS",
                 finishing_products: "💧 PRODUCTOS DE FINALIZACIÓN",
-                your_profile_summary: "📋 TU PERFIL DE VISAGISMO"
+                your_profile_summary: "📋 TU PERFIL DE VISAGISMO",
+                install_banner_title: "Instala MakerAI",
+                install_banner_desc: "Acceso rápido desde tu pantalla de inicio y experiencia a pantalla completa.",
+                install_app_btn: "INSTALAR APP",
+                install_banner_close: "Cerrar",
+                install_guide_modal_title: "Cómo instalar MakerAI",
+                install_guide_intro: "Elige tu móvil y sigue los pasos. Si Chrome ofrece instalación automática, usa el botón de abajo.",
+                install_guide_apple_heading: "Apple — iPhone y iPad",
+                install_guide_samsung_heading: "Samsung y otros Android",
+                install_help_chrome_install: "Instalar automáticamente (Chrome / Edge)",
+                install_guide_close: "Cerrar guía",
+                install_apple_steps: [
+                    "Abre este sitio en Safari. En iPhone, la opción de \"app en la pantalla de inicio\" aparece en Safari (no en Chrome).",
+                    "Toca Compartir: cuadrado con flecha hacia arriba (barra inferior o superior).",
+                    "Desplázate y elige \"Añadir a la pantalla de inicio\".",
+                    "Toca Añadir. El icono de MakerAI quedará con tus aplicaciones."
+                ],
+                install_samsung_steps: [
+                    "Abre el sitio en Samsung Internet o Google Chrome.",
+                    "Toca el menú ⋮ (tres puntos), normalmente arriba a la derecha.",
+                    "Busca \"Añadir página a\", \"Instalar aplicación\" o \"Añadir a pantalla de inicio\" — el nombre depende del móvil.",
+                    "Confirma Instalar o Añadir. En muchos Samsung el acceso directo también puede aparecer en la barra del navegador.",
+                    "En Chrome, si ves el icono de instalar (⊕) en la barra de direcciones, tócalo para instalar en un paso."
+                ]
             }
         };
 
@@ -2199,15 +2709,16 @@
         let users = JSON.parse(localStorage.getItem('users')) || [];
 
         function updateLoginUI() {
-            const loginBtn = document.getElementById('loginButton');
+            const loginBtns = document.querySelectorAll('#loginButton, #loginButtonMobile');
             const userNameHeader = document.getElementById('userNameHeader');
-            
+
             if (currentUser) {
-                loginBtn.innerHTML = `👤 ${currentUser.username}`;
-                loginBtn.onclick = () => switchTab('perfil');
+                loginBtns.forEach(btn => {
+                    btn.innerHTML = `👤 ${currentUser.username}`;
+                    btn.onclick = () => switchTab('perfil');
+                });
                 document.getElementById('btn-logout').style.display = 'block';
-                
-                // Exibir nome do perfil no header
+
                 if (perfil && perfil.nome && perfil.nome.trim() !== '') {
                     userNameHeader.textContent = perfil.nome.split(' ')[0];
                     userNameHeader.style.display = 'inline-block';
@@ -2216,8 +2727,10 @@
                     userNameHeader.style.display = 'inline-block';
                 }
             } else {
-                loginBtn.innerHTML = '🔐 ENTRAR';
-                loginBtn.onclick = () => openLoginModal();
+                loginBtns.forEach(btn => {
+                    btn.innerHTML = '🔐 ENTRAR';
+                    btn.onclick = () => openLoginModal();
+                });
                 document.getElementById('btn-logout').style.display = 'none';
                 userNameHeader.style.display = 'none';
             }
@@ -2236,7 +2749,10 @@
             }
         }
 
-        function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
+        function openLoginModal() {
+            closeMobileMenu();
+            document.getElementById('loginModal').classList.add('active');
+        }
         function closeLoginModal() { document.getElementById('loginModal').classList.remove('active'); }
 
         function loginUser() {
@@ -2326,6 +2842,35 @@
         let tempFotoDepois = null;
 
         function getText(key) { return translations[currentLang][key] || key; }
+
+        function fillInstallGuideStepsList(ol, steps) {
+            if (!ol) return;
+            ol.innerHTML = '';
+            if (!Array.isArray(steps)) return;
+            steps.forEach((text) => {
+                const li = document.createElement('li');
+                li.textContent = text;
+                ol.appendChild(li);
+            });
+        }
+
+        function updateInstallGuideTexts() {
+            const t = getText;
+            const titleEl = document.getElementById('install-guide-modal-title');
+            const introEl = document.getElementById('install-guide-intro');
+            const appleH = document.getElementById('install-guide-apple-heading');
+            const samH = document.getElementById('install-guide-samsung-heading');
+            const chromeBtn = document.getElementById('installGuideChromeBtn');
+            const closeBtn = document.getElementById('installGuideClose');
+            if (titleEl) titleEl.textContent = t('install_guide_modal_title');
+            if (introEl) introEl.textContent = t('install_guide_intro');
+            if (appleH) appleH.textContent = t('install_guide_apple_heading');
+            if (samH) samH.textContent = t('install_guide_samsung_heading');
+            if (chromeBtn) chromeBtn.textContent = t('install_help_chrome_install');
+            if (closeBtn) closeBtn.setAttribute('aria-label', t('install_guide_close'));
+            fillInstallGuideStepsList(document.getElementById('install-guide-apple-steps'), t('install_apple_steps'));
+            fillInstallGuideStepsList(document.getElementById('install-guide-samsung-steps'), t('install_samsung_steps'));
+        }
 
         function redirectToAffiliate(link) {
             if (link) {
@@ -2549,12 +3094,25 @@
         }
 
         function updateMiniStats() {
-            document.getElementById('miniVisits').textContent = visitas.length;
-            document.getElementById('miniFavorites').textContent = favoritos.length;
-            document.getElementById('miniProducts').textContent = produtos.length;
-            document.getElementById('miniVisitsLabel').textContent = getText('mini_visits');
-            document.getElementById('miniFavoritesLabel').textContent = getText('mini_fav');
-            document.getElementById('miniProductsLabel').textContent = getText('mini_prod');
+            const nv = String(visitas.length);
+            const nf = String(favoritos.length);
+            const np = String(produtos.length);
+            const lv = getText('mini_visits');
+            const lf = getText('mini_fav');
+            const lp = getText('mini_prod');
+            [['miniVisits', nv], ['miniFavorites', nf], ['miniProducts', np], ['mobileVisits', nv], ['mobileFavorites', nf], ['mobileProducts', np]].forEach(([id, v]) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = v;
+            });
+            document.getElementById('miniVisitsLabel').textContent = lv;
+            document.getElementById('miniFavoritesLabel').textContent = lf;
+            document.getElementById('miniProductsLabel').textContent = lp;
+            const mvl = document.getElementById('mobileVisitsLabel');
+            const mfl = document.getElementById('mobileFavoritesLabel');
+            const mpl = document.getElementById('mobileProductsLabel');
+            if (mvl) mvl.textContent = lv;
+            if (mfl) mfl.textContent = lf;
+            if (mpl) mpl.textContent = lp;
         }
 
         function renderAll() {
@@ -2571,13 +3129,20 @@
             updateHeaderName();
         }
 
+        function closeMobileMenu() {
+            const m = document.getElementById('navMenuMobile');
+            const o = document.getElementById('menuOverlay');
+            if (m) m.classList.remove('active');
+            if (o) o.classList.remove('active');
+        }
+
         function switchTab(tabName) {
+            closeMobileMenu();
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             const target = document.getElementById(tabName);
             if (target) target.classList.add('active');
             document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
-            const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
-            if (activeBtn) activeBtn.classList.add('active');
+            document.querySelectorAll(`[data-tab="${tabName}"]`).forEach(btn => btn.classList.add('active'));
             if (tabName === 'visagismo') renderQuiz();
             if (tabName === 'dashboard') {
                 renderDashboard();
@@ -2980,7 +3545,10 @@
         function applyTheme() {
             if (currentTheme === 'dark') document.body.classList.add('dark');
             else document.body.classList.remove('dark');
-            document.getElementById('themeSelect').value = currentTheme;
+            const ts = document.getElementById('themeSelect');
+            const tsm = document.getElementById('themeSelectMobile');
+            if (ts) ts.value = currentTheme;
+            if (tsm) tsm.value = currentTheme;
         }
 
         function applyLanguage() {
@@ -3039,8 +3607,129 @@
             document.getElementById('btn-logout').textContent = t('logout_btn');
             const logoText = currentLang === 'pt' ? "INTELIGÊNCIA DE BELEZA" : (currentLang === 'en' ? "BEAUTY INTELLIGENCE" : "INTELIGENCIA DE BELLEZA");
             document.getElementById('logo-subtitle').textContent = logoText;
+            const ibTitle = document.getElementById('install-banner-title');
+            const ibDesc = document.getElementById('install-banner-desc');
+            const ibBtn = document.getElementById('installBannerBtn');
+            const ibClose = document.getElementById('installBannerClose');
+            if (ibTitle) ibTitle.textContent = t('install_banner_title');
+            if (ibDesc) ibDesc.textContent = t('install_banner_desc');
+            if (ibBtn) ibBtn.textContent = t('install_app_btn');
+            if (ibClose) ibClose.setAttribute('aria-label', t('install_banner_close'));
+            updateInstallGuideTexts();
             updateMiniStats();
             renderAll();
+        }
+
+        const INSTALL_BANNER_STORAGE_KEY = 'makerai_install_banner_dismissed';
+
+        function registerMakerAIServiceWorker() {
+            if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('sw.js', { scope: './' })
+                    .catch(() => { /* file:// ou sem SW */ });
+            });
+        }
+
+        function initInstallAppBanner() {
+            const banner = document.getElementById('install-app-banner');
+            const btnClose = document.getElementById('installBannerClose');
+            const btnInstall = document.getElementById('installBannerBtn');
+            if (!banner || !btnClose || !btnInstall) return;
+
+            let deferredPrompt = null;
+
+            function isStandalonePWA() {
+                return window.matchMedia('(display-mode: standalone)').matches
+                    || window.navigator.standalone === true;
+            }
+
+            function dismissBanner() {
+                localStorage.setItem(INSTALL_BANNER_STORAGE_KEY, '1');
+                banner.classList.add('install-app-banner--hidden');
+                banner.setAttribute('aria-hidden', 'true');
+            }
+
+            function showBanner() {
+                if (localStorage.getItem(INSTALL_BANNER_STORAGE_KEY) === '1' || isStandalonePWA()) return;
+                banner.classList.remove('install-app-banner--hidden');
+                banner.setAttribute('aria-hidden', 'false');
+            }
+
+            if (localStorage.getItem(INSTALL_BANNER_STORAGE_KEY) === '1' || isStandalonePWA()) {
+                banner.classList.add('install-app-banner--hidden');
+                banner.setAttribute('aria-hidden', 'true');
+            }
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                syncChromeInstallButton();
+                showBanner();
+            });
+
+            window.addEventListener('appinstalled', () => {
+                deferredPrompt = null;
+                dismissBanner();
+            });
+
+            btnClose.addEventListener('click', dismissBanner);
+
+            const guideModal = document.getElementById('install-guide-modal');
+            const guideBackdrop = document.getElementById('installGuideBackdrop');
+            const guideClose = document.getElementById('installGuideClose');
+            const guideChromeBtn = document.getElementById('installGuideChromeBtn');
+
+            function syncChromeInstallButton() {
+                if (!guideChromeBtn) return;
+                if (deferredPrompt) guideChromeBtn.classList.add('is-visible');
+                else guideChromeBtn.classList.remove('is-visible');
+            }
+
+            function openInstallGuideModal() {
+                if (!guideModal) return;
+                updateInstallGuideTexts();
+                syncChromeInstallButton();
+                guideModal.classList.remove('install-guide-modal--hidden');
+                guideModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeInstallGuideModal() {
+                if (!guideModal) return;
+                guideModal.classList.add('install-guide-modal--hidden');
+                guideModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            btnInstall.addEventListener('click', () => openInstallGuideModal());
+
+            if (guideBackdrop) guideBackdrop.addEventListener('click', closeInstallGuideModal);
+            if (guideClose) guideClose.addEventListener('click', closeInstallGuideModal);
+
+            if (guideChromeBtn) {
+                guideChromeBtn.addEventListener('click', async () => {
+                    if (!deferredPrompt) return;
+                    deferredPrompt.prompt();
+                    try {
+                        await deferredPrompt.userChoice;
+                    } catch (_) { /* ignore */ }
+                    deferredPrompt = null;
+                    syncChromeInstallButton();
+                    closeInstallGuideModal();
+                });
+            }
+
+            document.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Escape' && guideModal && !guideModal.classList.contains('install-guide-modal--hidden')) {
+                    closeInstallGuideModal();
+                }
+            });
+
+            setTimeout(() => {
+                if (localStorage.getItem(INSTALL_BANNER_STORAGE_KEY) === '1' || isStandalonePWA()) return;
+                showBanner();
+            }, 1600);
         }
 
         document.querySelectorAll('.nav-link').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
@@ -3107,20 +3796,16 @@
         });
 
         const hamburger = document.getElementById('hamburgerBtn');
-        const navMenuEl = document.getElementById('navMenu');
-        const overlay = document.getElementById('menuOverlay');
+        const navMenuMobileEl = document.getElementById('navMenuMobile');
+        const menuOverlayEl = document.getElementById('menuOverlay');
         hamburger.addEventListener('click', () => {
-            navMenuEl.classList.toggle('active');
-            overlay.classList.toggle('active');
+            navMenuMobileEl.classList.toggle('active');
+            menuOverlayEl.classList.toggle('active');
         });
-        overlay.addEventListener('click', () => {
-            navMenuEl.classList.remove('active');
-            overlay.classList.remove('active');
-        });
+        menuOverlayEl.addEventListener('click', closeMobileMenu);
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && navMenuEl.classList.contains('active')) {
-                navMenuEl.classList.remove('active');
-                overlay.classList.remove('active');
+            if (window.innerWidth > 992 && navMenuMobileEl.classList.contains('active')) {
+                closeMobileMenu();
             }
         });
 
@@ -3128,8 +3813,14 @@
         currentLang = localStorage.getItem('language') || 'pt';
         document.getElementById('themeSelect').value = currentTheme;
         document.getElementById('langSelect').value = currentLang;
+        const themeSelectMobile = document.getElementById('themeSelectMobile');
+        const langSelectMobile = document.getElementById('langSelectMobile');
+        if (themeSelectMobile) themeSelectMobile.value = currentTheme;
+        if (langSelectMobile) langSelectMobile.value = currentLang;
         applyTheme();
         applyLanguage();
+        registerMakerAIServiceWorker();
+        initInstallAppBanner();
         document.getElementById('themeSelect').addEventListener('change', (e) => {
             currentTheme = e.target.value;
             localStorage.setItem('theme', currentTheme);
@@ -3140,6 +3831,20 @@
             localStorage.setItem('language', currentLang);
             applyLanguage();
         });
+        if (themeSelectMobile) {
+            themeSelectMobile.addEventListener('change', (e) => {
+                currentTheme = e.target.value;
+                localStorage.setItem('theme', currentTheme);
+                applyTheme();
+            });
+        }
+        if (langSelectMobile) {
+            langSelectMobile.addEventListener('change', (e) => {
+                currentLang = e.target.value;
+                localStorage.setItem('language', currentLang);
+                applyLanguage();
+            });
+        }
 
         document.getElementById('dataVisita').valueAsDate = new Date();
 
@@ -3161,6 +3866,7 @@
 
         function showAdminPanel() {
             if (!isAdmin()) return;
+            closeMobileMenu();
 
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const allData = [];
@@ -3423,13 +4129,25 @@
                 closeLoginModal();
                 updateLoginUI();
 
-                const navMenu = document.getElementById('navMenu');
+                const navDesktop = document.getElementById('navMenuDesktop');
+                const navMobile = document.getElementById('navMenuMobile');
                 const adminBtnExists = document.querySelector('[data-tab="adminPanel"]');
                 if (!adminBtnExists) {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<button class="nav-link" data-tab="adminPanel" data-key="nav_admin">📊 ADMIN</button>`;
-                    navMenu.appendChild(li);
-                    document.querySelector('[data-tab="adminPanel"]').addEventListener('click', () => showAdminPanel());
+                    const makeLi = () => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<button type="button" class="nav-link" data-tab="adminPanel" data-key="nav_admin">📊 ADMIN</button>`;
+                        return li;
+                    };
+                    if (navDesktop) navDesktop.appendChild(makeLi());
+                    if (navMobile) {
+                        const mc = navMobile.querySelector('.mobile-controls-wrap');
+                        const li = makeLi();
+                        if (mc) navMobile.insertBefore(li, mc);
+                        else navMobile.appendChild(li);
+                    }
+                    document.querySelectorAll('[data-tab="adminPanel"]').forEach(btn => {
+                        btn.addEventListener('click', () => showAdminPanel());
+                    });
                 }
 
                 alert(`🔐 Bem-vindo, Administrador!`);
